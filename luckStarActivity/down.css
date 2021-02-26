@@ -1,0 +1,200 @@
+*{padding:0;margin:0}
+body,html,#app{width: 100%;height: 100%;background: #090806;}
+.contenter{
+    background: #090806;
+    position: relative;
+}
+.topArea{
+    width: 7.5rem;
+    height: 5.06rem;
+    position: relative;
+    overflow: hidden;
+    background-image: url(./img/luckbg1.png);
+    background-size: 9.79rem;
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+.topArea .titleText{
+    width: 7.5rem;
+    height: 0.94rem;
+    font-size: 1rem;
+    font-family: HYLingXinJ;
+    font-weight: 400;
+    color: #F0F0F0;
+    line-height: 0.94rem;
+    text-shadow:0.07rem 0.04rem 0.08rem rgba(12, 10, 17, 0.71);
+    text-align: center;
+    padding-top: 2.1rem;
+}
+.topArea .acTime{
+    height: 0.59rem;
+    width: 7.3rem;
+    background-image: url(./img/timebg.png);
+    background-size: 7.3rem 0.59rem;
+    background-position: center top;
+    background-repeat: no-repeat;
+    margin-top: 1.15rem;
+    margin-left: 0.1rem;
+    line-height: 0.59rem;
+    text-align: center;
+    color: #F7E385;
+    font-size: 0.28rem;
+}
+.topArea .backBtn{
+    padding-left: 0.2rem;
+    padding-right: 0.3rem;
+    border-radius: 0rem 0.3rem 0.3rem 0rem;
+    background-image: linear-gradient(to right, #F2DF3C , #F5BD2B);
+    position: absolute;
+    top: 2.54rem;
+    left: 0rem;
+    font-size: 0.26rem;
+    color: #333333;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    text-align: center;
+}
+/*title*/
+.userBoxTitle{
+    margin-bottom: 0.3rem;
+    height: 0.33rem;
+    width: 7.5rem;
+    position: relative;
+    background-image: url(./img/underline.png);
+    background-size: 7.5rem 0.09rem;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    margin-top: 0.53rem;
+}
+.userBoxTitle .userUtitle{
+    height: 0.33rem;
+    line-height: 0.33rem;
+    font-size: 0.33rem;
+    padding: 0 0.3rem;
+    color: #F7E385;
+    margin: auto;
+    background: #090806;
+}
+.perBox{
+    display: flex;
+    width: 7.5rem;
+    height: 0.86rem;
+    align-items: center;
+    justify-content: center;
+    color: #EBB136;
+    margin-bottom: 0.4rem;
+}
+.perBox .icon{
+    height: 0.86rem;
+}
+.perBox .intro{
+    width: 3.4rem;
+    height: 0.71rem;
+    border-radius: 0.15rem;
+    background: #22211F;
+    display: flex;
+    align-items: center;
+    font-size: 0.3rem;
+    font-family: PingFang SC;
+    font-weight: 500;
+    color: #EBB136;
+    padding: 0 0.3rem;
+    margin-left: 0.5rem;
+}
+.perBox .intro .icon{
+    height: 0.4rem;
+    margin-right: 0.1rem;
+}
+/*活动礼物*/
+.acGiftBox{
+    width: 6.81rem;
+    height: 4.45rem;
+    border: 0.03rem solid #F7E385;
+    margin:auto;
+    position: relative;
+    padding-top: 0.6rem;
+}
+.acGiftBox .perAc{
+    width: 100%;
+    height: 0.43rem;
+    color: #F7E385;
+    display: flex;
+    align-items: center;
+    font-size: 0.3rem;
+    justify-content: space-around;
+    margin-bottom: 0.66rem;
+}
+.acGiftBox .perAc .index{
+    width: 1.4rem;
+}
+.acGiftBox .perAc .day{
+    display: flex;
+    align-items: center;
+}
+.acGiftBox .perAc .day img{
+    height: 0.43rem;
+}
+.acGiftBox .perAc .num{
+    width: 1.56rem;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.acGiftBox .perAc .num img{
+    height: 0.28rem;
+}
+.acGiftBox1 .perAc{
+    font-size: 0.26rem;
+}
+.acGiftBox1 .perAc .num{
+    text-align: center;
+    width: 1.86rem;
+}
+.acGiftBox2 .perAc{
+    font-size: 0.26rem;
+}
+.acGiftBox2 .perAc .num{
+    text-align: center;
+    width: 1.86rem;
+}
+/*幸运礼物*/
+.luGiftBox{
+    width: 6.81rem;
+    height: 4.45rem;
+    border: 0.03rem solid #F7E385;
+    margin:auto;
+    position: relative;
+    margin-bottom:0.5rem;
+    padding-top: 0.6rem;
+}
+.luGiftBox .perAc{
+    width: 100%;
+    height: 0.43rem;
+    color: #F7E385;
+    display: flex;
+    align-items: center;
+    font-size: 0.3rem;
+    justify-content: space-around;
+    margin-bottom: 0.66rem;
+}
+.luGiftBox .perAc .index{
+    width: 1.4rem;
+}
+.luGiftBox .perAc .day{
+    width: 2.96rem;
+    display: flex;
+    align-items: center;
+}
+.luGiftBox .perAc .day img{
+    height: 0.43rem;
+}
+.luGiftBox .perAc .num{
+    width: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+.luGiftBox .perAc .num img{
+    height: 0.28rem;
+}

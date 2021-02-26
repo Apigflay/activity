@@ -1,0 +1,178 @@
+*{padding:0;margin:0}
+body,html,#app{width: 100%;height: 100%;background: #142723;}
+.contenter{
+    /*height: 100%;*/
+    width: 7.5rem;
+    /*background: #142723;*/
+
+    background-image: url(./imgs/bg.jpg);
+    background-size: 7.5rem 30rem;
+    background-position: center top;
+    background-repeat: repeat;
+}
+/*公共部分*/
+.topArea{
+    padding-top: 0.05rem;
+    width: 7.5rem;
+    height: 7.75rem;
+    position: relative;
+}
+.topArea .jiao{
+    width: 6.15rem;
+    height: 3.58rem;
+    margin-left: 0.67rem;
+    margin-bottom: 1.24rem;
+}
+.topArea .textbg{
+    position: absolute;
+    top:2.48rem;
+    left: 1.67rem;
+    width: 4.53rem;
+    height: 3.11rem;
+}
+.topArea .backArea{
+    position: absolute;
+    padding: 0.12rem 0.5rem 0.12rem 0.12rem;
+    top:2.47rem;
+    left: 0;
+    border-radius: 0rem 0.27rem 0.27rem 0rem;
+    font-size: 0.30rem;
+    color: #FFFFFF;
+    background: #C50007;
+}
+.topArea .timeInfo{
+    height: 0.9rem;
+    width: 7.5rem;
+    background-image: url(./imgs/timebg.png);
+    background-size: 7.5rem 0.9rem;
+    background-position: center top;
+    background-repeat: no-repeat;
+    text-align: center;
+    line-height: 0.9rem;
+    font-size: 0.26rem;
+    color: #F9F9F8;
+    text-shadow: 0px 3px 3px rgba(16, 33, 29, 0.75);
+}
+.topArea .titleArea{
+    height: 1.29rem;
+    margin-top: 0.68rem;
+    display: flex;
+    /*align-items: center;*/
+    justify-content: center;
+}
+.topArea .titleArea .cat{
+    height: 0.46rem;
+    width: 0.36rem;
+    position: relative;
+    left: 0.5rem;
+    top: 0.1rem;
+}
+.topArea .titleArea .title{
+    height: 1.29rem;
+    width: 5.23rem;
+}
+/*公共部分*/
+.totalPriseTitleArea{
+    width: 100%;
+    height: 0.36rem;
+    font-size: 0.36rem;
+    line-height: 0.36rem;
+    color:#FED67E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.totalPriseTitleArea .ling1{
+    width: 0.12rem;
+    height: 0.12rem;
+    background: #FED67E;
+    transform:rotate(45deg);   
+    -ms-transform:rotate(45deg); /* Internet Explorer */   
+    -moz-transform:rotate(45deg); /* Firefox */   
+    -webkit-transform:rotate(45deg); /* Safari 和 Chrome */   
+    -o-transform:rotate(45deg); /* Opera */
+    margin:0 0.24rem;
+}
+.totalPriseTitleArea .ling2{
+    width: 0.14rem;
+    height: 0.14rem;
+    background: #FED67E;
+    -ms-transform:rotate(45deg); /* Internet Explorer */   
+    -moz-transform:rotate(45deg); /* Firefox */   
+    -webkit-transform:rotate(45deg); /* Safari 和 Chrome */   
+    -o-transform:rotate(45deg); /* Opera */
+}
+.totalPriseTitleArea .text{
+    margin:0 0.43rem;
+}
+/*活动规则*/
+.textP1{
+    margin-top: 0.1rem;
+    width: 6rem;
+    padding:0rem 0.75rem;
+    font-size: 0.3rem;
+    font-weight: 400;
+    color: #EBCEB2;
+    line-height: 0.6rem;
+}
+/*总榜奖励*/
+.totalPriseTitleArea2{
+    margin-top: 0.4rem;
+    margin-bottom: 0.2rem;
+}
+.textP2{
+    width: 6rem;
+    padding:0rem 0.75rem;
+    font-size: 0.28rem;
+    font-weight: 400;
+    color: #FED67E;
+    line-height: 0.56rem;
+}
+.textP3{
+    width: 6rem;
+    padding:0rem 0.75rem;
+    font-size: 0.28rem;
+    font-weight: 400;
+    color: #FED67E;
+    line-height: 0.56rem;
+    padding-bottom: 0.8rem;
+}
+.giftArea{
+    width: 7.5rem;
+    display: flex;
+    justify-content: space-around;
+    margin:0.7rem 0 0.95rem 0;
+}
+.giftArea .per{
+    width: 1.62rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.giftArea .per .img{
+    /*width: 1.2rem;*/
+    height: 1.2rem;
+}
+.giftArea .per .name{
+    height: 0.72rem;
+    text-align: center;
+    font-size: 0.28rem;
+    font-weight: 500;
+    color: #FED67E;
+    line-height: 0.36rem;
+    margin:0.2rem 0 0.2rem 0;
+}
+.giftArea .per .num{
+    font-size: 0.28rem;
+    font-weight: 500;
+    color: #FED67E;
+    line-height: 0.36rem;
+}
+.giftArea .per .text{
+    font-size: 0.28rem;
+    font-weight: 500;
+    color: #FED67E;
+    line-height: 0.36rem;
+    text-align: center;
+}

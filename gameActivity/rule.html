@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<meta name="description" content="不超过150个字符"/>
+<meta name="keywords" content=""/>
+<meta content="" name="author"/>
+<title></title>
+<link rel="stylesheet" href="./rule.css">
+<!-- <script src="./axios.js"></script> -->
+<script src="./vue.js"></script>
+<script type="text/javascript">
+//引入该flexible.min.js
+!function(e,t){function n(){var n=l.getBoundingClientRect().width;t=t||540,n>t&&(n=t);var i=100*n/e;r.innerHTML="html{font-size:"+i+"px;}"}var i,d=document,o=window,l=d.documentElement,r=document.createElement("style");if(l.firstElementChild)l.firstElementChild.appendChild(r);else{var a=d.createElement("div");a.appendChild(r),d.write(a.innerHTML),a=null}n(),o.addEventListener("resize",function(){clearTimeout(i),i=setTimeout(n,300)},!1),o.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(i),i=setTimeout(n,300))},!1),"complete"===d.readyState?d.body.style.fontSize="16px":d.addEventListener("DOMContentLoaded",function(e){d.body.style.fontSize="16px"},!1)}(750,750);
+</script>
+</head>
+  <body>
+    <div id="app">
+        <div class="contenter">
+            <div class="topArea">
+                
+                <img class="bg1" src="./img/bg1.png" alt="">
+                <img class="bg2" src="./img/bg2.png" alt="">
+                <img class="bg3 bg30" src="./img/bg30.png" v-if="language==0" alt="">
+                <img class="bg3 bg31" src="./img/bg31.png" v-if="language==1" alt="">
+                <img class="bg3 bg32" src="./img/bg32.png" v-if="language==2" alt="">
+                <img class="back" src="./img/back.png" @click="goPages" alt="">
+                <div class="time">
+                    <img class="bg4" src="./img/bg4.png" alt="">
+                    <p class="ptime">{{timeInfo[language]}}</p>
+                </div>
+                <div class="listBtn">
+                    <img class="rule" :src="rulePic[language]" alt="">
+                </div>
+            </div>
+            <div class="listArea">
+                <p class="p">{{anchorString[0][language]}}</p>
+                <p class="p p2">{{anchorString[1][language]}}</p>
+            </div>
+            <div class="priseArea">
+                <img class="prise" :src="prisePic[language]" alt="">
+            </div>
+            <div class="ruleArea">
+                <p class="anchor"> <em>{{title[0][language]}}</em> </p>
+                <div class="anchorPerArea">
+                  <div class="anchorPer" v-for="(item,index) in anchorRules[language]" :key=index>
+                    <div class="span1" :class="'span1'+language">
+                        <em>{{item.index}}</em>
+                    </div>
+                    <img class="imgD" :src="item.imgD" alt="">
+                    <div class="span2" :class="'span2'+index">
+                        {{item.prise}}
+                    </div>
+                    <img class="imgG" :class="'imgG'+index" :src="item.imgG" alt="">
+                    <div class="span3" :class="'span3'+index">
+                        {{item.title}}
+                    </div>
+                    <div class="span4">
+                        {{item.sen}}<br>{{item.choose}}<br>{{item.low}}
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="anchorPer" v-for="(item,index) in anchorRules[language]" :key=index>
+                  <div class="span1">
+                      <em>{{item.index}}</em>
+                  </div>
+                  <div class="span2" :class="'span2'+index">
+                      <em>{{item.title}}</em>
+                  </div>
+                  <div class="span3">
+                      {{item.sen}}{{item.choose}}
+                  </div>
+                </div> -->
+                <p class="family"> <em>{{title[1][language]}}</em> </p>
+                <div class="familyPer" v-for="(item,index) in familyRules[language]" :key=index>
+                    <span class="span1">{{item.index}}</span>
+                    <span class="span2">{{item.intro}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script type="text/javascript">
+    new Vue({
+        el:'#app',
+        data(){
+          return{
+            language:2,//0中   1英  2太 
+            anchorString:[['1.家族赛：所有家族参赛，统计喵宝宝获得数量，统计礼物获得数量进行排名，选取3位获奖家族。获奖家族会获得奖励。','1. Family competition: All families participate in the competition, count the number of cat babies, count the number of gifts and rank them, and select 3 winning families. The winning family is rewarded.','1. Cuộc thi gia tộc : Tất cả các gia tộc tham gia cuộc thi,dựa trên tổng số lượng quà tặng (meow bé) đạt được để xếp hạng, chọn 2 gia tộc giành chiến thắng. Gia tộc chiến thắng sẽ được nhận thưởng '],
+                          ['2.主播赛：所有主播参赛，统计喵宝宝获得数量，统计礼物获得数量进行排名，进行主播个人排名。排行榜展示所有参赛主播情况。一共6位主播会获奖。获奖主播','2. Idol competition: all anchors take part in the competition, count the number of cats, count the number of gifts and rank the anchors. The rankings show all the anchors in the competition. A total of six hosts will win. Winning the host','2. Cuộc thi idol: Tất cả các idol tham gia cuộc thi, dựa trên số lượng quà tặng(miu bảo bảo), để xếp hạng và xếp hạng cá nhân idol. Bảng xếp hạng cho thấy tất cả các idol tham gia. Tổng cộng có 6 Idol thành tích cao nhất sẽ được nhận thưởng. Khích lệ Idol ']],
+            timeInfo:['时间: 2020.07.15-2020.07.21','Time: 2020.07.22-2020.07.28','Thời gian: 2020 / 07.15-2020 / 07,21'],
+            title:[['主播奖励','Idol award','Phần thưởng Idol'],['家族奖励','Family award','Phần thưởng gia tộc']],//
+            anchorRules:[[{index:'第一名:',imgD:'./img/doll.png',prise:'$500',imgG:'./img/wang.png',title:'至尊皇冠(1个月)',sen:'获取条件:',choose:'主播最少获得',low:'1600个喵宝宝'},
+                        {index:'第二名:',imgD:'./img/doll.png',prise:'$200',imgG:'./img/purple.png',title:'紫色VIP(1个月)',sen:'获取条件:',choose:'主播最少获得',low:'1000个喵宝宝'},
+                        {index:'第三名',imgD:'./img/doll.png',prise:'$100',imgG:'./img/red.png',title:'红色VIP(1个月)',sen:'获取条件:',choose:'主播最少获得',low:'800个喵宝宝'}],
+
+                        [{index:'No. 1:',imgD:'./img/doll.png',prise:'$500',imgG:'./img/wang.png',title:'Supreme Crown (1 month)',sen:'Acquisition conditions:',choose:'The anchor gets at least 1600 kittens'},
+                        {index:'2nd place:',imgD:'./img/doll.png',prise:'$200',imgG:'./img/purple.png',title:'Purple VIP (1 month)',sen:'Acquisition conditions:',choose:'the anchor will get at least 1000 kittens'},
+                        {index:'No. 3: ',imgD:'./img/doll.png',prise:'$100',imgG:'./img/red.png',title:'Red VIP(1 month)',sen:'Acquisition conditions:',choose:'the anchor will get at least 800 kittens'}],
+
+                        [{index:'Vị trí đầu tiên:',imgD:'./img/doll.png',prise:'$500',imgG:'./img/wang.png',title:'và Vương miện tối cao (1 tháng)',sen:'Điều kiện đạt được:',choose:' Idol sẽ nhận được ít nhất 1600 miu bảo bảo'},
+                        {index:'Vị trí thứ hai:',imgD:'./img/doll.png',prise:'$200',imgG:'./img/purple.png',title:'và VIP màu tím (1 tháng)',sen:'Điều kiện đạt được:',choose:' Idol sẽ nhận được ít nhất 1000 miu bảo bảo'},
+                        {index:'Vị trí thứ ba:',imgD:'./img/doll.png',prise:'$100',imgG:'./img/red.png',title:'và VIP đỏ (1 tháng)',sen:'Điều kiện đạt được:',choose:'Idol sẽ nhận được ít nhất 800 miu bảo bảo'}],
+            ],
+            familyRules:[[{index:'第一名:',intro:'家族长获得$100'},
+                  {index:'第二名:',intro:'家族长获得1000000 coins'},
+                  {index:'第三名:',intro:'家族长获得500000 coins'}],
+
+                  [{index:'Top 1:',intro:'Family leader gets $100'},
+                  {index:'No. 2:',intro:'Family leader gets 1000000 COINS'},
+                  {index:'Third place:',intro:'The head of the family receives 500,000 COINS'}],
+
+                  [{index:'Vị trí đầu tiên:',intro:' tộc trưởng nhận được 100 đô la'},
+                  {index:'Vị trí thứ 2:',intro:'tộc trưởng nhận được 1000000 xu'},
+                  {index:'Vị trí thứ ba:',intro:'tộc trưởng nhận được 500.000 xu'}],
+            ],
+            rulePic:['./img/ruleZ.png','./img/ruleE.png','./img/ruleY.png'],//活动规则
+            prisePic:['./img/priseZ.png','./img/priseE.png','./img/priseY.png'],//奖励
+            
+          }   
+        },
+        created() {
+          this.getInitLunguage()
+          this.systemall()
+        //   this.getMessage();
+        //   this.getUrlData()
+        // this.getScrollMsg()
+        },
+        computed:{
+        },
+        methods:{
+          goPages:function(){
+            // window.location.href ="./anchorList.html"; rel="external nofollow";
+            window.history.go(-1)
+          },
+          getInitLunguage:function(){
+              var lang = navigator.language||navigator.userLanguage;//常规浏览器语言和IE浏览器
+              lang = lang.substr(0, 2);//截取lang前2位字符
+              console.log(lang)
+              if(lang == 'zh'){
+                this.language=0;
+              }else if(lang == 'en'){
+                this.language=1;
+              }else if(lang == 'vi'){
+                this.language=2;
+              }else{
+                this.language=0;
+              }
+            },
+            swichList:function(index){
+                // console.log(index)
+                this.listStatus = index;
+                if(index==0){
+                    this.listData=[];
+                }else{
+                    this.listData=this.listData1;
+                }
+            },
+            // goRulesPages:function(){
+
+            // },
+            getScrollMsg:function(){
+                var that = this;
+                window.onscroll = function(){  // 由于需要使用 onPageScroll 无法使用 scroll-view 所以使用onscroll来判断页面是否滚动到底部
+                    //变量scrollTop是滚动条滚动时，距离顶部的距离
+                    var scrollTop = document.documentElement.scrollTop;
+                    //变量windowHeight是可视区的高度
+                    var windowHeight = document.documentElement.clientHeight;
+                    //变量scrollHeight是滚动条的总高度
+                    var scrollHeight = document.documentElement.scrollHeight;
+                            console.log(scrollTop)
+                            console.log(windowHeight)
+                            console.log(scrollHeight)
+                          //滚动条到底部的条件
+                    if(scrollTop+windowHeight==scrollHeight){
+                      //写后台加载数据的函数
+                      console.log("距顶部"+scrollTop+"可视区高度"+windowHeight+"滚动条总高度"+scrollHeight);
+                      console.log('滚动到底')
+                      that.listData.push({name:'小野444猫',num:123,url:'./img/bg10.png'},)
+
+                    }   
+                }
+            },
+          //获取 ranktype useridx 的公共函数
+          GetQueryString:function(name) { //name为要获得的参数名字
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)")
+            var r = window.location.search.substr(1).match(reg)
+            if(r != null) return decodeURI(r[2])
+            return null;
+          },
+          getUrlData:function(){
+            console.log(this.GetQueryString('ranktype'));
+            console.log(this.GetQueryString('useridx'));
+            // console.log(this.data.data)
+          },
+          getMessage:function(){
+            console.log(this.data)
+            var that =this;
+            axios.post('/Rank/totalRankData', {
+              ranktype: that.ranktype,
+              timetype: that.timetype,
+              useridx: that.useridx,
+              page: 1,
+            })
+            .then(function (response) {
+              that.infoData=response.data.data.rankList;
+              //此处浅拷贝  下方改变原始数据变化
+              var arr=response.data.data.rankList;
+              arr.forEach(function(item,index,arr1){
+                if(item.sumprice>=10000){
+                  arr[index].sumprice=Math.floor(arr[index].sumprice/10000*100)/100+"万"
+                }else{
+
+                }
+              })  
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+          },
+          goList:function(e){
+            if(e.currentTarget.id==0){//1 日榜，2 周榜，3 月榜，4 总榜
+              this.timetype=2;
+              this.getMessage()
+            }else if(e.currentTarget.id==1){
+              this.timetype=3;
+              this.getMessage()
+            }else if(e.currentTarget.id==2){
+              this.timetype=4;
+              this.getMessage()
+            }
+            this.listState=e.currentTarget.id;
+          },
+          add:function(){
+            axios.get('http://192.168.84.170:5000/LinkService/Auto/MixVerifyCode')
+            .then(function (response) {
+              console.log(response);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+
+          },//---------------
+          systemall:function(){
+            var ios = 'ios';
+            var android = 'android';
+            var pc = 'pc';
+            var u = navigator.userAgent, app = navigator.appVersion;
+            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+            var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            if (isAndroid) {
+               //这个是安卓操作系统
+               console.log('这个是安卓操作系统')
+               return android;
+            }
+            if (isIOS) {
+            　　//这个是ios操作系统
+              console.log('这个是ios操作系统')
+              return ios;
+            }
+            if (isIOS==false&&isAndroid==false) {
+            　　//这个是pc操作系统
+              console.log('这个是pc操作系统')
+              return pc;
+            }
+          }	
+        },
+        beforeMount(){
+        },
+        mounted(){
+        },
+       
+    })
+  </script>
+</html>

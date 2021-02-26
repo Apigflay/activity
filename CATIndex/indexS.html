@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script type="text/javascript">
+    function browserRedirect() {
+      var namerex='roomidx';
+      console.log(window.location)
+      var reg = new RegExp("(^|&)" + namerex + "=([^&]*)(&|$)");
+      console.log(reg)
+      var r = window.location.search.substr(1).match(reg);
+      console.log(r)
+      if (r != null) {
+        var roomidx = r[2];
+      }else{
+        var roomidx = 0;
+      }
+      // str.search(/w3school/i)
+      var sUserAgent = navigator.userAgent.toLowerCase();
+      if (/ipad|iphone|midp|rv:1.2.3.4|ucweb|android|windows ce|windows mobile/.test(sUserAgent)) {
+          //跳转移动端页面
+
+          window.location.href ="distpc/index.html"; rel="external nofollow";
+      } else {
+      //跳转pc端页面
+          
+          window.location.href ="h5/index.html"; rel="external nofollow";
+      }
+    }
+
+    browserRedirect(); 
+
+
+
+</script>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,452 @@
+*{padding:0;margin:0}
+body,html,#app{width: 100%;height: 100%;background: #090806;}
+.contenter{
+    background: #090806;
+    /*padding-bottom: 0.28rem;*/
+}
+.topArea{
+    width: 7.5rem;
+    height: 5.06rem;
+    position: relative;
+    overflow: hidden;
+    background-image: url(./img/luckbg1.png);
+    background-size: 9.79rem;
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+.topArea .titleText{
+    width: 7.5rem;
+    height: 0.94rem;
+    font-size: 1rem;
+    font-family: HYLingXinJ;
+    font-weight: 400;
+    color: #F0F0F0;
+    line-height: 0.94rem;
+    text-shadow:0.07rem 0.04rem 0.08rem rgba(12, 10, 17, 0.71);
+    text-align: center;
+    padding-top: 1.72rem;
+}
+.topArea .priseIcon{
+    padding-left: 0.3rem;
+    padding-right: 0.2rem;
+    border-radius: 0.3rem 0 0 0.3rem;
+    background-image: linear-gradient(to right, #F2DF3C , #F5BD2B);
+    position: absolute;
+    top: 2.82rem;
+    right: 0rem;
+    font-size: 0.26rem;
+    color: #333333;
+    line-height: 0.6rem;
+    text-align: center;
+}
+.topArea .acTime{
+    height: 0.59rem;
+    width: 7.3rem;
+    background-image: url(./img/timebg.png);
+    background-size: 7.3rem 0.59rem;
+    background-position: center top;
+    background-repeat: no-repeat;
+    margin-top: 0.90rem;
+    margin-left: 0.10rem;
+    line-height: 0.59rem;
+    text-align: center;
+    color: #F7E385;
+    font-size: 0.28rem;
+}
+.topArea .ruleBtnArea{
+    width: 7.5rem;
+    height: 0.6rem;
+    display: flex;
+    margin-top: 0.23rem;
+    justify-content: center;
+}
+.topArea .ruleBtnArea .ruleIcon{
+    border-radius: 0.3rem;
+    background-image: linear-gradient(to right, #f7e385 , #f7e385);
+    padding: 0 0.3rem;
+    font-size: 0.26rem;
+    color: #333333;
+    line-height: 0.6rem;
+    text-align: center;
+}
+.userBoxArea{
+    width: 7.5rem;
+    padding-top:0.47rem;
+}
+.userBoxArea .userBoxTitle{
+    margin-bottom: 0.3rem;
+    height: 0.33rem;
+    width: 100%;
+    position: relative;
+    background-image: url(./img/underline.png);
+    background-size: 7.5rem 0.09rem;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+}
+.userBoxArea .userBoxTitle .userUtitle{
+    height: 0.33rem;
+    line-height: 0.33rem;
+    font-size: 0.33rem;
+    padding: 0 0.3rem;
+    color: #F7E385;
+    margin: auto;
+    background: #090806;
+}
+.userBoxArea .userBox{
+    width: 6.52rem;
+    height: 1.74rem;
+    border: 0.02rem solid #F7E385;
+    margin:auto;
+    position: relative;
+}
+.userBoxArea .userBox .img1{
+    position: absolute;
+    top: -0.23rem;
+    right: 0;
+    width: 3.26rem;
+    height: 0.43rem;
+}
+.userBoxArea .userBox .img2{
+    position: absolute;
+    bottom: -0.23rem;
+    left: 0;
+    width: 3.26rem;
+    height: 0.43rem;
+}
+.userBoxArea .userBox .content{
+    width: 6.52rem;
+    height: 1.74rem; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.userBoxArea .userBox .perBox{
+    width: 1rem;
+    height: 1.74rem; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.userBoxArea .userBox .perBox .img{
+    width: 1rem;
+}
+.userBoxArea .userBox .perBox .ok{
+    position: absolute;
+    height: 0.4rem;
+    right: 0.1rem;
+}
+.userBoxArea .userBox .perBox .hNum{
+    position: absolute;
+    color:#ff7d00;
+    background:rgba(255,255,255,0.8);
+    padding: 0.04rem 0.1rem;
+    border-radius: 0.1rem;
+    font-size: 0.3rem;
+    top: 0.1rem;
+}
+.userBoxArea .userBox .perBox .price{
+    font-size: 0.23rem;
+    margin-top: 0.15rem;
+    color: #F7E385;
+}
+.userBoxArea .userBox .lineH{
+    width: 0.82rem;
+    height: 0.02rem;
+    border: 0.01rem solid #FFD021;
+    border-radius: 0.01rem;
+    margin:0 0.25rem;
+}
+/*主播礼物宝箱*/
+.AchorBoxArea{
+    width: 7.5rem;
+    padding-top:0.47rem;
+}
+.AchorBoxArea .userBoxTitle{
+    margin-bottom: 0.3rem;
+    height: 0.33rem;
+    width: 100%;
+    position: relative;
+    background-image: url(./img/underline.png);
+    background-size: 7.5rem 0.09rem;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+}
+.AchorBoxArea .userBoxTitle .userUtitle{
+    height: 0.33rem;
+    line-height: 0.33rem;
+    font-size: 0.33rem;
+    padding: 0 0.3rem;
+    color: #F7E385;
+    margin: auto;
+    background: #090806;
+}
+.AchorBoxArea .userBox{
+    width: 6.52rem;
+    height: 1.74rem;
+    border: 0.02rem solid #F7E385;
+    margin:auto;
+    position: relative;
+}
+.AchorBoxArea .userBox .img1{
+    position: absolute;
+    top: -0.23rem;
+    right: 0;
+    width: 3.26rem;
+    height: 0.43rem;
+}
+.AchorBoxArea .userBox .img2{
+    position: absolute;
+    bottom: -0.23rem;
+    left: 0;
+    width: 3.26rem;
+    height: 0.43rem;
+}
+.AchorBoxArea .userBox .content{
+    width: 6.52rem;
+    height: 1.74rem; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.AchorBoxArea .userBox .perBox{
+    width: 1rem;
+    height: 1.74rem; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.AchorBoxArea .userBox .perBox .img{
+    width: 1rem;
+}
+.AchorBoxArea .userBox .perBox .ok{
+    position: absolute;
+    height: 0.4rem;
+    right: 0.1rem;
+}
+.AchorBoxArea .userBox .perBox .hNum{
+    position: absolute;
+    color:#ff7d00;
+    background:rgba(255,255,255,0.8);
+    padding: 0.04rem 0.1rem;
+    border-radius: 0.1rem;
+    font-size: 0.3rem;
+    top: 0.1rem;
+}
+.AchorBoxArea .userBox .perBox .price{
+    font-size: 0.23rem;
+    margin-top: 0.15rem;
+    color: #F7E385;
+}
+.AchorBoxArea .userBox .lineH{
+    width: 0.82rem;
+    height: 0.02rem;
+    border: 0.01rem solid #FFD021;
+    border-radius: 0.01rem;
+    margin:0 0.25rem;
+}
+/*活动礼物*/
+.AcBoxArea{
+    width: 7.5rem;
+    padding-top:0.47rem;
+}
+.AcBoxArea .userBoxTitle{
+    margin-bottom: 0.3rem;
+    height: 0.33rem;
+    width: 100%;
+    position: relative;
+    background-image: url(./img/underline.png);
+    background-size: 7.5rem 0.09rem;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+}
+.AcBoxArea .userBoxTitle .userUtitle{
+    height: 0.33rem;
+    line-height: 0.33rem;
+    font-size: 0.33rem;
+    padding: 0 0.3rem;
+    color: #F7E385;
+    margin: auto;
+    background: #090806;
+}
+.AcBoxArea .userBox{
+    width: 6.52rem;
+    height: 5.35rem;
+    border: 0.02rem solid #F7E385;
+    margin:auto;
+    position: relative;
+}
+
+.AcBoxArea .userBox .content{
+    width: 6.52rem;
+    height: 5.35rem; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.AcBoxArea .userBox .perBox{
+    width: 1.4rem;
+    height: 2.5rem; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.AcBoxArea .userBox .perBox .img{
+    width: 1rem;
+}
+.AcBoxArea .userBox .perBox .price{
+    font-size: 0.23rem;
+    line-height: 0.3rem;
+    height: 0.6rem;
+    text-align: center;
+    margin-top: 0.15rem;
+    color: #F7E385;
+}
+.AcBoxArea .userBox .perBox .num{
+    font-size: 0.23rem;
+    margin-top: 0.15rem;
+    color: #F7E385;
+}
+/*榜单区域*/
+.rankArea{
+    width: 7.5rem;
+    height: 8.84rem;
+    background-image: url(./img/rankbg.png);
+    background-size: 8.01rem 10.54rem;
+    background-position: top center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.rankArea .rankTitle{
+    height: 0.72rem;
+    width: 7.5rem;
+    display: flex;
+    padding-top: 0.32rem;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 0.64rem;
+}
+.rankArea .rankTitle .perRankTitle{
+    padding:0.18rem 0rem;
+    color: #F7E385;
+    font-size: 0.34rem;
+    line-height: 0.34rem;
+    border-bottom:0.03rem solid #090806;
+}
+.rankArea .rankTitle .perRankTitleAc{
+    border-bottom:0.03rem solid #F7E385;
+}
+.rankArea .rankList{
+    height: 5.80rem;
+    overflow-y: scroll;
+}
+.rankArea .rankList .perList{
+    height: 0.98rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.3rem;
+}
+.rankArea .rankList .perList .num{
+    margin-left: 0.1rem;
+    font-size: 0.28rem;
+    font-weight: 400;
+    color: #F0F0F0;
+    width: 0.73rem;
+    text-align: center;
+}
+.rankArea .rankList .perList .photo{
+    width: 0.98rem;
+    height: 0.98rem;
+    border-radius: 50%;
+    margin-left: 0.4rem;
+    margin-right: 0.27rem;
+}
+.rankArea .rankList .perList .nickName{
+    width: 2.78rem;
+    height: 0.28rem;
+    font-size: 0.28rem;
+    color: #F0F0F0;
+    line-height: 0.28rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.rankArea .rankList .perList .money{
+    width: 2.4rem;
+    height: 0.7rem;
+    font-size: 0.28rem;
+    color: #F0F0F0;
+    line-height: 0.35rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.rankArea .perListBottom{
+    position: fixed;
+    bottom: 0rem;
+    left: 0;
+    height: 0.98rem;
+    width: 7.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F7E385;
+    color:#333333;
+}
+.rankArea .perListBottom .num{
+    margin-left: 0.1rem;
+    font-size: 0.28rem;
+    font-weight: 400;
+    /*color: #F0F0F0;*/
+    width: 0.73rem;
+    text-align: center;
+}
+.rankArea .perListBottom .photo{
+    width: 0.98rem;
+    height: 0.98rem;
+    border-radius: 50%;
+    margin-left: 0.4rem;
+    margin-right: 0.27rem;
+}
+.rankArea .perListBottom .nickName{
+    width: 2.78rem;
+    height: 0.28rem;
+    font-size: 0.28rem;
+    /*color: #F0F0F0;*/
+    line-height: 0.28rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.rankArea .perListBottom .money{
+    width: 2.4rem;
+    height: 0.7rem;
+    font-size: 0.28rem;
+    /*color: #F0F0F0;*/
+    line-height: 0.35rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.rankArea .perListBottom .no{
+     margin-left: 0.1rem;
+    font-size: 0.28rem;
+    font-weight: 400;
+    /*color: #F0F0F0;*/
+    text-align: center;
+}
+
+

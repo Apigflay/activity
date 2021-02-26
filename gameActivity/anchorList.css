@@ -1,0 +1,258 @@
+*{padding:0;margin:0}
+body,html,#app{width: 100%;height: 100%;background: #4b71fb;}
+.contenter{
+    background: #4b71fb;
+    padding-bottom: 0.28rem;
+    
+}
+.topArea{
+    width: 7.5rem;
+    height: 7.03rem;
+    position: relative;
+    overflow: hidden;
+}
+.topArea .bg1{
+    position: absolute;
+    width: 7.5rem;
+    height: 7.03rem;
+}
+.topArea .bg2{
+    position: absolute;
+    left: 0.14rem;
+    width: 7.22rem;
+    height: 3.86rem;
+}
+.topArea .bg30{
+    position: absolute;
+    top: 1.2rem;
+    left: 1.07rem;
+    width: 5.36rem;
+    height: 2.25rem;
+}
+.topArea .bg31{
+    position: absolute;
+    top: 1.43rem;
+    left: 0.57rem;
+    width: 6.36rem;
+    height: 2.02rem;
+}
+.topArea .bg32{
+    position: absolute;
+    top: 1.39rem;
+    left: 0.37rem;
+    width: 6.75rem;
+    height: 2.06rem;
+}
+.topArea .rule{
+    position: absolute;
+    top: 0.2rem;
+    right: -0.75rem;
+    width: 3.10rem;
+    height: 0.55rem;
+}
+.topArea .time{
+    position: absolute;
+    left: 0.9rem;
+    top:3.75rem; 
+    width: 5.68rem;
+    height: 0.69rem;
+}
+.topArea .time .bg4{
+    position: absolute;
+    width: 5.68rem;
+    height: 0.69rem;
+}
+.topArea .time .ptime{
+    position: absolute;
+    width: 5.68rem;
+    height: 0.69rem;
+    font-size: 0.22rem;
+    text-align: center;
+    line-height: 0.58rem;
+    color:#fff;
+}
+.topArea .listBtn{
+    position: absolute;
+    left: 0.5rem;
+    top: 4.63rem;
+    width: 6.5rem;
+    height: 0.97rem;
+}
+.topArea .listBtn .bg5l{
+    position: absolute;
+    left: 0.2rem;
+    top: 0rem;
+    width: 3.37rem;
+    height: 0.79rem;
+    z-index: 2;
+}
+.topArea .listBtn .bg5r{
+    position: absolute;
+    left: 2.97rem;
+    bottom: 0rem;
+    width: 3.11rem;
+    height: 0.77rem;
+}
+.topArea .listBtn .bg6l{
+    position: absolute;
+    left: 0.3rem;
+    bottom: 0rem;
+    width: 3.37rem;
+    height: 0.79rem;
+}
+.topArea .listBtn .bg6r{
+    position: absolute;
+    left: 3.17rem;
+    top: 0rem;
+    width: 3.11rem;
+    height: 0.77rem;
+    z-index: 2;
+}
+
+/* list */
+.listArea{
+    position: relative;
+    width: 6.1rem;
+    padding: 0.14rem 0.5rem 1.18rem 0.5rem;
+    background: #fff;
+    margin-left: 0.2rem;
+    margin-top: -1.22rem;
+    border-radius: 0.16rem;
+    min-height: 3rem;
+}
+.listArea .per{
+    width: 6.1rem;
+    height: 1.04rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.listArea .per .listLeft{
+    width: 0.5rem;
+    height: 1.04rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.listArea .per .listLeft .img{
+    width: 0.42rem;
+    height: 0.55rem;
+}
+.listArea .per .listLeft .index{
+    font-size: 0.28rem;
+    color: #4b71fb;
+}
+.listArea .per .listRight{
+    width: 5.5rem;
+    height: 1.04rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #cce6fe;
+    box-sizing: border-box;
+    position: relative;
+}
+.listArea .per .listRight .photo{
+    margin-left: 0.14rem;
+    height: 0.8rem;
+    width: 0.8rem;
+    border-radius: 0.4rem;
+    background: #bfbfbf;
+}
+.listArea .per .listRight .name{
+    position: absolute;
+    left: 1.24rem;
+    width: 2.1rem;
+    font-size: 0.28rem;
+    color: #4b71fb;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.listArea .per .listRight .num{
+    position: absolute;
+    right: 0.74rem;
+    max-width: 1.04rem;
+    font-size: 0.24rem;
+    color: #ffbb17;
+}
+.listArea .per .listRight .img{
+    width: 0.29rem;
+    height: 0.39rem;
+    margin-right: 0.26rem;
+}
+.listArea .nodata{
+    height: 3rem;
+    text-align: center;
+    line-height: 4rem;
+}
+.perfixed{
+    box-shadow: 0px -10px 10px rgba(75,113,251,0.2);
+    text-align: center;
+    position: fixed;
+    background: #f1f4ff;
+    /* bottom: 0.42rem; */
+    /* width: 6.1rem; */
+    /* height: 1.04rem; */
+    width: 7.5rem;
+    bottom: 0;
+    
+    height: 1.18rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.perfixed .listLeft{
+    width: 0.5rem;
+    height: 1.04rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.perfixed .listLeft .img{
+    width: 0.42rem;
+    height: 0.55rem;
+}
+.perfixedper .listLeft .index{
+    font-size: 0.28rem;
+    color: #4b71fb;
+}
+.perfixed .listRight{
+    width: 5.5rem;
+    height: 1.04rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border-bottom: 1px solid #cce6fe; */
+    box-sizing: border-box;
+    position: relative;
+}
+.perfixed .listRight .photo{
+    margin-left: 0.14rem;
+    height: 0.8rem;
+    width: 0.8rem;
+    border-radius: 0.4rem;
+    background: #bfbfbf;
+}
+.perfixed .listRight .name{
+    position: absolute;
+    left: 1.24rem;
+    width: 2.1rem;
+    font-size: 0.28rem;
+    color: #4b71fb;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.perfixed .listRight .num{
+    position: absolute;
+    right: 0.74rem;
+    max-width: 1.04rem;
+    font-size: 0.24rem;
+    color: #ffbb17;
+}
+.perfixed .listRight .img{
+    width: 0.29rem;
+    height: 0.39rem;
+    margin-right: 0.26rem;
+}

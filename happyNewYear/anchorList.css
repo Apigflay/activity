@@ -1,0 +1,327 @@
+*{padding:0;margin:0}
+body,html,#app{width: 100%;height: 100%;background: #090806;}
+.contenter{
+    background: #090806;
+    width: 7.5rem;
+    background-image: url(./img/bg.png);
+    background-size: 7.5rem 16.24rem;
+    background-position: center top;
+    background-repeat: repeat;
+    padding-bottom: 0.3rem;
+}
+.topArea{
+    width: 7.5rem;
+    height: 6.72rem;
+    position: relative;
+}
+.topArea .newYear{
+    position: absolute;
+    top: 0.27rem;
+    left: 1.39rem;
+    width: 4.88rem;
+    height: 2.49rem;
+}
+.topArea .timeInfo{
+    position: absolute;
+    top: 2.46rem;
+    left: 0.92rem;
+    width: 5.28rem;
+    height: 1.07rem;
+}
+.topArea .ruleBtn{
+    position: absolute;
+    top: 3.49rem;
+    right: 0rem;
+    width: 2.14rem;
+    height: 1.15rem; 
+    background-image: url(./img/rule.png);
+    background-size: 2.14rem 1.15rem;
+    background-position: center top;
+    background-repeat: no-repeat;
+    font-size: 0.28rem;
+    color: #FFFAD3;
+}
+.topArea .ruleBtn0{
+    line-height: 1.15rem;
+    text-align: center;
+}
+.topArea .ruleBtn1{
+    line-height: 1.15rem;
+    text-align: center;
+    text-indent: 0.04rem;
+}
+.topArea .ruleBtn2{
+    height: 0.9rem;
+    padding-top: 0.25rem;
+    line-height: 0.3rem;
+    text-align: center;
+    text-indent: 0.08rem;
+}
+.topArea .priseBtn{
+    position: absolute;
+    top: 5.44rem;
+    left: 1.49rem;
+    width: 4.73rem;
+    height: 1.46rem; 
+    background-image: url(./img/prise.png);
+    background-size: 4.73rem 1.46rem;
+    background-position: center top;
+    background-repeat: no-repeat;
+    font-size: 0.4rem;
+    color: #FFFAD3;
+    text-align: center;
+    line-height: 1.46rem;
+}
+/*swichBar*/
+.swichBarArea{
+    height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.swichBarArea .span{
+    font-size: 0.4rem;
+    font-weight: bold;
+    color: #861600;
+    text-decoration: none;
+    padding: 0.1rem 0;
+}
+.swichBarArea span:nth-of-type(1){
+    margin-right: 0.45rem;
+}
+.swichBarArea span:nth-of-type(2){
+    margin-left: 0.45rem; 
+}
+.swichBarArea .spanAc{
+    color: #F7E99F;
+    text-decoration: underline;
+}
+.swichBarArea2 .span{
+    font-size: 0.34rem;
+    font-weight: bold;
+    color: #861600;
+    text-decoration: none;
+    padding: 0.1rem 0;
+}
+.swichBarArea2 span:nth-of-type(1){
+    margin-right: 0.25rem;
+}
+.swichBarArea2 span:nth-of-type(2){
+    margin-left: 0.25rem; 
+}
+.swichBarArea2 .spanAc{
+    color: #F7E99F;
+    text-decoration: underline;
+}
+/*listArea*/
+.listAreaWrap{
+    width: 7.2rem;
+    height: 8.33rem; 
+    margin-left: 0.15rem;
+    background-image: url(./img/listBg.png);
+    background-size: 7.2rem 8.33rem;
+    background-position: center top;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.listAreaWrap .listArea{
+    height: 7.4rem;
+    width: 6.18rem;
+    position: absolute;
+    top: 0.44rem;
+    left: 0.52rem;
+}
+.listAreaWrap .listArea .otherList{
+    height:6.2rem;
+    width: 6.18rem;
+    overflow-y: scroll;
+}
+.listAreaWrap .listArea .otherList .noData{
+    font-size: 0.3rem;
+    line-height: 2.8rem;
+    text-align: center;
+}
+.listAreaWrap .listArea .otherList .otherPer{
+    height:1.2rem;
+    width: 6.18rem;
+    background-image: url(./img/otherListBg.png);
+    background-size: 6.18rem 1.2rem;
+    background-position: center top;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+}
+.listAreaWrap .listArea .otherList .otherPer .indexes{/*排名*/
+    width: 0.7rem;
+    text-align: center;
+    font-size: 0.54rem;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-shadow: 0rem 0.04rem 0.02rem rgba(168, 21, 0, 0.75);
+    background: linear-gradient(0deg, #FFE4A5 0%, #FFFAD6 51.3671875%, #FFDA73 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: 0.15rem;
+    margin-right: 0.2rem;
+}
+.listAreaWrap .listArea .otherList .otherPer .imgBox{
+    height:0.98rem;
+    width: 0.98rem;
+    background-image: url(./img/circle.png);
+    background-size: 0.98rem 0.98rem;
+    background-position: center top;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.listAreaWrap .listArea .otherList .otherPer .imgBox .photo{
+    height: 0.8rem;
+    width: 0.8rem;
+    border-radius: 50%;
+}
+.listAreaWrap .listArea .otherList .otherPer .info{
+    width: 2rem;
+    height: 0.6rem;
+    margin-left: 0.07rem;
+    font-size: 0.24rem;
+    color: #FFFFFF;
+}
+.listAreaWrap .listArea .otherList .otherPer .info .name{
+    height: 0.3rem;
+    line-height: 0.24rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.listAreaWrap .listArea .otherList .otherPer .info .id{
+    height: 0.3rem;
+    line-height: 0.36rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.listAreaWrap .listArea .otherList .otherPer .giftNum{
+    width: 1.6rem;
+    height: 0.6rem;
+    margin-left: 0.07rem;
+    font-size: 0.24rem;
+    color: #FFFFFF;
+}
+.listAreaWrap .listArea .otherList .otherPer .giftNum .name{
+    height: 0.3rem;
+    line-height: 0.24rem;
+    text-align: center;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.listAreaWrap .listArea .otherList .otherPer .giftNum .id{
+    height: 0.3rem;
+    line-height: 0.36rem;
+    text-align: center;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.listAreaWrap .listArea .otherList .otherPer .giftNum2{
+    width: 1.8rem;
+    height: 0.6rem;
+    margin-left: 0.07rem;
+    font-size: 0.24rem;
+    color: #FFFFFF;
+}
+
+/*我的*/
+.listAreaWrap .listArea .myList{
+    height:1.2rem;
+    width: 6.18rem;
+    background-image: url(./img/myListBg.png);
+    background-size: 6.18rem 1.2rem;
+    background-position: center top;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+}
+.listAreaWrap .listArea .myList .indexes{/*排名*/
+    width: 0.7rem;
+    text-align: center;
+    font-size: 0.54rem;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-shadow: 0rem 0.04rem 0.02rem rgba(168, 21, 0, 0.75);
+    background: linear-gradient(0deg, #FFE4A5 0%, #FFFAD6 51.3671875%, #FFDA73 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: 0.15rem;
+    margin-right: 0.2rem;
+}
+.listAreaWrap .listArea .myList .imgBox{
+    height:0.98rem;
+    width: 0.98rem;
+    background-image: url(./img/circle.png);
+    background-size: 0.98rem 0.98rem;
+    background-position: center top;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.listAreaWrap .listArea .myList .imgBox .photo{
+    height: 0.8rem;
+    width: 0.8rem;
+    border-radius: 50%;
+}
+.listAreaWrap .listArea .myList .info{
+    width: 2rem;
+    height: 0.6rem;
+    margin-left: 0.07rem;
+    font-size: 0.24rem;
+    color: #FFFFFF;
+}
+.listAreaWrap .listArea .myList .info .name{
+    height: 0.3rem;
+    line-height: 0.24rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.listAreaWrap .listArea .myList .info .id{
+    height: 0.3rem;
+    line-height: 0.36rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.listAreaWrap .listArea .myList .giftNum{
+    width: 1.6rem;
+    height: 0.6rem;
+    margin-left: 0.07rem;
+    font-size: 0.24rem;
+    color: #FFFFFF;
+}
+.listAreaWrap .listArea .myList .giftNum .name{
+    height: 0.3rem;
+    line-height: 0.24rem;
+    text-align: center;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.listAreaWrap .listArea .myList .giftNum .id{
+    height: 0.3rem;
+    line-height: 0.36rem;
+    text-align: center;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.listAreaWrap .listArea .myList .giftNum2{
+    width: 1.8rem;
+    height: 0.6rem;
+    margin-left: 0.07rem;
+    font-size: 0.24rem;
+    color: #FFFFFF;
+}

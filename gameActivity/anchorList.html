@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<meta name="description" content="不超过150个字符"/>
+<meta name="keywords" content=""/>
+<meta content="" name="author"/>
+<title></title>
+<link rel="stylesheet" href="./anchorList.css">
+<script src="./axios.js"></script>
+<script src="./vue.js"></script>
+<script type="text/javascript">
+//引入该flexible.min.js
+!function(e,t){function n(){var n=l.getBoundingClientRect().width;t=t||540,n>t&&(n=t);var i=100*n/e;r.innerHTML="html{font-size:"+i+"px;}"}var i,d=document,o=window,l=d.documentElement,r=document.createElement("style");if(l.firstElementChild)l.firstElementChild.appendChild(r);else{var a=d.createElement("div");a.appendChild(r),d.write(a.innerHTML),a=null}n(),o.addEventListener("resize",function(){clearTimeout(i),i=setTimeout(n,300)},!1),o.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(i),i=setTimeout(n,300))},!1),"complete"===d.readyState?d.body.style.fontSize="16px":d.addEventListener("DOMContentLoaded",function(e){d.body.style.fontSize="16px"},!1)}(750,750);
+</script>
+</head>
+  <body>
+    <div id="app">
+        <div class="contenter">
+            <div class="topArea">
+                
+                <img class="bg1" src="./img/bg1.png" alt="">
+                <img class="bg2" src="./img/bg2.png" alt="">
+                <img class="bg3 bg30" src="./img/bg30.png" v-if="language==0" alt="">
+                <img class="bg3 bg31" src="./img/bg31.png" v-if="language==1" alt="">
+                <img class="bg3 bg32" src="./img/bg32.png" v-if="language==2" alt="">
+                <img class="rule" :src="rulePic[language]" @click="goRulesPages" alt="">
+                <div class="time">
+                    <img class="bg4" src="./img/bg4.png" alt="">
+                    <p class="ptime">{{timeInfo[language]}}</p>
+                </div>
+                <div class="listBtn" v-if="listStatus==0">
+                    <img class="bg5l" :src="bangPic[language][0]" alt="">
+                    <img class="bg5r" :src="bangPic[language][1]" @click="swichList(1)" alt="">
+                </div>
+                <div class="listBtn" v-if="listStatus==1">
+                        <img class="bg6l" :src="bangPic[language][2]" @click="swichList(0)" alt="">
+                        <img class="bg6r" :src="bangPic[language][3]" alt="">
+                </div>
+            </div>
+            <div class="listArea">
+                <div class="nodata" v-if="listData.length==0">{{noData[language]}}</div>
+                <div v-else class="per" v-for="(item,index) in listData" :key="index">
+                    <div class="listLeft">
+                        <img class="img" v-if="index==0" src="./img/bg7.png" alt="">
+                        <img class="img" v-else-if="index==1" src="./img/bg8.png" alt="">
+                        <img class="img" v-else-if="index==2" src="./img/bg9.png" alt="">
+                        <span class="index" v-else>{{item.rowNo}}</span>
+                    </div>
+                    <div class="listRight">
+                        <img class="photo" :src="item.smallpic" alt="">
+                        <span class="name">{{item.myname}}</span>
+                        <span class="num">{{item.giftnum}}</span>
+                        <img class="img" src="./img/bg10.png" alt="">
+                    </div>
+                </div> 
+
+            </div>
+                            <!--个人信息  -->
+                            <div class="perfixed" >
+                                <span v-if="myFixedData.rowNo==0">{{notInList[language]}}</span>
+                                <div class="listLeft" v-if="myFixedData.rowNo!=0">
+              
+                                    <span class="index" >{{myFixedData.rowNo}}</span>
+                                </div>
+                                <div class="listRight" v-if="myFixedData.rowNo!=0">
+                                    <img class="photo" :src="myFixedData.smallpic" alt="">
+                                    <span class="name">{{myFixedData.myname}}</span>
+                                    <span class="num">{{myFixedData.giftnum}}</span>
+                                    <img class="img" src="./img/bg10.png" alt="">
+                                </div>
+                            </div>
+        </div>
+    </div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script type="text/javascript">
+    new Vue({
+        el:'#app',
+        data(){
+          return{
+            webUrl:'http://173.248.234.130:2020/',//web before https://api.bunnylive.me/  test  http://173.248.234.130:2020/
+            language:0,//0中   1英   2太
+            timeInfo:['时间: 2020.07.22-2020.07.28','Time: 2020.07.22-2020.07.28','Thời gian: 2020 / 07.15-2020 / 07,21'],
+            listStatus:0,//0 主播榜 1 家族榜
+            listData:[
+            ],
+            initData:null,//初始全部数据
+            myFixedData:{giftnum: 0,
+                          myname: null,
+                          rowNo: 0,
+                          smallpic: null,
+                          useridx: 0
+            },//
+            rulePic:['./img/ruleZ.png','./img/ruleE.png','./img/ruleY.png'],//活动规则
+            bangPic:[
+              ['./img/bg5lZ.png','./img/bg5rZ.png','./img/bg6lZ.png','./img/bg6rZ.png'],
+              ['./img/bg5lE.png','./img/bg5rE.png','./img/bg6lE.png','./img/bg6rE.png'],
+              ['./img/bg5lY.png','./img/bg5rY.png','./img/bg6lY.png','./img/bg6rY.png']
+            ],//榜单 规则
+            noData:['暂无数据','No data','Chưa có dữ liệu '],//暂无数据  
+            notInList:['暂未上榜','Not yet on the list','Không có trong danh sách'],//暂未上榜 
+          }   
+        },
+        created() {
+          this.getMessage();
+        //   this.getUrlData()
+        // this.getScrollMsg()
+        this.getInitLunguage()
+        },
+        computed:{
+        },
+        methods:{
+            getInitLunguage:function(){
+              var lang = navigator.language||navigator.userLanguage;//常规浏览器语言和IE浏览器
+              lang = lang.substr(0, 2);//截取lang前2位字符
+              console.log(lang)
+              if(lang == 'zh'){
+                this.language=0;
+              }else if(lang == 'en'){
+                this.language=1;
+              }else if(lang == 'vi'){
+                this.language=2;
+              }else{
+                this.language=0;
+              }
+            },
+            swichList:function(index){
+                this.listStatus = index;
+                if(index==0){
+                    this.listData=this.initData.idolrank;
+                    this.myFixedData=this.initData.myidolrank;
+                }else if(index==1){
+                    this.listData=this.initData.familyrank;
+                    this.myFixedData=this.initData.myfamilyrank;
+                }
+            },
+            goRulesPages:function(){
+                window.location.href ="./rule.html"; rel="external nofollow";
+            },
+            getScrollMsg:function(){
+                var that = this;
+                window.onscroll = function(){  // 由于需要使用 onPageScroll 无法使用 scroll-view 所以使用onscroll来判断页面是否滚动到底部
+                    //变量scrollTop是滚动条滚动时，距离顶部的距离
+                    var scrollTop = document.documentElement.scrollTop;
+                    //变量windowHeight是可视区的高度
+                    var windowHeight = document.documentElement.clientHeight;
+                    //变量scrollHeight是滚动条的总高度
+                    var scrollHeight = document.documentElement.scrollHeight;
+                            console.log(scrollTop)
+                            console.log(windowHeight)
+                            console.log(scrollHeight)
+                          //滚动条到底部的条件
+                    if(scrollTop+windowHeight==scrollHeight){
+                      //写后台加载数据的函数
+                      console.log("距顶部"+scrollTop+"可视区高度"+windowHeight+"滚动条总高度"+scrollHeight);
+                      console.log('滚动到底')
+                      that.listData.push({name:'小野444猫',num:123,url:'./img/bg10.png'},)
+
+                    }   
+                }
+            },
+          //获取 ranktype useridx 的公共函数
+          GetQueryString:function(name) { //name为要获得的参数名字
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)")
+            var r = window.location.search.substr(1).match(reg)
+            if(r != null) return decodeURI(r[2])
+            return null;
+          },
+          getMessage:function(){
+            var token = this.GetQueryString('token')
+            var url = this.webUrl+'H5/Active/GoldenAnchroRank';
+            var that =this;
+            axios.post(url, {
+              token:token
+            })
+            .then(function (response) {
+              console.log(response)
+              that.initData=response.data.data;
+              that.listData=that.initData.idolrank;
+              that.myFixedData=response.data.data.myidolrank;
+              // console.log(that.myFixedData)
+              console.log(that.initData)
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+          },
+          
+        },
+        beforeMount(){
+        },
+        mounted(){
+        },
+       
+    })
+  </script>
+</html>

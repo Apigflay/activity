@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<meta name="description" content="不超过150个字符"/>
+<meta name="keywords" content=""/>
+<meta content="" name="author"/>
+<title></title>
+<link rel="stylesheet" href="./godTurntable.css">
+<script src="./axios.js"></script>
+<script src="./vue.js"></script>
+<!-- 引入样式 -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
+<!-- 引入组件库 // that.$message(response.data.msg); -->
+<!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
+<!-- 引入样式文件 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.10/lib/index.css">
+<!-- 引入 Vue 和 Vant 的 JS 文件 -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6/dist/vue.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/vant@2.10/lib/vant.min.js"></script>
+<script type="text/javascript">
+//引入该flexible.min.js
+!function(e,t){function n(){var n=l.getBoundingClientRect().width;t=t||540,n>t&&(n=t);var i=100*n/e;r.innerHTML="html{font-size:"+i+"px;}"}var i,d=document,o=window,l=d.documentElement,r=document.createElement("style");if(l.firstElementChild)l.firstElementChild.appendChild(r);else{var a=d.createElement("div");a.appendChild(r),d.write(a.innerHTML),a=null}n(),o.addEventListener("resize",function(){clearTimeout(i),i=setTimeout(n,300)},!1),o.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(i),i=setTimeout(n,300))},!1),"complete"===d.readyState?d.body.style.fontSize="16px":d.addEventListener("DOMContentLoaded",function(e){d.body.style.fontSize="16px"},!1)}(750,750);
+</script>
+</head>
+  <body>
+    <div id="app">
+        <div class="contenter">
+            <!-- 公共top -->
+            <div class="topArea">
+                <img class="jiao" src="./imgs/jiao.png" alt="">
+                <img class="textbg" src="./imgs/text.png" alt="">
+                <div class="backArea" @click="goPages(0)" v-if="language==0">返回</div>
+                <div class="backArea" @click="goPages(0)" v-if="language==1">return</div>
+                <div class="backArea" @click="goPages(0)" v-if="language==2">trở về</div>
+                <div class="timeInfo">
+                  {{timeInfo[language]}}
+                </div>
+                <div class="titleArea">
+                  <img class="cat" src="./imgs/cat.png" alt="">
+                  <img class="title" src="./imgs/title.png" alt="">
+                </div>
+            </div>
+            <!-- 公共top -->
+            <!-- 活动奖励 -->
+            <!-- <div class="acGiftArea" :class="'acGiftArea'+language">
+                <img class="gang" src="./imgs/gang.png" alt="">
+                <span class="span">{{priseText[language]}}</span>
+                <img class="gang" src="./imgs/gang.png" alt="">
+            </div> -->
+           <!-- 榜单 任务 奖励 -->
+           <div class="listAndGift" :class="'listAndGift'+language">
+              <span class="span1" @click="goPages(1)">{{listAward[language]}}</span>
+              <span class="span2">{{taskReward[language]}}</span>
+           </div>
+           <!-- swichBar -->
+            <div class="swichBarArea" :class="'swichBarArea'+language">
+                <span :class="'span'+index" class="span" v-for="(item,index) in swichBarText" :key="index" @click="swichList(index)">{{item[language]}}</span>
+            </div>
+            <!-- 守护转盘规则 -->
+            <div class="guaRulesInfo">
+              {{guaRulesText[language]}}
+            </div>
+            <!-- 日榜 -->
+            <!-- <div class="totalPriseTitleArea">
+                <div class="ling1"></div>
+                <div class="ling2"></div>
+                <span class="text">{{userBoxTitle[language]}}</span>
+                <div class="ling2"></div>
+                <div class="ling1"></div>
+            </div> -->
+            <!-- 进度 -->
+            <p class="jinduArea">
+                {{jinduAreaText[language]}}
+            </p>
+            <div class="jinduStatusArea" :class="'jinduStatusArea'+language">
+                <span class="span1">{{jinduText1[language]}}<br>{{anchorMyPower}}/10000</span>
+                <span class="oBtn" v-if="anchorMyPower>=10000">{{oText[language]}}</span>
+                <span class="noBtn" v-if="anchorMyPower<10000">{{noText[language]}}</span>
+            </div>
+            <div class="jinduStatusArea" :class="'jinduStatusArea'+language">
+                <span class="span1">{{jinduText1[language]}}<br>{{anchorMyPower}}/30000</span>
+                <span class="oBtn" v-if="anchorMyPower>=30000">{{oText[language]}}</span>
+                <span class="noBtn" v-if="anchorMyPower<30000">{{noText[language]}}</span>
+            </div>
+            <!-- 转盘 -->
+            <div class="turntableWrap">
+              <div class="wrapper">
+                <div class="light" v-for="(item,index) in 9" :key="index"></div>
+                <div class="panel">
+                    <div class="sector" v-for="(item,index) in zimuStrData" :key="index">
+                      <div class="sector-inner">
+                        <span :class="item.LetterNum>0?'spanAc':''">{{item.PrizeName}}
+                            <a class="em" v-if="index==3"><a/>
+                        </span>
+                        
+                      </div>
+                    </div>
+                    <!-- <div class="sector">
+                      <div class="sector-inner">
+                        <span>B</span>
+                      </div>
+                    </div>
+                    <div class="sector">
+                      <div class="sector-inner">
+                        <span>U</span>
+                      </div>
+                    </div>
+                    <div class="sector">
+                      <div class="sector-inner">
+                        <span>N</span>
+                      </div>
+                    </div>
+                    <div class="sector">
+                      <div class="sector-inner">
+                        <span>N</span>
+                      </div>
+                    </div>
+                    <div class="sector">
+                      <div class="sector-inner">
+                        <span>Y</span>
+                      </div>
+                    </div>
+                    <div class="sector">
+                      <div class="sector-inner">
+                        <span>L</span>
+                      </div>
+                    </div>
+                    <div class="sector">
+                      <div class="sector-inner">
+                        <span>I</span>
+                      </div>
+                    </div>
+                    <div class="sector">
+                      <div class="sector-inner">
+                        <span>V</span>
+                      </div>
+                    </div>
+                    <div class="sector">
+                      <div class="sector-inner">
+                        <span class="spanAc">E</span>
+                      </div>
+                    </div> -->
+                    <div class="pointer">Go</div>
+                </div>
+              </div>
+              <div class="result"></div>
+            </div>
+
+
+
+            <!-- 转盘 -->
+            <!-- 次数 记录 图片 按钮 礼物盒子 -->
+            <p class="guaDrawTimesNum">{{drawTimesNumText[language]}}:{{anchorLotteryNum}}</p>
+            <!-- 九个字母显示 -->
+            <div class="nineStrArea">
+                <template v-for="(item,index) in zimuStrData" :key="index">
+                    <span :class="item.LetterNum>0?'redSpan span':'span'">
+                      <span :class="item.LetterNum>0?'spanINAC':''" class="spanIN">{{item.PrizeName}}</span>
+                        <span :class="'span18'+index" class="span18" v-if="item.LetterNum>0">{{item.LetterNum}}</span>
+                        <span class="spanDian" v-if="index==3"></span>
+                    </span>
+                    
+                </template>
+            </div>
+            <!-- <div class="logoArea">
+                <img src="./imgs/bunny.png" alt="">
+                <span>18</span>
+            </div> -->
+            <div class="openBoxArea" @click="showDrawBox(0)">
+              <span>{{openText[language]}}</span>
+            </div>
+            <div class="drawBtnArea">
+                <div class="drawBtn" @click="showDrawBox(1)">{{drawBtnText1[language]}}</div>
+            </div>
+            <div class="boxImgArea">
+                <img src="./imgs/giftBox.png" alt="">
+            </div>
+
+
+            
+            
+
+        </div>
+        <!-- 记录弹框 -->
+        <div class="drawBox" v-if="drawRecordStatus">
+            <div class="drawRecordPerBox">
+                <div class="cText">
+                    <span class="span1">{{drawBtnText1[language]}}</span>
+                    <span class="span2" @click="showDrawBox(3)">x</span>
+                </div>
+                <div class="perBox">
+                    <div class="per" v-for="(item,index) in drawListData" :key="index">  
+                        <!-- <span class="span1">aaa</span> -->
+                        <span class="span2">{{item.drawRecordStatus3Text[language]}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 开盒子弹框 -->
+        <div class="drawBox" v-if="drawRecordStatus2">
+            <div class="drawRecordPerBox">
+                <div class="cText">
+                    <span class="span1"></span>
+                    <span class="span2" @click="showDrawBox(3)">x</span>
+                </div>
+                <div class="perBox">
+                    <!-- <img class="img1" src="./imgs/gua1.png" alt=""> -->
+                    <!-- <img class="img1" :src="drawRecordStatus2Img" alt=""> -->
+                    <p class="p1">{{drawRecordStatus2Text[language]}}</p>
+                    <!-- <p class="p1" v-if="language==1">Get reward{{drawRecordStatus2Text}}, already issued</p> -->
+                    <!-- <p class="p1" v-if="language==2">Nhận{{drawRecordStatus2Text}}phần thưởng, đã được phát hành</p> -->
+                    
+                </div>
+                <p class="pBtn" @click="showDrawBox(3)">{{sureText[language]}}</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script type="text/javascript">
+    new Vue({
+        el:'#app',
+        data(){
+          return{
+            language:0,//0中   1英  2越南
+            backText:['返回','return','trở về'],
+            webUrl:'http://173.248.234.198:2020/',//web before https://api.bunnylive.me/  test   http://173.248.234:2020/
+            timeInfo:['活动时间: 20201224 00:00-20210101 23:59','Activity time: 20201224 00:00-20210101 23:59','Thời gian hoạt động: 20201224 00:00-20210101 23:59'],
+            // userBoxTitle:['活动规则','Activity Rules','quy tắc hoạt động'],
+            priseText:['活动奖励','Activity Award','Giải thưởng hoạt động'],
+            listAward:['榜单和奖励','Rankings and rewards','Xếp hạng và phần thưởng'],
+            taskReward:['任务奖励','mission rewards','phần thưởng nhiệm vụ'],
+            swichBarText:[['女神转盘','Goddess turntable','vòng xoay nữ thần'],
+                          ['守护转盘','Guardian Turntable','vòng xoay người giám hộ']],
+            guaRulesText:['收集碎片，点亮灯光，赢取神秘大礼(iphone 12、周底薪翻倍、海量金币大奖)活动期间，主播完成特定任务会获得一次抽奖机会，每次抽奖会获得不同的字母。集齐“BUNNYLIVE”9个字母碎片会点亮灯光，并获取一次开启宝箱的资格，宝箱在第9天可以开启，奖励发放时间活动结束后7天内开始发放','Collect fragments, light up the lights, and win mysterious gifts (iphone 12, weekly basic salary doubled, massive gold coin awards)During the event, the idol will get a chance to draw a lottery for completing a specific task, and each draw will get a different letter. Collecting the 9 letter fragments of "BUNNYLIVE" will light up the lights and get the qualification to open the treasure chest once. The treasure chest can be opened on the 9th day, and the reward will be distributed within 7 days after the event ends.','Thu thập các mảnh vỡ, thắp sáng đèn và giành được những phần quà bí ẩn (iphone 12, nhân đôi lương cơ bản hàng tuần, giải thưởng tiền vàng lớn)Trong thời gian diễn ra sự kiện, người chơi sẽ có cơ hội rút thăm để hoàn thành một nhiệm vụ cụ thể và mỗi lần rút thăm sẽ nhận được một chữ cái khác nhau. Thu thập 9 mảnh thư của "BUNNYLIVE" sẽ sáng đèn và đạt tư cách mở rương một lần. Rương có thể mở vào ngày thứ 9, và phần thưởng sẽ được phân phối trong vòng 7 ngày sau khi sự kiện kết thúc.'],//
+            userBoxTitle:['日榜','Daily List','Danh sách hàng ngày'],
+            jinduAreaText:['每日任务','Daily task','Nhiệm vụ hàng ngày'],
+            jinduStatusNum:0,
+            jinduText1:['能量值增长','Energy value increased by','Giá trị năng lượng tăng thêm'],
+            jinduText2:['能量值增长','Energy value increased by','Giá trị năng lượng tăng thêm'],
+            oText:['抽奖次数+1','Lottery +1','rút thưởng +1'],
+            noText:['未完成','undone','chưa hoàn thành'],
+            drawTimesNum:0,//抽奖次数
+            drawTimesNumText:['抽奖次数','Number of draws','Số lần rút thăm'],//
+            drawBtnText:['我的抽奖记录','My lottery record','Kỷ lục rút thưởng của tôi'],
+            openText:['开启宝箱','Open the treasure chest','Mở rương kho báu'],
+            anchorLotteryNum:0,//主播抽奖次数
+            anchorMyPower:0,//主播能量
+            drawRecordStatus:false,//记录弹框
+            drawBtnText1:['宝箱开启记录','Treasure chest open record','Kỷ lục mở rương kho báu'],
+            drawListData:[],//抽奖记录
+            drawRecordStatus2:false,//记录弹框
+            drawRecordStatus2Img:'',//开宝箱图片
+            drawRecordStatus2Text:[],//开宝箱文字
+            drawRecordStatus3Text:[],//开宝箱记录文字
+            sureText:['确定','determine','quyết định'],//确定
+            zimuStrData:[],//
+            drawDegNum:0,//初始旋转角度累计数
+
+
+            
+          }   
+        },
+        created() {
+          this.getInitLunguage()
+          this.getInitListMsg()
+          // this.getUserDrawData()//抽奖记录
+
+        },
+        beforeMount(){
+        },
+        mounted () {
+          this.goLuckDraw()
+        },
+        computed:{
+        },
+        methods:{
+          goPages:function(id){
+            console.log(id)
+              console.log(this.GetQueryString('token'))
+              if(id==0){//返回
+                window.location.href ="./godList.html?token="+this.GetQueryString('token'); rel="external nofollow";
+                // window.history.go(-1)
+              }else if(id==1){//榜单和奖励
+                window.location.href ="./listAward.html?token="+this.GetQueryString('token'); rel="external nofollow";
+              }else if(id==2){//守护转盘
+                window.location.href ="./guaTurntable.html?token="+this.GetQueryString('token')+"&id=1"; rel="external nofollow";
+              }
+          },
+          getInitLunguage:function(){
+              var lang = navigator.language||navigator.userLanguage;//常规浏览器语言和IE浏览器
+              lang = lang.substr(0, 2);//截取lang前2位字符
+              console.log(lang)
+              if(lang == 'zh'){
+                this.language=0;
+              }else if(lang == 'en'){
+                this.language=1;
+              }else if(lang == 'vi'){
+                this.language=2;
+              }else{
+                this.language=0;
+              }
+          },
+          swichList:function(id){//切换榜单
+              console.log(id)
+              if(id==1){
+                this.goPages(2)
+              }
+
+          },
+          //获取 ranktype useridx 的公共函数
+          GetQueryString:function(name) { //name为要获得的参数名字
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)")
+            var r = window.location.search.substr(1).match(reg)
+            if(r != null) return decodeURI(r[2])
+            return null;
+          },
+          getInitListMsg:function(){//get 次数  能量
+
+            var token = this.GetQueryString('token')
+            console.log(token)
+            var url = this.webUrl+'H5/Active/Christmas2020Info';
+            var that =this;
+            axios.post(url, {
+              token:token,
+            })
+            .then(function (response) {
+              console.log(response.data.data.letter)
+              that.anchorLotteryNum=response.data.data.info.AnchorLotteryNum;//抽奖次数
+              that.anchorMyPower=response.data.data.info.mypower;//抽奖次数
+              that.zimuStrData=response.data.data.letter;
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+          },
+          showDrawBox:function(id){//0 开启宝箱 1 抽奖记录
+            console.log(id)
+            if(id==0){
+              
+              this.getUserDrawData()
+            }else if(id==1){
+              this.drawRecordStatus=true;
+              this.getAnchorDrawListData()
+            }else if(id==3){
+              this.drawRecordStatus=false;
+              this.drawRecordStatus2=false;
+            }
+            
+          },
+          getAnchorDrawListData:function(){//获取抽将记录  
+              var token = this.GetQueryString('token')
+              console.log(token)
+              var url = this.webUrl+'H5/Active/Christmas2020AnchorPrizeList';
+              var that =this;
+              axios.post(url, {
+                token:token,
+              })
+              .then(function (response) {
+                console.log(response.data.data)
+                var newList=response.data.data.prizelist;
+                newList.forEach(function(item,index){
+                  console.log(item)
+                  if(item.PrizeID==41){//41  42    43
+                      // that.drawRecordStatus2Img='./imgs/gua1.png';
+                      item.drawRecordStatus3Text=['当周底薪翻倍','Basic salary increase for the week by 100%','Tăng lương cơ bản trong tuần 100%'];
+                  }else if(item.PrizeID==42){
+                    // that.drawRecordStatus2Img='./imgs/gua2.png';
+                    item.drawRecordStatus3Text=['当周底薪增加50%','Basic salary increase for the week by 50%',' Lương cơ bản tăng 50% trong tuần'];
+                  }else if(item.PrizeID==43){
+                    // that.drawRecordStatus2Img='./imgs/gua3.png'
+                    item.drawRecordStatus3Text=['当周底薪增加20%','Basic salary increase for the week by 20%','Tăng lương cơ bản trong tuần 20%'];
+                  }else if(item.PrizeID==40){
+                    // that.drawRecordStatus2Img='./imgs/gua3.png'
+                    item.drawRecordStatus3Text=['58888 Coins','58888 Coins','58888 Coins'];
+                  }
+
+                })
+                that.drawListData=newList;
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+
+          },
+          getUserDrawData:function(){//kai box
+              var token = this.GetQueryString('token')
+              console.log(token)
+              var url = this.webUrl+'H5/Active/Christmas2020_AnchorLetterExchange';
+              var that =this;
+              axios.post(url, {
+                token:token,
+              })
+              .then(function (response) {
+                console.log(response.data)
+                if(response.data.code==100){
+                  if(response.data.data==41){//41  42    43
+                      // that.drawRecordStatus2Img='./imgs/gua1.png';
+                      that.drawRecordStatus2Text=['当周底薪翻倍','Basic salary increase for the week by 100%','Tăng lương cơ bản trong tuần 100%'];
+                  }else if(response.data.data==42){
+                    // that.drawRecordStatus2Img='./imgs/gua2.png';
+                    that.drawRecordStatus2Text=['当周底薪增加50%','Basic salary increase for the week by 50%',' Lương cơ bản tăng 50% trong tuần'];
+                  }else if(response.data.data==43){
+                    // that.drawRecordStatus2Img='./imgs/gua3.png'
+                    that.drawRecordStatus2Text=['当周底薪增加20%','Basic salary increase for the week by 20%','Tăng lương cơ bản trong tuần 20%'];
+                  }else if(response.data.data==40){
+                    // that.drawRecordStatus2Img='./imgs/gua3.png'
+                    that.drawRecordStatus2Text=['58888 Coins','58888 Coins','58888 Coins'];
+                  }
+                  that.drawRecordStatus2=true;
+                }else{
+                  vant.Toast(response.data.msg);
+                }
+                // var newList=response.data.data.prizelist;
+                // newList.forEach(function(item,index){
+                //   console.log(item)
+                //   if(item.PrizeID==34){//0-36 1-38 2-37 3-35 4-34 5-39
+                //       item.str=that.GiftDrawData[4];
+                //   }else if(item.PrizeID==35){
+                //       item.str=that.GiftDrawData[3];
+                //   }else if(item.PrizeID==36){
+                //       item.str=that.GiftDrawData[0];
+                //   }else if(item.PrizeID==37){
+                //       item.str=that.GiftDrawData[2];
+                //   }else if(item.PrizeID==38){
+                //       item.str=that.GiftDrawData[1];
+                //   }else if(item.PrizeID==39){
+                //       item.str=that.GiftDrawData[5];
+                //   }
+                // })
+                // that.drawListData=newList;
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+
+          },
+          goLuckDraw:function(){
+            console.log(1111)
+            var that =this;
+            let getEle = document.getElementsByClassName.bind(document);
+            let pointer = getEle('pointer')[0];
+            let result = getEle('result')[0];
+            let lights = Array.prototype.slice.call(getEle('light'));
+
+            let onRotation = false; // 记录当前是否正在旋转，如果正在旋转，就不能继续点击了
+            let reward = ['super car', ['红龙公爵','Fire Dragon','Hỏa long'], '8888', 'iphone12', '18888', 
+            '28888'];
+
+            // 根据随机角度获取奖励
+            let getReward = (function() {
+              currentDeg = 0;
+              return function() {
+                // 转三圈到四圈
+                let rotateDeg = Math.random() * 360;// + 1080
+                console.log(currentDeg)
+                currentDeg += rotateDeg;
+                console.log(currentDeg)
+                let rewardText = reward[Math.floor((currentDeg + 30) % 360 / 60)]
+                console.log(rewardText)
+                return {
+                  deg: currentDeg,
+                  text: rewardText === '谢谢参与' ? '很遗憾，您没有获得奖品。' : '恭喜获得: ' + rewardText
+                }
+              }
+            })();
+
+            pointer.addEventListener('click', () => {
+              if (onRotation) return;
+              this.drawDegNum++;
+              console.log(this.drawDegNum)
+              console.log('开始抽奖');
+              //--------------
+              var token = this.GetQueryString('token')
+              console.log(token)
+              var url = this.webUrl+'H5/Active/Christmas2020_AnchorLetterLottery';
+              var that =this;
+              axios.post(url, {
+                token:token,
+              })
+              .then(function (response) {
+                console.log(response.data)
+                if(response.data.code==100){
+                  console.log(that)
+                  var resultNum = response.data.data;
+                  if(resultNum==44){//44-B 45-U 46-N 47-N 48-Y 49-L 50-I 51-V 52-E
+                    var indexNum=0;
+                    var indexDeg=Math.random()*40-20+ 1080*that.drawDegNum;
+                  }else if(resultNum==45){
+                    var indexNum=1;
+                    var indexDeg=Math.random()*40+40-20+ 1080*that.drawDegNum;
+
+                  }else if(resultNum==46){
+                    var indexNum=2;
+                    var indexDeg=Math.random()*40+80-20+ 1080*that.drawDegNum;
+
+                  }else if(resultNum==47){
+                    var indexNum=3;
+                    var indexDeg=Math.random()*40+120-20+ 1080*that.drawDegNum;
+
+                  }else if(resultNum==48){
+                    var indexNum=4;
+                    var indexDeg=Math.random()*40+160-20+ 1080*that.drawDegNum;
+
+                  }else if(resultNum==49){
+                    var indexNum=5;
+                    var indexDeg=Math.random()*40+200-20+ 1080*that.drawDegNum;
+
+                  }else if(resultNum==50){
+                    var indexNum=6;
+                    var indexDeg=Math.random()*40+240-20+ 1080*that.drawDegNum;
+
+                  }else if(resultNum==51){
+                    var indexNum=7;
+                    var indexDeg=Math.random()*40+280-20+ 1080*that.drawDegNum;
+
+                  }else if(resultNum==52){
+                    var indexNum=8;
+                    var indexDeg=Math.random()*60+320-20+ 1080*that.drawDegNum;
+
+                  }
+                  console.log(indexDeg)
+                  onRotation = true;
+                  lights.forEach(light => { light.className += ' light-twinkling'; });
+                  var textStr=['获得奖励','Get reward','Nhận phần thưởng'];
+                  result.innerText = textStr[that.language]+that.zimuStrData[indexNum].PrizeName+'x1';//文字显示
+                  result.style.display = 'none';
+                  pointer.style.transform = `rotateZ(${indexDeg}deg)`;//旋转
+                  // 再次请求接口
+                  that.getInitListMsg()//抽奖能量 次数
+                }else{
+                  vant.Toast(response.data.msg);
+                }
+                
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+
+
+
+              // var resultNum = 34 + Number((Math.random()*5).toFixed(0));
+              // if(resultNum==34){//0-36 1-38 2-37 3-35 4-34 5-39
+              //   var indexNum=4;
+              //   var indexDeg=Math.random()*60+240-30+ 1080*this.drawDegNum;
+              // }else if(resultNum==35){
+              //   var indexNum=3;
+              //   var indexDeg=Math.random()*60+180-30+ 1080*this.drawDegNum;
+
+              // }else if(resultNum==36){
+              //   var indexNum=0;
+              //   var indexDeg=Math.random()*60-30+ 1080*this.drawDegNum;
+
+              // }else if(resultNum==37){
+              //   var indexNum=2;
+              //   var indexDeg=Math.random()*60+120-30+ 1080*this.drawDegNum;
+
+              // }else if(resultNum==38){
+              //   var indexNum=1;
+              //   var indexDeg=Math.random()*60+60-30+ 1080*this.drawDegNum;
+
+              // }else if(resultNum==39){
+              //   var indexNum=5;
+              //   var indexDeg=Math.random()*60+300-30+ 1080*this.drawDegNum;
+
+              // }
+              // console.log(resultNum,indexNum,indexDeg)
+              // // console.log(this.GiftDrawData[indexNum][this.language])
+              // // console.log(this.language)
+
+              // // this.goDraw()
+
+              // onRotation = true;
+              // lights.forEach(light => { light.className += ' light-twinkling'; });
+
+              
+
+              // // let nextStatus = getReward();//旋转度数
+              // // console.log(nextStatus)
+              // result.innerText = this.GiftDrawData[indexNum][this.language];//文字显示
+              // // result.innerText = nextStatus.text;//文字显示
+              // result.style.display = 'none';
+              // pointer.style.transform = `rotateZ(${indexDeg}deg)`;//旋转
+              // // pointer.style.transform = `rotateZ(${nextStatus.deg}deg)`;//旋转
+            })
+            pointer.addEventListener('transitionend', () => {
+              console.log('抽奖结束');
+              setTimeout(() => { // 等闪烁三下结束
+                onRotation = false;
+                lights.forEach(light => { light.className = 'light'; });
+                result.style.display = 'block';
+              }, 300);
+            })
+          },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // goRulesPages:function(){
+
+            // },
+            getScrollMsg:function(){
+                var that = this;
+                window.onscroll = function(){  // 由于需要使用 onPageScroll 无法使用 scroll-view 所以使用onscroll来判断页面是否滚动到底部
+                    //变量scrollTop是滚动条滚动时，距离顶部的距离
+                    var scrollTop = document.documentElement.scrollTop;
+                    //变量windowHeight是可视区的高度
+                    var windowHeight = document.documentElement.clientHeight;
+                    //变量scrollHeight是滚动条的总高度
+                    var scrollHeight = document.documentElement.scrollHeight;
+                            console.log(scrollTop)
+                            console.log(windowHeight)
+                            console.log(scrollHeight)
+                          //滚动条到底部的条件
+                    if(scrollTop+windowHeight==scrollHeight){
+                      //写后台加载数据的函数
+                      console.log("距顶部"+scrollTop+"可视区高度"+windowHeight+"滚动条总高度"+scrollHeight);
+                      console.log('滚动到底')
+                      that.listData.push({name:'小野444猫',num:123,url:'./img/bg10.png'},)
+
+                    }   
+                }
+            },
+          
+          getUrlData:function(){
+            console.log(this.GetQueryString('ranktype'));
+            console.log(this.GetQueryString('useridx'));
+            // console.log(this.data.data)
+          },
+          getMessage:function(){
+            console.log(this.data)
+            var that =this;
+            axios.post('/Rank/totalRankData', {
+              ranktype: that.ranktype,
+              timetype: that.timetype,
+              useridx: that.useridx,
+              page: 1,
+            })
+            .then(function (response) {
+              that.infoData=response.data.data.rankList;
+              //此处浅拷贝  下方改变原始数据变化
+              var arr=response.data.data.rankList;
+              arr.forEach(function(item,index,arr1){
+                if(item.sumprice>=10000){
+                  arr[index].sumprice=Math.floor(arr[index].sumprice/10000*100)/100+"万"
+                }else{
+
+                }
+              })  
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+          },
+          goList:function(e){
+            if(e.currentTarget.id==0){//1 日榜，2 周榜，3 月榜，4 总榜
+              this.timetype=2;
+              this.getMessage()
+            }else if(e.currentTarget.id==1){
+              this.timetype=3;
+              this.getMessage()
+            }else if(e.currentTarget.id==2){
+              this.timetype=4;
+              this.getMessage()
+            }
+            this.listState=e.currentTarget.id;
+          },
+          add:function(){
+            axios.get('http://192.168.84.170:5000/LinkService/Auto/MixVerifyCode')
+            .then(function (response) {
+              console.log(response);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+
+          },//---------------
+          systemall:function(){
+            var ios = 'ios';
+            var android = 'android';
+            var pc = 'pc';
+            var u = navigator.userAgent, app = navigator.appVersion;
+            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+            var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            if (isAndroid) {
+               //这个是安卓操作系统
+               console.log('这个是安卓操作系统')
+               return android;
+            }
+            if (isIOS) {
+            　　//这个是ios操作系统
+              console.log('这个是ios操作系统')
+              return ios;
+            }
+            if (isIOS==false&&isAndroid==false) {
+            　　//这个是pc操作系统
+              console.log('这个是pc操作系统')
+              return pc;
+            }
+          } 
+        }
+       
+    })
+  </script>
+</html>

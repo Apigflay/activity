@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<meta name="description" content="不超过150个字符"/>
+<meta name="keywords" content=""/>
+<meta content="" name="author"/>
+<title></title>
+<link rel="stylesheet" href="./guardingFamily.css">
+<script src="./axios.js"></script>
+<script src="./vue.js"></script>
+<!-- 引入样式 -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
+<!-- 引入组件库 // that.$message(response.data.msg); -->
+<!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
+<!-- 引入样式文件 -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.10/lib/index.css"> -->
+<!-- 引入 Vue 和 Vant 的 JS 文件 -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6/dist/vue.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/vant@2.10/lib/vant.min.js"></script> -->
+
+<script type="text/javascript">
+//引入该flexible.min.js
+!function(e,t){function n(){var n=l.getBoundingClientRect().width;t=t||540,n>t&&(n=t);var i=100*n/e;r.innerHTML="html{font-size:"+i+"px;}"}var i,d=document,o=window,l=d.documentElement,r=document.createElement("style");if(l.firstElementChild)l.firstElementChild.appendChild(r);else{var a=d.createElement("div");a.appendChild(r),d.write(a.innerHTML),a=null}n(),o.addEventListener("resize",function(){clearTimeout(i),i=setTimeout(n,300)},!1),o.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(i),i=setTimeout(n,300))},!1),"complete"===d.readyState?d.body.style.fontSize="16px":d.addEventListener("DOMContentLoaded",function(e){d.body.style.fontSize="16px"},!1)}(750,750);
+</script>
+</head>
+  <body>
+    <div id="app">
+        <div class="contenter">
+          <!-- 公共top -->
+            <div class="topArea">
+                <img class="jiao" src="./imgs/jiao.png" alt="">
+                <img class="textbg" src="./imgs/text.png" alt="">
+                <div class="backArea" @click="goPages(0)">{{ruleText[language]}}</div>
+                <div class="timeInfo">
+                  {{timeInfo[language]}}
+                </div>
+                <div class="titleArea">
+                  <img class="cat" src="./imgs/cat.png" alt="">
+                  <img class="title" src="./imgs/title.png" alt="">
+                </div>
+            </div>
+            <!-- 公共top -->
+            <!-- 活动奖励 -->
+            <div class="acGiftArea" :class="'acGiftArea'+language">
+                <!-- <img class="gang" src="./imgs/gang.png" alt=""> -->
+                <span class="span" @click="goPages(1)">{{priseText[language]}}</span>
+                <!-- <img class="gang" src="./imgs/gang.png" alt=""> -->
+            </div>
+            <!-- swichBar -->
+            <div class="swichBarArea" :class="'swichBarArea'+language">
+                <span :class="initListNum==index?'acSpan span':'span'" v-for="(item,index) in swichBarText" :key="index" @click="swichList(index)">{{item[language]}}</span>
+            </div>
+            <!-- 守护榜 -->
+            <div class="listArea" v-if="initListNum==1">
+              <div class="per" v-for="(item,index) in guaData">
+                  <img class="pai gold" src="./imgs/gold.png" alt="" v-if="index==0">
+                  <img class="pai yin" src="./imgs/yin.png" alt="" v-if="index==1">
+                  <img class="pai tong" src="./imgs/tong.png" alt="" v-if="index==2">
+                  <span class="index" v-if="index>2">{{index+1}}</span>
+                  <img class="photo" @click="gooPersonalPage(item.useridx)" :src="item.smallpic" alt="">
+                  <div class="idxInfo">
+                    <p class="name">{{item.myname}}</p>
+                    <p class="idx">IDX:{{item.useridx}}</p>
+                  </div>
+                  <span class="nengliangzhi">
+                      {{item.Power}}
+                  </span>
+              </div>
+            </div>
+            <!-- 我的守护 -->
+            <div class="guaPer" v-if="initListNum==1">
+                <span class="index" v-if="guaMyData.rowNo>0">{{guaMyData.rowNo}}</span>
+                <span class="index" v-else>No</span>
+                <img class="photo" :src="guaMyData.smallpic" alt="">
+                <span class="name">{{guaMyData.myname}}</span>
+                <span class="num">{{guaMyData.Power}}</span>
+            </div>
+
+
+
+            <!-- 家族榜 -->
+            <div class="listArea" v-if="initListNum==2">
+              <div class="per" v-for="(item,index) in famData">
+                  <img class="pai gold" src="./imgs/gold.png" alt="" v-if="index==0">
+                  <img class="pai yin" src="./imgs/yin.png" alt="" v-if="index==1">
+                  <img class="pai tong" src="./imgs/tong.png" alt="" v-if="index==2">
+                  <span class="index" v-if="index>2">{{index+1}}</span>
+                  <img class="photo" @click="gooPersonalPage(item.useridx)" :src="item.smallpic" alt="">
+                  <div class="idxInfo">
+                    <p class="name">{{item.myname}}</p>
+                    <p class="idx">IDX:{{item.useridx}}</p>
+                  </div>
+                  <span class="nengliangzhi">
+                      {{item.Power}}
+                  </span>
+              </div>
+            </div>
+            <!-- 我的家族 -->
+            <div class="guaPer" v-if="initListNum==2">
+                <span class="index" v-if="famMyData.rowNo>0">{{famMyData.rowNo}}</span>
+                <span class="index" v-else>No</span>
+                <img class="photo" :src="famMyData.smallpic" alt="">
+                <span class="name">{{famMyData.myname}}</span>
+                <span class="num">{{famMyData.Power}}</span>
+            </div>
+
+
+
+
+
+
+                       
+
+
+
+
+        </div>
+    </div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script type="text/javascript">
+    new Vue({
+        el:'#app',
+        data(){
+          return{
+            webUrl:'http://173.248.234.198:2020/',//web before https://api.bunnylive.me/  test  http://173.248.234.198:2020/
+            language:2,//0中   1英   2太
+            timeInfo:['活动时间: 20201224 00:00-20210101 23:59','Activity time: 20201224 00:00-20210101 23:59','Thời gian hoạt động: 20201224 00:00-20210101 23:59'],
+            userBoxTitle:['活动规则','Activity Rules','quy tắc hoạt động'],
+            totalPriseTitleText:['总榜奖励','Overall ranking reward','Phần thưởng xếp hạng chung'],
+            priseText:['活动奖励','Activity Award','Giải thưởng hoạt động'],
+            ruleText:['活动规则','Activity rule','quy tắc hoạt động'],
+            swichBarText:[['女神榜','Goddess list','Danh sách nữ thần'],
+                          ['守护榜','Guardian','Người giám hộ'],
+                          ['家族榜','Family List','Danh sách gia đình']],
+            initListNum:1,//默认榜单 守护榜  1守护 2家族
+            guaData:[],//守护榜数据
+            guaMyData:{Power:0,myname:null,rowNo:0,smallpic:null,useridx:0},//守护榜我的
+            famData:[],//家族榜数据
+            famMyData:{Power:0,myname:null,rowNo:0,smallpic:null,useridx:0},//家族榜我的
+
+            
+          }   
+        },
+        created() {
+          this.initListNum=Number(this.GetQueryString('id'));
+
+
+          this.getInitLunguage()
+          this.getInitListMsg()
+
+
+        },
+        computed:{
+        },
+        methods:{
+          goPages:function(id){//0 活动规则 1活动奖励 2女神榜
+              console.log(id)
+              console.log(this.GetQueryString('token'))
+              if(id==0){
+                window.location.href ="./rule.html"; rel="external nofollow";
+              }else if(id==1){
+                window.location.href ="./listAward.html?token="+this.GetQueryString('token'); rel="external nofollow";
+              }else if(id==2){//守护id 1
+                window.location.href ="./godList.html?token="+this.GetQueryString('token'); rel="external nofollow";
+              }
+          },
+          getInitLunguage:function(){
+            var lang = navigator.language||navigator.userLanguage;//常规浏览器语言和IE浏览器
+            lang = lang.substr(0, 2);//截取lang前2位字符
+            console.log(lang)
+            if(lang == 'zh'){
+              this.language=0;
+            }else if(lang == 'en'){
+              this.language=1;
+            }else if(lang == 'vi'){
+              this.language=2;
+            }else{
+              this.language=0;
+            }
+          },
+          swichList:function(id){//切换榜单
+            if(id==0){
+              this.goPages(2)
+            }else{
+              this.initListNum=id;
+              this.getInitDayListMsg()
+            }
+          },
+          //获取 token ranktype 等公共函数
+          GetQueryString:function(name) { //name为要获得的参数名字 
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)")
+            var r = window.location.search.substr(1).match(reg)
+            if(r != null) return decodeURI(r[2])
+            return null;
+          },
+          getInitListMsg:function(){//get 总榜数据
+            var token = this.GetQueryString('token')
+            var url = this.webUrl+'H5/Active/Christmas2020Rank';
+            var that =this;
+            axios.post(url, {
+              token:token,
+              Type:that.initListNum+1,//2：用户榜、3：家族榜
+
+            })
+            .then(function (response) {
+              if(that.initListNum==1){
+                that.guaData=response.data.data.rank;//守护
+                that.guaMyData=response.data.data.myrank;//守护我的
+              }else if(that.initListNum==2){
+                that.famData=response.data.data.rank;//家族
+                that.famMyData=response.data.data.myrank;//家族我的
+              }
+              
+
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+          },
+          getInitDayListMsg:function(){//get 切换数据
+              var token = this.GetQueryString('token')
+              var url = this.webUrl+'H5/Active/Christmas2020Rank';
+              var that =this;
+              axios.post(url, {
+                token:token,
+                Type:that.initListNum+1,
+
+              })
+              .then(function (response) {
+                if(that.initListNum==1){
+                  that.guaData=response.data.data.rank;//守护
+                  that.guaMyData=response.data.data.myrank;//守护我的
+                }else if(that.initListNum==2){
+                  that.famData=response.data.data.rank;//家族
+                  that.famMyData=response.data.data.myrank;//家族我的
+                }
+
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+          },
+          productType:function(){
+              var ios = 'ios';
+              var android = 'android';
+              var u = navigator.userAgent, app = navigator.appVersion;
+              var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+              var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+              if (isAndroid) {
+                 //这个是安卓操作系统
+                 return 1;
+              }
+              if (isIOS) {
+              　　//这个是ios操作系统
+                return 0;
+              }
+            },
+            gooPersonalPage:function(idx){//0 i0s 1 android
+              console.log(idx)
+              // console.log(idx)
+              console.log(this.productType())
+              if(this.productType()==0){
+                document.location = "miaobowpa:/ShowCard&useridx=" + idx + "&";
+              }else if(this.productType()==1){
+                window.location.href = "miaobowpa://ShowCard?useridx=" + idx;
+              }
+            },
+
+
+
+
+
+
+
+
+
+
+
+            
+            
+            
+            
+            
+            
+            openBox:function(typeId){
+              var token = this.GetQueryString('token')
+              var url = this.webUrl+'H5/Active/LuckyStarOpenPrize';
+              var that = this;
+              axios.post(url, {
+                token:token,
+                Type:typeId
+              })
+              .then(function (response) {
+                // console.log(response.data)
+                  if(response.data.code==100){
+                    that.giftStatus[typeId-1].coin=response.data.data;
+                    that.giftStatus[typeId-1].status=1;
+                  
+                  }
+                  vant.Toast(response.data.msg);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+            },
+            getRankList:function(rankId){
+              // console.log(rankId)
+              // console.log(this.acRankStatus)
+
+              var token = this.GetQueryString('token')
+              // console.log(token)
+              var url = this.webUrl+'H5/Active/LuckyStarRank';
+              var that =this;
+              axios.post(url, {
+                token:token
+              })
+              .then(function (response) {
+                // console.log(response.data.data)
+                that.totalInitData=response.data.data;
+                that.achorRankData=response.data.data.idollist;//主播榜
+                that.achorMydata=response.data.data.myidolrank;//主播  我的
+                that.userRankData=response.data.data.userlist;//用户榜
+                that.userMyData=response.data.data.myuserrank;//用户  我的
+                that.achorLevalNum=response.data.data.myidolrank.giftnum;//主播
+                that.userLevalNum=response.data.data.myuserrank.giftnum;//用户
+
+
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+            },
+
+
+            getScrollMsg:function(){
+                var that = this;
+                window.onscroll = function(){  // 由于需要使用 onPageScroll 无法使用 scroll-view 所以使用onscroll来判断页面是否滚动到底部
+                    //变量scrollTop是滚动条滚动时，距离顶部的距离
+                    var scrollTop = document.documentElement.scrollTop;
+                    //变量windowHeight是可视区的高度
+                    var windowHeight = document.documentElement.clientHeight;
+                    //变量scrollHeight是滚动条的总高度
+                    var scrollHeight = document.documentElement.scrollHeight;
+                            console.log(scrollTop)
+                            console.log(windowHeight)
+                            console.log(scrollHeight)
+                          //滚动条到底部的条件
+                    if(scrollTop+windowHeight==scrollHeight){
+                      //写后台加载数据的函数
+                      console.log("距顶部"+scrollTop+"可视区高度"+windowHeight+"滚动条总高度"+scrollHeight);
+                      console.log('滚动到底')
+                      that.listData.push({name:'小野444猫',num:123,url:'./img/bg10.png'},)
+
+                    }   
+                }
+            },
+          
+        },
+        beforeMount(){
+        },
+        mounted(){
+        },
+       
+    })
+  </script>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<meta name="description" content="不超过150个字符"/>
+<meta name="keywords" content=""/>
+<meta content="" name="author"/>
+<title></title>
+<link rel="stylesheet" href="./rule.css">
+<!-- <script src="./axios.js"></script> -->
+<script src="./vue.js"></script>
+<script type="text/javascript">
+//引入该flexible.min.js
+!function(e,t){function n(){var n=l.getBoundingClientRect().width;t=t||540,n>t&&(n=t);var i=100*n/e;r.innerHTML="html{font-size:"+i+"px;}"}var i,d=document,o=window,l=d.documentElement,r=document.createElement("style");if(l.firstElementChild)l.firstElementChild.appendChild(r);else{var a=d.createElement("div");a.appendChild(r),d.write(a.innerHTML),a=null}n(),o.addEventListener("resize",function(){clearTimeout(i),i=setTimeout(n,300)},!1),o.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(i),i=setTimeout(n,300))},!1),"complete"===d.readyState?d.body.style.fontSize="16px":d.addEventListener("DOMContentLoaded",function(e){d.body.style.fontSize="16px"},!1)}(750,750);
+</script>
+</head>
+  <body>
+    <div id="app">
+        <div class="contenter">
+            <!-- 公共top -->
+            <div class="topArea">
+                <img class="jiao" src="./imgs/jiao.png" alt="">
+                <img class="textbg" src="./imgs/text.png" alt="">
+                <div class="backArea" @click="goPages" v-if="language==0">返回</div>
+                <div class="backArea" @click="goPages" v-if="language==1">return</div>
+                <div class="backArea" @click="goPages" v-if="language==2">trở về</div>
+                <div class="timeInfo">
+                  {{timeInfo[language]}}
+                </div>
+                <div class="titleArea">
+                  <img class="cat" src="./imgs/cat.png" alt="">
+                  <img class="title" src="./imgs/title.png" alt="">
+                </div>
+            </div>
+            <!-- 公共top -->
+            <div class="totalPriseTitleArea">
+                <div class="ling1"></div>
+                <div class="ling2"></div>
+                <span class="text">{{userBoxTitle[language]}}</span>
+                <div class="ling2"></div>
+                <div class="ling1"></div>
+            </div>
+            <p class="textP1" v-if="language==0">
+              日榜第一的主播当日底薪增加100%<br>
+              日榜第二的主播当日底薪增加50%<br>
+              日榜第三的主播当日底薪增加25%<br>
+              日榜奖励在活动结束后7天内开始发放
+            </p>
+            <p class="textP1" v-if="language==1">
+              The first idol on the daily chart increases the basic salary of the day by 100%<br>
+              The second idol on the daily list increases the basic salary of the day by 50%<br>
+              The third idol on the daily list increases the basic salary of the day by 25%<br>
+              Daily rewards will be distributed within 7 days after the event ends
+            </p>
+            <p class="textP1" v-if="language==2">
+              Idol đầu tiên trên biểu đồ hàng ngày tăng 100% mức lương cơ bản trong ngày<br>
+              Idol thứ hai trong danh sách hàng ngày tăng 50% mức lương cơ bản trong ngày<br>
+              Idol thứ ba trong danh sách hàng ngày tăng 25% mức lương cơ bản trong ngày<br>
+              Phần thưởng hàng ngày sẽ được phát trong vòng 7 ngày sau khi sự kiện kết thúc
+            </p>
+            <div class="totalPriseTitleArea totalPriseTitleArea2">
+                <div class="ling1"></div>
+                <div class="ling2"></div>
+                <span class="text">{{totalPriseTitleText[language]}}</span>
+                <div class="ling2"></div>
+                <div class="ling1"></div>
+            </div>
+            <p class="textP2" v-if="language==0">
+              1.活动指定四种礼物，礼物和对应能量值在下方展示。所有用户都可以使用礼物参与活动。
+            </p>
+            <p class="textP2" v-if="language==1">
+              1. The event specifies four gifts, the gifts and the corresponding energy values are displayed below. All users can use gifts to participate in activities.
+            </p>
+            <p class="textP2" v-if="language==2">
+              1- 1. Sự kiện chỉ định bốn phần quà, các phần quà và giá trị năng lượng tương ứng được hiển thị bên dưới. Tất cả người dùng đều có thể sử dụng quà tặng để tham gia hoạt động 
+            </p>
+            <div class="giftArea">
+                <div class="per" v-for="(item,index) in giftData" :key="index">
+                  <img class="img" :src="item.url" alt="">
+                  <span class="name">{{item.name[language]}}</span>
+                  <span class="num">{{item.num}}</span>
+                  <span class="text">{{item.text[language]}}</span>
+                </div>
+            </div>
+            <p class="textP3" v-if="language==0">
+              2.主播只能通过收取指定礼物获得能量，主播和主播之间赠送礼物互相之间不增加能量值<br>
+              3.用户赠送活动指定礼物给主播就会产生能量值，用户和用户之间赠送不增加能量，用户每获得10000能量值可以获得一次抽奖机会在守护转盘初进行抽奖。<br>
+              4.主播完成每日指定任务后可以获得抽奖机会，奖励为字母碎片，集齐字母“BUNNYLIVE”活动结束后三天内可以开启宝箱，宝箱内部有神秘大奖
+              主播每日任务：<br>
+              当日获得10000能量值可获得一次抽奖机会<br>
+              当日获得30000能量值可获得一次抽奖机会<br>
+              抽奖机会每日最多获得两次<br>
+              5.家族榜单能量值计算方式为，家族所在主播每增加10000能量值，可获得1点家族能量值<br>
+              6.活动期间若发现有违规行为，活动主办方有权取消兑奖资格。<br>
+              7.由于活动期间信息量过大，数据统计稍有延迟，请您耐心等待。<br>
+              8.本活动最终解释权归本平台所有
+            </p>
+            <p class="textP3" v-if="language==1">
+              2. The idol can only obtain energy by collecting designated gifts, and the gifts between the idol and the idol do not increase the energy value between each other<br>
+              3. The energy value will be generated when the user gives the designated gift to the idol. The gift between the user and the user does not increase the energy. The user can get a chance to draw a lottery every time the user gets 10,000 energy values.<br>
+              4. After completing the daily designated tasks, the host can get a chance to draw a lottery. The reward is letter fragments. The treasure chest can be opened within three days after the end of the "BUNNYLIVE" event. The treasure chest has a mysterious prize
+              Anchor’s daily task: <br>
+              Get 10,000 energy points on the day to get a chance to draw<br>
+              Get 30,000 energy points on the day to get a chance to draw<br>
+              Lottery chances can be won twice a day<br>
+              5. The energy value calculation method of the family list is that for every 10,000 energy value added by the idol of the family, 1 point of the family energy value can be obtained<br>
+              6. If any violations are found during the event, the event organizer reserves the right to cancel the award.<br>
+              7. Due to the large amount of information during the event, data statistics are slightly delayed, please be patient.<br>
+              8. The final interpretation right of this activity belongs to this platform
+            </p>
+            <p class="textP3" v-if="language==2">
+              2- Idol chỉ cần thu thập được quà đã được chỉ định sẽ đạt được năng , quà tặng giữa Idol và Idol sẽ không được tính tăng mức năng lượng <br>
+              3- Giá trị năng lượng sẽ được tạo ra khi người dùng tặng quà được chỉ định tặng cho idol , Quà tặng giữa người dùng và người dùng không làm tăng năng lượng ,  Người dùng có cơ hội rút thăm cho mỗi 10.000 giá trị năng lượng.<br>
+              4- Sau khi hoàn thành các nhiệm vụ được chỉ định hàng ngày, Idol có thể có cơ hội rút thăm. Phần thưởng là các mảnh thư. Rương kho báu có thể được mở trong vòng ba ngày sau khi sự kiện "BUNNYLIVE" kết thúc. Có một giải thưởng bí ẩn trong rương kho báu.<br>
+              Nhận 10.000 điểm năng lượng trong ngày để có cơ hội rút thăm<br>
+              Nhận 30.000 điểm năng lượng trong ngày để có cơ hội rút thăm<br>
+              5- Phương pháp tính toán giá trị năng lượng của danh sách gia tộc là cứ 10.000 giá trị năng lượng được gia tăng bởi idol trong gia tộc, có thể nhận được 1 điểm của giá trị năng lượng gia tộc.<br>
+              6- Nếu phát hiện bất kỳ vi phạm nào trong thời gian diễn ra sự kiện, đơn vị tổ chức sự kiện có quyền hủy bỏ giải thưởng.<br>
+              7- Do lượng thông tin lớn trong sự kiện nên việc thống kê dữ liệu hơi chậm trễ, mong các bạn kiên nhẫn chờ đợi.<br>
+              8- Quyền giải thích cuối cùng của hoạt động này thuộc về nền tảng này
+            </p>
+
+        </div>
+    </div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script type="text/javascript">
+    new Vue({
+        el:'#app',
+        data(){
+          return{
+            language:0,//0中   1英  2越南
+            backText:['返回','return','trở về'],
+            timeInfo:['活动时间: 20201224 00:00-20210101 23:59','Activity time: 20201224 00:00-20210101 23:59','Thời gian hoạt động: 20201224 00:00-20210101 23:59'],
+            userBoxTitle:['活动规则','Activity Rules','quy tắc hoạt động'],
+            totalPriseTitleText:['总榜奖励','Overall ranking reward','Phần thưởng xếp hạng chung'],
+            giftData:[{url:'./imgs/ruleimg1.png',name:['圣诞饼干','Christmas cookies','Bánh quy Giáng Sinh'],num:1,text:['能量值','Energy value','giá trị năng lượng']},
+                      {url:'./imgs/ruleimg2.png',name:['圣诞麋鹿','Christmas elk','Xe Tuần Lộc Giáng Sinh'],num:5,text:['能量值','Energy value','giá trị năng lượng']},
+                      {url:'./imgs/ruleimg3.png',name:['喵宝宝','Miu bảo bảo','Kitty cat doll'],num:700,text:['能量值','Energy value','giá trị năng lượng']},
+                      {url:'./imgs/ruleimg4.png',name:['圣诞礼物','Christmas gifts','Quà Giáng sinh '],num:1000,text:['能量值','Energy value','giá trị năng lượng']}]
+
+
+
+
+
+
+            
+            
+            
+            
+          
+            
+          }   
+        },
+        created() {
+          this.getInitLunguage()
+
+        },
+        computed:{
+        },
+        methods:{
+          goPages:function(){
+            // window.location.href ="./anchorList.html"; rel="external nofollow";
+            window.history.go(-1)
+          },
+          getInitLunguage:function(){
+              var lang = navigator.language||navigator.userLanguage;//常规浏览器语言和IE浏览器
+              lang = lang.substr(0, 2);//截取lang前2位字符
+              console.log(lang)
+              if(lang == 'zh'){
+                this.language=0;
+              }else if(lang == 'en'){
+                this.language=1;
+              }else if(lang == 'vi'){
+                this.language=2;
+              }else{
+                this.language=0;
+              }
+            },
+            swichList:function(index){
+                // console.log(index)
+                this.listStatus = index;
+                if(index==0){
+                    this.listData=[];
+                }else{
+                    this.listData=this.listData1;
+                }
+            },
+            // goRulesPages:function(){
+
+            // },
+            getScrollMsg:function(){
+                var that = this;
+                window.onscroll = function(){  // 由于需要使用 onPageScroll 无法使用 scroll-view 所以使用onscroll来判断页面是否滚动到底部
+                    //变量scrollTop是滚动条滚动时，距离顶部的距离
+                    var scrollTop = document.documentElement.scrollTop;
+                    //变量windowHeight是可视区的高度
+                    var windowHeight = document.documentElement.clientHeight;
+                    //变量scrollHeight是滚动条的总高度
+                    var scrollHeight = document.documentElement.scrollHeight;
+                            console.log(scrollTop)
+                            console.log(windowHeight)
+                            console.log(scrollHeight)
+                          //滚动条到底部的条件
+                    if(scrollTop+windowHeight==scrollHeight){
+                      //写后台加载数据的函数
+                      console.log("距顶部"+scrollTop+"可视区高度"+windowHeight+"滚动条总高度"+scrollHeight);
+                      console.log('滚动到底')
+                      that.listData.push({name:'小野444猫',num:123,url:'./img/bg10.png'},)
+
+                    }   
+                }
+            },
+          //获取 ranktype useridx 的公共函数
+          GetQueryString:function(name) { //name为要获得的参数名字
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)")
+            var r = window.location.search.substr(1).match(reg)
+            if(r != null) return decodeURI(r[2])
+            return null;
+          },
+          getUrlData:function(){
+            console.log(this.GetQueryString('ranktype'));
+            console.log(this.GetQueryString('useridx'));
+            // console.log(this.data.data)
+          },
+          getMessage:function(){
+            console.log(this.data)
+            var that =this;
+            axios.post('/Rank/totalRankData', {
+              ranktype: that.ranktype,
+              timetype: that.timetype,
+              useridx: that.useridx,
+              page: 1,
+            })
+            .then(function (response) {
+              that.infoData=response.data.data.rankList;
+              //此处浅拷贝  下方改变原始数据变化
+              var arr=response.data.data.rankList;
+              arr.forEach(function(item,index,arr1){
+                if(item.sumprice>=10000){
+                  arr[index].sumprice=Math.floor(arr[index].sumprice/10000*100)/100+"万"
+                }else{
+
+                }
+              })  
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+          },
+          goList:function(e){
+            if(e.currentTarget.id==0){//1 日榜，2 周榜，3 月榜，4 总榜
+              this.timetype=2;
+              this.getMessage()
+            }else if(e.currentTarget.id==1){
+              this.timetype=3;
+              this.getMessage()
+            }else if(e.currentTarget.id==2){
+              this.timetype=4;
+              this.getMessage()
+            }
+            this.listState=e.currentTarget.id;
+          },
+          add:function(){
+            axios.get('http://192.168.84.170:5000/LinkService/Auto/MixVerifyCode')
+            .then(function (response) {
+              console.log(response);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+
+          },//---------------
+          systemall:function(){
+            var ios = 'ios';
+            var android = 'android';
+            var pc = 'pc';
+            var u = navigator.userAgent, app = navigator.appVersion;
+            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+            var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            if (isAndroid) {
+               //这个是安卓操作系统
+               console.log('这个是安卓操作系统')
+               return android;
+            }
+            if (isIOS) {
+            　　//这个是ios操作系统
+              console.log('这个是ios操作系统')
+              return ios;
+            }
+            if (isIOS==false&&isAndroid==false) {
+            　　//这个是pc操作系统
+              console.log('这个是pc操作系统')
+              return pc;
+            }
+          }	
+        },
+        beforeMount(){
+        },
+        mounted(){
+        },
+       
+    })
+  </script>
+</html>

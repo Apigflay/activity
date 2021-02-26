@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<meta name="description" content="不超过150个字符"/>
+<meta name="keywords" content=""/>
+<meta content="" name="author"/>
+<title></title>
+<link rel="stylesheet" href="./pkList.css">
+<script src="./axios.js"></script>
+<script src="./vue.js"></script>
+<script type="text/javascript">
+//引入该flexible.min.js
+!function(e,t){function n(){var n=l.getBoundingClientRect().width;t=t||540,n>t&&(n=t);var i=100*n/e;r.innerHTML="html{font-size:"+i+"px;}"}var i,d=document,o=window,l=d.documentElement,r=document.createElement("style");if(l.firstElementChild)l.firstElementChild.appendChild(r);else{var a=d.createElement("div");a.appendChild(r),d.write(a.innerHTML),a=null}n(),o.addEventListener("resize",function(){clearTimeout(i),i=setTimeout(n,300)},!1),o.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(i),i=setTimeout(n,300))},!1),"complete"===d.readyState?d.body.style.fontSize="16px":d.addEventListener("DOMContentLoaded",function(e){d.body.style.fontSize="16px"},!1)}(750,750);
+</script>
+</head>
+  <body>
+    <div id="app">
+        <div class="contenter">
+            <h6 class="h6title">本场用户贡献榜</h6>
+            <div class="titleArea">
+              <span class="titlePer">我方主播</span><span class="titlePer">对方主播</span>
+            </div>
+            <div class="listArea">
+                <div class="myAchor">
+                    <div class="achorList">
+                        <img class="photo" src="./img/hong.png" alt="">
+                        <div class="btn" v-if="isFollowMy">已关注</div>
+                        <div class="btn" v-if="isFollowMy==false">未关注</div>
+                        <div class="nameArea">
+                            <span class="name">哈哈发士大夫发</span>
+                            <div class="num">
+                              <img class="lv" src="./img/hong.png" alt="">
+                              <span class="nu">34</span>
+                            </div>
+                        </div>
+                        <div class="listArea">
+                            <div class="listPer" v-for="(item,index) in 8" :key="index">
+                              <img class="perPhoto" src="./img/hong.png" alt="">  
+                              <div class="perInfo">
+                                  <div class="perNameBox">
+                                    <img class="perLvImg" src="./img/hong.png" alt="">  
+                                    <span class="perLv">23</span>
+                                    <span class="perNa">asfadsfa</span>
+                                  </div>
+                                  <p class="text">shhaksh哈哈回复：h'kksa合适的话</p>
+
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="otherAchor"></div>
+            </div>
+
+            <!-- time -->
+            <!-- <div class="timeArea">
+                <div class="dayArea" v-if="stype==1">
+                  <span v-for="(item,index) in timeStringData[0]" :key="index" :class="stype==1&&index==1?'isAC spanDay'+index:'spanDay'+index" @click="changeStype(index)">
+                    {{item}}
+                  </span>
+                </div>
+                <div class="dayArea" v-if="stype==0">
+                  <span v-for="(item,index) in timeStringData[0]" :key="index" :class="stype==0&&index==2?'isAC spanDay'+index:'spanDay'+index" @click="changeStype(index)">
+                    {{item}}
+                  </span>
+                </div>
+
+                <div class="hourArea" v-if="cid==1">
+                  <span v-for="(item,index) in timeStringData[1]" :key="index" :class="cid==1&&index==0?'isAC spanHour'+index:'spanHour'+index" @click="changeCid(index)">
+                    {{item}}
+                  </span> 
+                </div>
+                <div class="hourArea" v-if="cid==2">
+                  <span v-for="(item,index) in timeStringData[1]" :key="index" :class="cid==2&&index==1?'isAC spanHour'+index:'spanHour'+index" @click="changeCid(index)">
+                    {{item}}
+                  </span> 
+                </div>
+                <div class="hourArea" v-if="cid==3">
+                  <span v-for="(item,index) in timeStringData[1]" :key="index" :class="cid==3&&index==2?'isAC spanHour'+index:'spanHour'+index" @click="changeCid(index)">
+                    {{item}}
+                  </span> 
+                </div>
+            </div> -->
+            <!-- list -->
+            <!-- <div class="listArea islive" v-if="isLive==0">
+                <div class="goodArea">
+                    <div class="goodPer" v-for="(item,index) in 3" :key="index" :class="'goodPer'+index">
+                      <img class="bg3" src="./img/hong.png" alt="">
+                      <img class="bg1" :src='"./img/jin"+index+".png"'alt="">
+                      <img class="bg2" :src='"./img/jinz"+index+".png"' alt="">
+                      <span class="bg4" :class="'bg4'+index">拉拉啊</span>
+                      <span class="bg5">34535万币</span>
+                    </div>
+                </div>
+                <div class="lastArea">
+                    <div class="listPer" v-for="(item,index) in 7" :key='index'>
+                        <div class="perleft">
+                            <span class="index">{{index+4}}</span>
+                            <img class="photo" src="./img/hong.png" alt="">
+                            <span class="name">小猫小猫啊</span>
+                        </div>
+                        <div class="perright">2342万</div>
+                    </div>
+                </div>
+            </div>
+            <div class="listArea listnoData" v-else-if="isLive==1">
+                <p class="noData">暂无数据</p>
+            </div>
+            <div class="listArea nolive" v-else-if="isLive==2">
+                <p class="noP">3小时榜还未被占领<br>快帮主播上榜</p>
+                <div class="noBtn">
+                    送礼
+                </div>
+            </div> -->
+            <!--  -->
+           <!--  <div class="timeSArea">
+                剩余抢榜时间 01:12:44
+            </div> -->
+            <!--  -->
+           <!--  <div class="myArea">
+                <div class="listPer" v-for="(item,index) in 1" :key='index'>
+                    <div class="perleft">
+                        <span class="index">{{index+4}}</span>
+                        <img class="photo" src="./img/hong.png" alt="">
+                        <span class="name">小猫小猫啊</span>
+                    </div>
+                    <div class="perright">2342万</div>
+                </div>
+            </div> -->
+            <!--  -->
+            <!-- <div class="paiArea">
+                <div class="listPer" v-for="(item,index) in 1" :key='index'>
+                    <div class="perleft">
+                        <span class="index">{{index+4}}</span>
+                        <img class="photo" src="./img/hong.png" alt="">
+                        <span class="name">小猫小猫啊</span>
+                    </div>
+                    <div class="perright">
+                        <span class="fen">距离第十名还差1234喵粮</span>
+                        <span class="btn">送礼</span>
+                    </div>
+                </div>
+            </div> -->
+            <!--  -->
+            
+        </div>
+    </div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script type="text/javascript">
+    new Vue({
+        el:'#app',
+        data(){
+          return{
+            isFollowMy:false,//
+
+
+            timeStringData:[['3小时榜','昨日','今日','规则'],['18-21点','21-24点','24-03点']],
+            isLive:2,//0 展示 1 暂无数据 2 未上榜
+            cid:1,//第一个榜单,那cid=1,21-24 是第二个榜单那cid=2
+            stype:1,//  是  int  0 表示当天的榜单,1 是昨天的榜单
+            nowAcData:[],//当前榜单数据
+            
+          }   
+        },
+        created() {
+          this.getInitMsg()
+        },
+        computed:{
+        },
+        methods:{
+          GetQueryString:function(name) { //name为要获得的参数名字
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)")
+            var r = window.location.search.substr(1).match(reg)
+            if(r != null) return decodeURI(r[2])
+            return null;
+          },
+          getInitMsg:function(){
+            // console.log(this.GetQueryString('useridx'))
+            var that = this;
+            console.log(this.cid+'---cid')
+            console.log(this.stype+'---stype')
+            var url = 'http://home2.mlive.in.th/Rank/UserRankList?useridx='+this.GetQueryString('useridx')+'&cid='+this.cid+'&stype='+this.stype;
+            // console.log(url)
+            axios.get(url)
+            .then(function (response) {
+              console.log(response.data.code);
+              console.log(response.data.data.ranklist);
+              console.log(that.cid)
+              if(that.cid==1){
+                  console.log(response.data.data.time18$21)
+                  that.nowAcData=response.data.data.time18$21;
+              }else if(that.cid==2){
+                  console.log(response.data.data.time18$21)
+                  that.nowAcData=response.data.data.time18$21;
+              }else if(that.cid==3){
+                  console.log(response.data.data.time18$21)
+                  that.nowAcData=response.data.data.time18$21;
+
+              }
+
+              
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+          },
+          changeStype:function(id){
+            if(id==1){
+              this.stype=id;
+              this.getInitMsg()
+            }else if(id==2){
+              this.stype=0;
+              this.getInitMsg()
+            }
+          },
+          changeCid:function(id){
+            this.cid=id+1;
+            this.getInitMsg()
+          },
+
+
+
+
+
+
+            getInitLunguage:function(){
+              var lang = navigator.language||navigator.userLanguage;//常规浏览器语言和IE浏览器
+              lang = lang.substr(0, 2);//截取lang前2位字符
+              if(lang == 'zh'){
+                this.language=0;
+              }else if(lang == 'en'){
+                this.language=1;
+              }else if(lang == 'vi'){
+                this.language=2;
+              }else{
+                this.language=0;
+              }
+            },
+            goPages:function(){
+              // window.location.href ="./anchorList.html"; rel="external nofollow";
+              console.log('gopages click')
+            },
+            goPlayGame:function(){
+              console.log('playBtn click')
+            },
+
+
+
+
+            
+            getScrollMsg:function(){
+                var that = this;
+                window.onscroll = function(){  // 由于需要使用 onPageScroll 无法使用 scroll-view 所以使用onscroll来判断页面是否滚动到底部
+                    //变量scrollTop是滚动条滚动时，距离顶部的距离
+                    var scrollTop = document.documentElement.scrollTop;
+                    //变量windowHeight是可视区的高度
+                    var windowHeight = document.documentElement.clientHeight;
+                    //变量scrollHeight是滚动条的总高度
+                    var scrollHeight = document.documentElement.scrollHeight;
+                            console.log(scrollTop)
+                            console.log(windowHeight)
+                            console.log(scrollHeight)
+                          //滚动条到底部的条件
+                    if(scrollTop+windowHeight==scrollHeight){
+                      //写后台加载数据的函数
+                      console.log("距顶部"+scrollTop+"可视区高度"+windowHeight+"滚动条总高度"+scrollHeight);
+                      console.log('滚动到底')
+                      that.listData.push({name:'小野444猫',num:123,url:'./img/bg10.png'},)
+
+                    }   
+                }
+            },
+          //获取 useridx 的公共函数
+          
+
+          getMessage:function(){
+            console.log(this.data)
+            var that =this;
+            axios.post('/Rank/totalRankData', {
+              ranktype: that.ranktype,
+              timetype: that.timetype,
+              useridx: that.useridx,
+              page: 1,
+            })
+            .then(function (response) {
+              that.infoData=response.data.data.rankList;
+              //此处浅拷贝  下方改变原始数据变化
+              var arr=response.data.data.rankList;
+              arr.forEach(function(item,index,arr1){
+                if(item.sumprice>=10000){
+                  arr[index].sumprice=Math.floor(arr[index].sumprice/10000*100)/100+"万"
+                }else{
+
+                }
+              })  
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+          },
+          add:function(){
+            axios.get('http://192.168.84.170:5000/LinkService/Auto/MixVerifyCode')
+            .then(function (response) {
+              console.log(response);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+
+          },//---------------
+          systemall:function(){
+            var ios = 'ios';
+            var android = 'android';
+            var pc = 'pc';
+            var u = navigator.userAgent, app = navigator.appVersion;
+            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+            var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            if (isAndroid) {
+               //这个是安卓操作系统
+               console.log('这个是安卓操作系统')
+               return android;
+            }
+            if (isIOS) {
+            　　//这个是ios操作系统
+              console.log('这个是ios操作系统')
+              return ios;
+            }
+            if (isIOS==false&&isAndroid==false) {
+            　　//这个是pc操作系统
+              console.log('这个是pc操作系统')
+              return pc;
+            }
+          }	
+        },
+        beforeMount(){
+        },
+        mounted(){
+        },
+       
+    })
+  </script>
+</html>

@@ -1,0 +1,296 @@
+*{padding:0;margin:0}
+body,html,#app{width: 100%;height: 100%;background: #142723;}
+.contenter{
+    /*height: 100%;*/
+    width: 7.5rem;
+    /*background: #142723;*/
+    padding-bottom: 1.2rem;
+
+    background-image: url(./imgs/bg.jpg);
+    background-size: 7.5rem 30rem;
+    background-position: center top;
+    background-repeat: repeat;
+}
+/*公共部分*/
+.topArea{
+    padding-top: 0.05rem;
+    width: 7.5rem;
+    height: 7.75rem;
+    position: relative;
+}
+.topArea .jiao{
+    width: 6.15rem;
+    height: 3.58rem;
+    margin-left: 0.67rem;
+    margin-bottom: 1.24rem;
+}
+.topArea .textbg{
+    position: absolute;
+    top:2.48rem;
+    left: 1.67rem;
+    width: 4.53rem;
+    height: 3.11rem;
+}
+.topArea .backArea{
+    position: absolute;
+    padding: 0.12rem 0.3rem 0.12rem 0.32rem;
+    top:2.47rem;
+    right: 0;
+    border-radius: 0.27rem 0rem 0rem 0.27rem;
+    font-size: 0.30rem;
+    color: #FFFFFF;
+    background: #C50007;
+}
+.topArea .timeInfo{
+    height: 0.9rem;
+    width: 7.5rem;
+    background-image: url(./imgs/timebg.png);
+    background-size: 7.5rem 0.9rem;
+    background-position: center top;
+    background-repeat: no-repeat;
+    text-align: center;
+    line-height: 0.9rem;
+    font-size: 0.26rem;
+    color: #F9F9F8;
+    text-shadow: 0px 3px 3px rgba(16, 33, 29, 0.75);
+}
+.topArea .titleArea{
+    height: 1.29rem;
+    margin-top: 0.68rem;
+    display: flex;
+    /*align-items: center;*/
+    justify-content: center;
+}
+.topArea .titleArea .cat{
+    height: 0.46rem;
+    width: 0.36rem;
+    position: relative;
+    left: 0.5rem;
+    top: 0.1rem;
+}
+.topArea .titleArea .title{
+    height: 1.3rem;
+    width: 5.23rem;
+}
+/*公共部分*/
+.acGiftArea{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.3rem;
+}
+.acGiftArea .gang{
+    width: 1.9rem;
+    height: 0.02rem;
+}
+.acGiftArea .span{
+    border-radius: 0.1rem;
+    background: #D9AC70;
+    padding: 0.16rem 0.38rem;
+    font-size: 0.28rem;
+    font-weight: 600;
+    color: #000000;
+    margin:0 0.18rem;
+}
+.acGiftArea2 .span{
+    border-radius: 0.1rem;
+    background: #D9AC70;
+    padding: 0.16rem 0.18rem;
+    font-size: 0.28rem;
+    font-weight: 600;
+    color: #000000;
+    margin:0 0.08rem;
+}
+/*swichBarArea*/
+.swichBarArea{
+    height: 0.7rem;
+    width: 6.18rem;
+    border:0.04rem solid #D9AC70;
+    border-radius: 0.39rem;
+    margin:0.55rem 0.56rem 0.62rem 0.56rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.swichBarArea .span{
+    /*width: 1.93rem;*/
+    height: 0.64rem;
+    border-radius: 0.32rem;
+    text-align: center;
+    line-height: 0.64rem;
+    font-size: 0.26rem;
+    color: #FED67E;
+    padding: 0 0.3rem;
+}
+.swichBarArea .span0{
+    /*width: 1.93rem;*/
+    height: 0.64rem;
+    background: linear-gradient(176deg, #FDF9D7, #D8AA6C);
+    border-radius: 0.32rem;
+    color: #000000;
+}
+.swichBarArea2{
+    height: 0.7rem;
+    width: 7.18rem;
+    border:0.04rem solid #D9AC70;
+    border-radius: 0.39rem;
+    margin:0.12rem 0.56rem 0.62rem 0.12rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.swichBarArea2 .span{
+    padding: 0 0.1rem;
+    width: auto;
+    /*width: 2.63rem;*/
+}
+/*榜单 任务 奖励*/
+.listAndGift{
+    width: 7.5rem;
+    height: 1.04rem;
+    border-top: 0.04rem solid #D9AC70;
+    border-bottom: 0.04rem solid #D9AC70;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 0.55rem;
+    margin-bottom: 0.3rem;
+}
+.listAndGift .span{
+    padding: 0.18rem 0.4rem;
+    border-radius: 0.32rem;
+    font-size: 0.3rem;
+    color: #D9AC70;
+}
+.listAndGift .acSpan{  
+    padding: 0.18rem 0.4rem;
+    background: linear-gradient(176deg, #FDF9D7, #D8AA6C);
+    border-radius: 0.34rem;
+    font-size: 0.3rem;
+    color: #000000;
+}
+/*日榜九天*/
+.dayListArea{
+    margin-top:0.38rem;
+    width: 7.5rem;
+    height: 0.94rem;
+    border-top: 0.04rem solid #D9AC70;
+    border-bottom: 0.04rem solid #D9AC70;
+}
+.dayListArea .dayListPerBox{
+    height: 0.94rem;
+    display: flex;
+    align-items: center;
+    overflow-x: scroll;
+}
+.dayListArea .dayListPerBox .dayPer{
+    font-size: 0.28rem;
+    margin:0 0.2rem;
+    padding: 0.17rem 0.35rem;
+    border-radius: 0.28rem;
+    color: #FED67E;
+}
+.dayListArea .dayListPerBox .acPer{
+    font-weight: 600;
+    color: #000000;
+     background: linear-gradient(176deg, #FDF9D7, #D8AA6C);
+}
+/*时间*/
+.pTimeTextArea{
+    font-size: 0.26rem;
+    font-family: PingFang SC;
+    font-weight: 400;
+    color: #FCF0D6;
+    line-height: 0.7rem;
+    text-align: center;
+}
+/*榜单*/
+.listArea{
+    width: 7.5rem;
+}
+.listArea .per{
+    height: 0.98rem;
+    margin-bottom: 0.3rem;
+    /*background: red;*/
+    display: flex;
+    align-items: center;
+    font-size: 0.28rem;
+    color: #FFF7DA;
+}
+.listArea .per .pai{
+    width: 0.51rem;
+    height: 0.37rem;
+    padding: 0 0.24rem;
+    margin-left: 0.3rem;
+}
+.listArea .per .index{
+    width: 1rem;
+    height: 0.98rem;
+    line-height: 0.98rem;
+    text-align: center;
+    margin-left: 0.3rem;
+}
+.listArea .per .photo{
+    width: 0.98rem;
+    height: 0.98rem;
+    border-radius: 50%;
+}
+.listArea .per .idxInfo{
+    width: 2.5rem;
+    height: 0.98rem;
+    margin-left: 0.51rem;
+}
+.listArea .per .idxInfo .name{
+    height: 0.36rem;
+    margin-top: 0.13rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.listArea .per .idxInfo .idx{
+    height: 0.36rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.listArea .per .nengliangzhi{
+    width: 2rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+/*我都守护*/
+.guaPer{
+    position: fixed;
+    bottom: 0;
+    width: 7.5rem;
+    height: 1.14rem;
+    background: #FFFFFF;
+    border-bottom: 1px solid #000;
+    display: flex;
+    align-items: center;
+    font-size: 0.28rem;
+    color: #333333;
+    font-weight: bold;
+}
+.guaPer .index{
+    width: 1rem;
+    text-align: center;
+}
+.guaPer .photo{
+    width: 0.98rem;
+    height: 0.98rem;
+    border-radius: 50%;
+    margin-right: 0.51rem;
+}
+.guaPer .name{
+    width: 2.5rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.guaPer .num{
+    width: 2rem;
+    text-align: center;
+    margin-left: 0.2rem;
+}

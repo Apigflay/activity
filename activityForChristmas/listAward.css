@@ -1,0 +1,429 @@
+*{padding:0;margin:0}
+body,html,#app{width: 100%;height: 100%;background: #142723;}
+.contenter{
+    /*height: 100%;*/
+    width: 7.5rem;
+    /*background: #142723;*/
+    padding-bottom: 1rem;
+
+    background-image: url(./imgs/bg.jpg);
+    background-size: 7.5rem 30rem;
+    background-position: center top;
+    background-repeat: repeat;
+}
+/*公共部分*/
+.topArea{
+    padding-top: 0.05rem;
+    width: 7.5rem;
+    height: 7.75rem;
+    position: relative;
+}
+.topArea .jiao{
+    width: 6.15rem;
+    height: 3.58rem;
+    margin-left: 0.67rem;
+    margin-bottom: 1.24rem;
+}
+.topArea .textbg{
+    position: absolute;
+    top:2.48rem;
+    left: 1.67rem;
+    width: 4.53rem;
+    height: 3.11rem;
+}
+.topArea .backArea{
+    position: absolute;
+    padding: 0.12rem 0.5rem 0.12rem 0.12rem;
+    top:2.47rem;
+    left: 0;
+    border-radius: 0rem 0.27rem 0.27rem 0rem;
+    font-size: 0.30rem;
+    color: #FFFFFF;
+    background: #C50007;
+}
+.topArea .timeInfo{
+    height: 0.9rem;
+    width: 7.5rem;
+    background-image: url(./imgs/timebg.png);
+    background-size: 7.5rem 0.9rem;
+    background-position: center top;
+    background-repeat: no-repeat;
+    text-align: center;
+    line-height: 0.9rem;
+    font-size: 0.26rem;
+    color: #F9F9F8;
+    text-shadow: 0px 3px 3px rgba(16, 33, 29, 0.75);
+}
+.topArea .titleArea{
+    height: 1.29rem;
+    margin-top: 0.68rem;
+    display: flex;
+    /*align-items: center;*/
+    justify-content: center;
+}
+.topArea .titleArea .cat{
+    height: 0.46rem;
+    width: 0.36rem;
+    position: relative;
+    left: 0.5rem;
+    top: 0.1rem;
+}
+.topArea .titleArea .title{
+    height: 1.3rem;
+    width: 5.23rem;
+}
+/*公共部分*/
+.acGiftArea{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.acGiftArea .gang{
+    width: 1.9rem;
+    height: 0.02rem;
+}
+.acGiftArea .span{
+    border-radius: 0.1rem;
+    background: #D9AC70;
+    padding: 0.16rem 0.38rem;
+    font-size: 0.28rem;
+    font-weight: 600;
+    color: #000000;
+    margin:0 0.18rem;
+}
+.acGiftArea2 .span{
+    border-radius: 0.1rem;
+    background: #D9AC70;
+    padding: 0.16rem 0.18rem;
+    font-size: 0.28rem;
+    font-weight: 600;
+    color: #000000;
+    margin:0.3rem 0.08rem;
+}
+/*榜单 任务 奖励*/
+.listAndGift{
+    width: 7.5rem;
+    height: 1.04rem;
+    border-top: 0.04rem solid #D9AC70;
+    border-bottom: 0.04rem solid #D9AC70;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 0.55rem;
+}
+.listAndGift .span1{  
+    padding: 0.18rem 0.4rem;
+    background: linear-gradient(176deg, #FDF9D7, #D8AA6C);
+    border-radius: 0.34rem;
+    font-size: 0.3rem;
+    color: #000000;
+}
+.listAndGift .span2{
+    padding: 0.18rem 0.4rem;
+    border-radius: 0.32rem;
+    font-size: 0.3rem;
+    color: #D9AC70;
+}
+.listAndGift2 .span1{
+    padding: 0.18rem 0.1rem;
+    background: linear-gradient(176deg, #FDF9D7, #D8AA6C);
+    border-radius: 0.34rem;
+    font-size: 0.26rem;
+    color: #000000;
+}
+.listAndGift2 .span2{
+    padding: 0.18rem 0.1rem;
+    border-radius: 0.32rem;
+    font-size: 0.3rem;
+    color: #D9AC70;
+}
+/*swichBarArea*/
+.swichBarArea{
+    height: 0.7rem;
+    width: 6.18rem;
+    border:0.04rem solid #D9AC70;
+    border-radius: 0.39rem;
+    margin:0.45rem 0.56rem 0.62rem 0.56rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.swichBarArea .span{
+    /*width: 1.93rem;*/
+    height: 0.64rem;
+    border-radius: 0.32rem;
+    text-align: center;
+    line-height: 0.64rem;
+    font-size: 0.26rem;
+    color: #FED67E;
+    padding: 0 0.3rem;
+}
+.swichBarArea .acSpan{
+    /*width: 1.93rem;*/
+    height: 0.64rem;
+    background: linear-gradient(176deg, #FDF9D7, #D8AA6C);
+    border-radius: 0.32rem;
+    color: #000000;
+}
+.swichBarArea2{
+    height: 0.7rem;
+    width: 7.18rem;
+    border:0.04rem solid #D9AC70;
+    border-radius: 0.39rem;
+    margin:0.12rem 0.56rem 0.62rem 0.12rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.swichBarArea2 .span{
+    padding: 0 0.1rem;
+    /*font-size: 0.24rem;*/
+    /*width: 2.63rem;*/
+}
+/*女神榜----总榜奖励*/
+.totalPriseTitleArea{
+    width: 100%;
+    height: 0.36rem;
+    font-size: 0.36rem;
+    line-height: 0.36rem;
+    color:#FED67E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.totalPriseTitleArea .ling1{
+    width: 0.12rem;
+    height: 0.12rem;
+    background: #FED67E;
+    transform:rotate(45deg);   
+    -ms-transform:rotate(45deg); /* Internet Explorer */   
+    -moz-transform:rotate(45deg); /* Firefox */   
+    -webkit-transform:rotate(45deg); /* Safari 和 Chrome */   
+    -o-transform:rotate(45deg); /* Opera */
+    margin:0 0.24rem;
+}
+.totalPriseTitleArea .ling2{
+    width: 0.14rem;
+    height: 0.14rem;
+    background: #FED67E;
+    -ms-transform:rotate(45deg); /* Internet Explorer */   
+    -moz-transform:rotate(45deg); /* Firefox */   
+    -webkit-transform:rotate(45deg); /* Safari 和 Chrome */   
+    -o-transform:rotate(45deg); /* Opera */
+}
+.totalPriseTitleArea .text{
+    margin:0 0.43rem;
+}
+.godBoxArea{
+    width: 6.92rem;
+    border:0.04rem solid #D9AC70;
+    /*padding: 0.5rem 0;*/
+    margin-top: 0.3rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.25rem;
+    background: #12221E;
+}
+.godBoxArea .godTitle{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color:#FED67E;
+    font-size: 0.28rem;
+    height: 1rem;
+    border-bottom:0.02rem solid #FED67E;
+}
+.godBoxArea .godTitle .span0{
+    height: 1rem;
+    width: 1.5rem;
+    text-align: center;
+    line-height: 1rem;
+    border-right:0.02rem solid #FED67E;
+}
+.godBoxArea .godTitle .span1{
+    flex:1;
+    height: 1rem;
+    line-height: 1rem;
+    text-align: center;
+}
+.godBoxArea .godPer{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color:#FED67E;
+    font-size: 0.28rem;
+    height: 1.8rem;
+    border-bottom:0.02rem solid #FED67E;
+}
+.godBoxArea .goodPer4{
+   border:0;
+}
+.godBoxArea .godPer .span1{
+    width: 1.5rem;
+    text-align: center;
+    height: 1.8rem;
+    line-height: 1.8rem;
+    border-right:0.02rem solid #FED67E;
+    font-size: 0.5rem;
+    text-indent: 0;
+    
+}
+
+.godBoxArea .godPer .div1{
+    flex:1;
+}
+.godBoxArea .godPer .div1 div{
+    height: 0.5rem;
+    /*text-indent: 0.8rem;*/
+    /*text-align: center;*/
+}
+.godBoxArea .godPer .div1 div .span3{
+    padding-left: 0.8rem;
+}
+.godBoxArea .godPer .div1 .div11{
+    height: 0.8rem;
+    display: flex;
+    align-items: center;
+    /*justify-content: center;*/
+}
+.godBoxArea .godPer .div1 .div11 .span2{
+    text-indent: 0.1rem;
+}
+.godBoxArea .godPer .div1 .div11 .img{
+    width: 0.8rem;
+    height: 0.8rem;
+}
+/*守护榜-----*/
+.guaDayArea{
+    width: 6rem;
+    padding:0.3rem 0.75rem 0.5rem 0.5rem;
+    font-size: 0.3rem;
+    font-weight: 400;
+    color: #EBCEB2;
+    line-height: 0.6rem;
+}
+
+.guaBoxArea{
+    width: 6.92rem;
+    border:0.04rem solid #D9AC70;
+    /*padding: 0.5rem 0;*/
+    margin-top: 0.3rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.25rem;
+    background: #12221E;
+}
+.guaBoxArea .godTitle{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color:#FED67E;
+    font-size: 0.28rem;
+    height: 1rem;
+    border-bottom:0.02rem solid #FED67E;
+}
+.guaBoxArea .godTitle .span0{
+    height: 1rem;
+    width: 1.5rem;
+    text-align: center;
+    line-height: 1rem;
+    border-right:0.02rem solid #FED67E;
+}
+.guaBoxArea .godTitle .span1{
+    flex:1;
+    height: 1rem;
+    line-height: 1rem;
+    text-align: center;
+}
+.guaBoxArea .godPer{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color:#FED67E;
+    font-size: 0.28rem;
+    height: 1.5rem;
+    border-bottom:0.02rem solid #FED67E;
+}
+.guaBoxArea .goodPer4{
+   border:0;
+}
+.guaBoxArea .godPer .span1{
+    width: 1.5rem;
+    text-align: center;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    border-right:0.02rem solid #FED67E;
+    font-size: 0.5rem;
+    
+}
+.guaBoxArea .godPer .div1{
+    flex:1;
+}
+.guaBoxArea .godPer .div1 div{
+    line-height: 0.5rem;
+    height: 0.5rem;
+    /*text-align: center;*/
+    /*text-indent: 0.8rem;*/
+}
+.guaBoxArea .godPer .div1 div .span3{
+    padding-left: 0.8rem;
+}
+
+.guaBoxArea .godPer .div1 .div11{
+    display: flex;
+    align-items: center;
+}
+.guaBoxArea .godPer .div1 .div11 .span2{
+    text-indent: 0.1rem;
+}
+.guaBoxArea .godPer .div1 .div11 .img{
+    width: 0.44rem;
+    height: 0.4rem;
+}
+/*家族榜-----*/
+.famBoxArea{
+    width: 6.92rem;
+    border:0.04rem solid #D9AC70;
+    padding: 0.5rem 0;
+    margin-top: 0.3rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.25rem;
+    background: #12221E;
+}
+.famBoxArea .godTitle{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color:#FED67E;
+    font-size: 0.28rem;
+    height: 0.5rem;
+}
+.famBoxArea .godTitle span{
+    flex:1;
+    text-align: center;
+}
+.famBoxArea .godPer{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color:#FED67E;
+    font-size: 0.28rem;
+    height: 0.7rem;
+}
+.famBoxArea .godPer .span1{
+    flex:1;
+    text-align: center;
+} 
+.famBoxArea .godPer .span4{
+    flex:1;
+    text-align: center;
+} 
+.famBoxArea .godPer .img{
+    width: 0.44rem;
+    height: 0.4rem;
+}
+/*活动结束七天*/
+.acTipTextArea{
+    width:6.8rem;
+    padding: 0 0.35rem;
+    color: #FED67E;
+    font-size: 0.28rem;
+}

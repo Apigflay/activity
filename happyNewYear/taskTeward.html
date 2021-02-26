@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<meta name="description" content="不超过150个字符"/>
+<meta name="keywords" content=""/>
+<meta content="" name="author"/>
+<title></title>
+<link rel="stylesheet" href="./taskTeward.css">
+<script src="./axios.js"></script>
+<script src="./vue.js"></script>
+<!-- 引入样式 -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
+<!-- 引入组件库 // that.$message(response.data.msg); -->
+<!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
+<!-- 引入样式文件 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.10/lib/index.css">
+<!-- <link rel="stylesheet" href="./vant.js"> -->
+<!-- 引入 Vue 和 Vant 的 JS 文件 -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6/dist/vue.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/vant@2.10/lib/vant.min.js"></script>
+<!-- <script src="./vant.js"></script> -->
+
+<script type="text/javascript">
+//引入该flexible.min.js
+!function(e,t){function n(){var n=l.getBoundingClientRect().width;t=t||540,n>t&&(n=t);var i=100*n/e;r.innerHTML="html{font-size:"+i+"px;}"}var i,d=document,o=window,l=d.documentElement,r=document.createElement("style");if(l.firstElementChild)l.firstElementChild.appendChild(r);else{var a=d.createElement("div");a.appendChild(r),d.write(a.innerHTML),a=null}n(),o.addEventListener("resize",function(){clearTimeout(i),i=setTimeout(n,300)},!1),o.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(i),i=setTimeout(n,300))},!1),"complete"===d.readyState?d.body.style.fontSize="16px":d.addEventListener("DOMContentLoaded",function(e){d.body.style.fontSize="16px"},!1)}(750,1200);
+</script>
+</head>
+  <body>
+    <div id="app">
+        <div class="contenter">
+            <div class="topArea">
+                <img class="newYear" src="./img/newYear.png" alt="">
+                <img class="timeInfo" src="./img/timeBg.png" alt="">
+                <div class="backBtn" :class="'backBtn'+language" @click="goPages">
+                  {{backText[language]}}
+                </div>
+                <div class="priseBtn" :class="'priseBtn'+language">
+                  {{acRuleText[language]}}
+                </div>
+            </div>
+            <!-- swichBar -->
+            <div class="swichBarArea" :class="'swichBarArea'+language">
+                <span :class="swichBarStatus==index?'spanAc':''" class="span" v-for="(item,index) in swichBarText" :key="index" @click="swichRankList(index)">{{item[language]}}</span>
+            </div>
+            <!-- ruleArea -->
+            <div class="drawArea">
+                <p class="intro">{{introductionText[language]}}</p>
+                <div class="task1">
+                    <div class="line">
+                        <span>{{task1Text[language]}}</span><br>
+                        <span>{{openBoxInitNum}}/300000</span>
+                    </div>
+                    <div class="progress">
+                        <div class="okBox"><img v-if="openbox1Status==1" class="ok" src="./img/okBg.png" alt=""></div>
+                        <span class="num">+1</span>
+                    </div>
+                </div>
+                <div class="task1">
+                    <div class="line">
+                        <span>{{task2Text[language]}}</span><br>
+                        <span>{{openBoxInitNum}}/500000</span>
+                    </div>
+                    <div class="progress">
+                        <div class="okBox"><img class="ok" v-if="openbox2Status==1" src="./img/okBg.png" alt=""></div>
+                        <span  class="num">+1</span>
+                    </div>
+                </div>
+                <div class="redBaoBox">
+                    <img class="img1" v-if="redBaoStatus==0" src="./img/red.png" alt="">
+                    <img class="img2" v-if="redBaoStatus==1" src="./img/redKai.png" alt="">
+                </div>
+                <p class="drawNumArea">{{chaiText[language]}} {{openboxNum}}</p>
+                <div class="btnArea" @click="clickDrawBox(0)">{{openText[language]}}</div>
+                <p class="recordArea" @click="clickDrawBox(2)">{{recordText[language]}}</p>
+            </div>
+            <!-- 抽奖弹框 -->
+            <div class="drawPop" v-if="drawPopStatus==1">
+                <img class="closeBtn" src="./img/close.png" alt="" @click="clickDrawBox(1)">
+                <img class="dollImg" v-if="openBoxImgStatus==1" src="./img/doll.png" alt="">
+                <img class="coinsImg" v-if="openBoxImgStatus==2" src="./img/coins.png" alt="">
+                <p class="info">{{recordTipText[language]}}{{openBoxText[language]}}</p>
+                <div class="btn" @click="clickDrawBox(1)">{{sureText[language]}}</div>
+            </div>
+            <!-- 抽奖记录弹框 -->
+            <div class="drawRecordPop" v-if="drawRecordPopStatus==1"  >
+              <img class="closeBtn" src="./img/close.png" alt="" @click="clickDrawBox(3)">
+              <div class="drawRTitle">{{recordText[language]}}</div>
+              <div class="recordArea">
+                  <div class="per" v-if="recordData.length==0">{{noData[language]}}</div>
+                  <div class="per" v-for="(item,index) in recordData" :key="index">
+                      {{recordTipText[language]}}{{item.prise[language]}}
+                  </div>
+              </div>
+            </div>
+            <!-- marsk -->
+            <div class="marskPop" v-if="marskPopStatus==1"></div>
+
+
+ 
+
+
+        </div>
+    </div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script type="text/javascript">
+    new Vue({
+        el:'#app',
+        data(){
+          return{
+            webUrl:'http://173.248.234.198:2020/',//web before https://api.bunnylive.me/  test  http://173.248.234.198:2020/
+            language:0,//0中   1英   2太
+            backText:['返回','return','trở về'],
+            acRuleText:['活动奖励','Activity Award','Giải thưởng hoạt động'],
+            swichBarStatus:1,//默认榜单
+            swichBarText:[['榜单奖励','mission rewards','Phần thưởng thứ hạng'],
+                          ['任务奖励','Rankings  rewards','Phần thưởng nhiệm vụ']],
+            introductionText:['完成以下任务可以获得拆红包得机会','Complete the following tasks to get the opportunity to open the red envelope','Hoàn thành nhiệm vụ có thể nhận được cơ hội mở phần quà lì xì'],
+            task1Text:['福气值达到30万','The blessing value reaches 300,000','Điểm chúc phúc đạt được 300.000'],
+            task2Text:['福气值达到50万','The blessing value reaches 500,000','Điểm chúc phúc đạt được 500.000'],
+            redBaoStatus:0,//0 合 1 开
+            chaiText:['剩余拆红包次数','Remaining red envelope opening times','Số lần mở phong bì đỏ còn lại'],
+            recordText:['拆红包记录','Red envelope record','Chưa hoàn thành'],
+            openText:['拆红包','Open red envelope','Mở lì xì '],
+            drawPopStatus:0,//默认0  隐藏
+            drawRecordPopStatus:0,//默认0  隐藏
+            marskPopStatus:0,//
+            sureText:['确认','confirm','xác nhận'],
+            openbox1Status:0,//任务1 状态
+            openbox2Status:0,//任务2 状态
+            openboxNum:0,//开盒子次数
+            openBoxInitNum:0,//开盒子任务能量值
+            recordTipText:['恭喜您获得了:','Congratulations you got:','Xin chúc mừng bạn đã nhận được:'],
+            recordData:[],
+            openBoxImgStatus:0,//0 啥也不是 1 doll 2 coins
+            openBoxText:[],//开宝箱提示
+
+            noData:['暂无数据','No data','Chưa có dữ liệu '],//暂无数据  
+            openNoNum:['拆红包次数不足','Insufficient number of red envelopes','Không đủ số lượng phong bì đỏ'],
+
+
+          }   
+        },
+        created() {
+          this.getInitLunguage()
+          this.getInitBoxMsg()
+
+        },
+        computed:{
+        },
+        methods:{
+            //获取 token ranktype 等公共函数
+            GetQueryString:function(name) { //name为要获得的参数名字 
+              var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)")
+              var r = window.location.search.substr(1).match(reg)
+              if(r != null) return decodeURI(r[2])
+              return null;
+              // if(r != null){
+              //     this.language=decodeURI(r[2])
+              // }else{
+              //     this.language=0;
+              // }
+            },
+            getInitLunguage:function(){
+              var lang = navigator.language||navigator.userLanguage;//常规浏览器语言和IE浏览器
+              lang = lang.substr(0, 2);//截取lang前2位字符
+              console.log(lang)
+              if(lang == 'zh'){
+                this.language=0;
+              }else if(lang == 'en'){
+                this.language=1;
+              }else if(lang == 'vi'){
+                this.language=2;
+              }else{
+                this.language=0;
+              }
+            },
+            goPages:function(){
+              window.location.href ="./anchorList.html?token="+this.GetQueryString('token'); rel="external nofollow";
+              
+            },
+            swichRankList:function(id){//切换榜单
+              console.log(id)
+              if(id==0){
+                window.location.href ="./listAwards.html?token="+this.GetQueryString('token'); rel="external nofollow";
+              }
+              // this.swichBarStatus=id;
+            },
+            clickDrawBox:function(id){//0 打开开奖盒子 1 关闭礼物盒子 2 
+              if(id==0){
+                this.openBox()
+              }else if(id==1){
+                this.drawPopStatus=0;
+                this.marskPopStatus=0;
+                this.redBaoStatus=0;
+                this.openBoxImgStatus=0;
+                this.openBoxText=[];
+                this.getInitBoxMsg();
+              }else if(id==2){
+                this.drawRecordPopStatus=1;
+                this.marskPopStatus=1;
+                this.getBoxRecord();
+              }else if(id==3){
+                this.drawRecordPopStatus=0;
+                this.marskPopStatus=0;
+              }
+                
+            },
+            getInitBoxMsg:function(){
+              var token = this.GetQueryString('token')
+              // console.log(token)
+              var url = this.webUrl+'H5/Active/NewYear2021UserInfo';
+              var that =this;
+              axios.post(url, {
+                token:token
+              })
+              .then(function (response) {
+                console.log(response.data.data)
+                that.openboxNum=response.data.data[0].LotteryCount;
+                that.openBoxInitNum=response.data.data[0].AllPower;
+                console.log(response.data.data[0].AllPower)
+                if(response.data.data[0].AllPower<300000){
+                  that.openbox1Status=0;
+                  that.openbox2Status=0;
+                }else if(response.data.data[0].AllPower>=300000&&response.data.data[0].AllPower<500000){
+                  that.openbox1Status=1;
+                  that.openbox2Status=0;
+                }else if(response.data.data[0].AllPower>=500000){
+                  that.openbox1Status=1;
+                  that.openbox2Status=1;
+                }
+               
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+            },
+            getBoxRecord:function(){
+              var token = this.GetQueryString('token')
+              // console.log(token)
+              var url = this.webUrl+'H5/Active/NewYear2021PrizeList';
+              var that =this;
+              axios.post(url, {
+                token:token
+              })
+              .then(function (response) {
+                console.log(response.data)
+                console.log(response.data.data.prizelist)
+                if(response.data.code==100){
+                  var initData=response.data.data.prizelist;
+                  initData.forEach(function(item,index){
+                    console.log(item)
+                    if(item.PrizeID==53){
+                      item.prise=['20$','20$','20$'];
+                    }else if(item.PrizeID==54){
+                      item.prise=['10$','10$','10$'];
+                    }else if(item.PrizeID==55){
+                      item.prise=['88888 coins','88888 coins','88888 đồng'];
+                    }else if(item.PrizeID==56){
+                      item.prise=['5888 coins','5888 coins','5888 đồng'];
+                    }else if(item.PrizeID==57){
+                      item.prise=['1888 coins','1888 coins','1888 đồng'];
+                    }else if(item.PrizeID==58){
+                      item.prise=['88888 coins','88888 coins','88888 đồng'];
+                    }else if(item.PrizeID==59){
+                      item.prise=['8888 coins','8888 coins','8888 đồng'];
+                    }
+                  })
+                  that.recordData=initData;
+                }else{
+                  that.recordData=[];
+                }
+               
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+            },
+            openBox:function(){
+              var token = this.GetQueryString('token')
+              var url = this.webUrl+'H5/Active/NewYear2021_Lottery';
+              var that = this;
+              axios.post(url, {
+                token:token,
+              })
+              .then(function (response) {
+                console.log(response.data)
+                if(response.data.code==100){
+                    that.drawPopStatus=1;
+                    that.marskPopStatus=1;
+                    that.redBaoStatus=1;
+                    if(response.data.data==53){
+                      that.openBoxText=['20$','20$','20$'];
+                      that.openBoxImgStatus=1;
+                    }else if(response.data.data==54){
+                      that.openBoxText=['10$','10$','10$'];
+                      that.openBoxImgStatus=1;
+                    }else if(response.data.data==55){
+                      that.openBoxText=['88888 coins','88888 coins','88888 đồng'];
+                      that.openBoxImgStatus=2;
+                    }else if(response.data.data==56){
+                      that.openBoxText=['5888 coins','5888 coins','5888 đồng'];
+                      that.openBoxImgStatus=2;
+                    }else if(response.data.data==57){
+                      that.openBoxText=['1888 coins','1888 coins','1888 đồng'];
+                      that.openBoxImgStatus=2;
+                    }else if(response.data.data==58){
+                      that.openBoxText=['88888 coins','88888 coins','88888 đồng'];
+                      that.openBoxImgStatus=2;
+                    }else if(response.data.data==59){
+                      that.openBoxText=['8888 coins','8888 coins','8888 đồng'];
+                      that.openBoxImgStatus=2;
+                    }
+                
+                }else if(response.data.code==111){
+                  vant.Toast(that.openNoNum[that.language]);
+                }else{
+                  vant.Toast(response.data.msg);
+                }
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+            },
+
+
+
+
+
+            getRankList:function(rankId){
+              // console.log(rankId)
+              // console.log(this.acRankStatus)
+
+              var token = this.GetQueryString('token')
+              // console.log(token)
+              var url = this.webUrl+'H5/Active/LuckyStarRank';
+              var that =this;
+              axios.post(url, {
+                token:token
+              })
+              .then(function (response) {
+                // console.log(response.data.data)
+                that.totalInitData=response.data.data;
+                that.achorRankData=response.data.data.idollist;//主播榜
+                that.achorMydata=response.data.data.myidolrank;//主播  我的
+                that.userRankData=response.data.data.userlist;//用户榜
+                that.userMyData=response.data.data.myuserrank;//用户  我的
+                that.achorLevalNum=response.data.data.myidolrank.giftnum;//主播
+                that.userLevalNum=response.data.data.myuserrank.giftnum;//用户
+
+
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+            },
+            productType:function(){
+              var ios = 'ios';
+              var android = 'android';
+              var u = navigator.userAgent, app = navigator.appVersion;
+              var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+              var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+              if (isAndroid) {
+                 //这个是安卓操作系统
+                 return 1;
+              }
+              if (isIOS) {
+              　　//这个是ios操作系统
+                return 0;
+              }
+            },
+            gooPersonalPage:function(idx){//0 i0s 1 android
+              // console.log(idx)
+              // console.log(this.productType())
+              if(this.productType()==0){
+                document.location = "miaobowpa:/ShowCard&useridx=" + idx + "&";
+              }else if(this.productType()==1){
+                window.location.href = "miaobowpa://ShowCard?useridx=" + idx;
+              }
+            },
+
+
+            getScrollMsg:function(){
+                var that = this;
+                window.onscroll = function(){  // 由于需要使用 onPageScroll 无法使用 scroll-view 所以使用onscroll来判断页面是否滚动到底部
+                    //变量scrollTop是滚动条滚动时，距离顶部的距离
+                    var scrollTop = document.documentElement.scrollTop;
+                    //变量windowHeight是可视区的高度
+                    var windowHeight = document.documentElement.clientHeight;
+                    //变量scrollHeight是滚动条的总高度
+                    var scrollHeight = document.documentElement.scrollHeight;
+                            console.log(scrollTop)
+                            console.log(windowHeight)
+                            console.log(scrollHeight)
+                          //滚动条到底部的条件
+                    if(scrollTop+windowHeight==scrollHeight){
+                      //写后台加载数据的函数
+                      console.log("距顶部"+scrollTop+"可视区高度"+windowHeight+"滚动条总高度"+scrollHeight);
+                      console.log('滚动到底')
+                      that.listData.push({name:'小野444猫',num:123,url:'./img/bg10.png'},)
+
+                    }   
+                }
+            },
+          
+        },
+        beforeMount(){
+        },
+        mounted(){
+        },
+       
+    })
+  </script>
+</html>

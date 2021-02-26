@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<meta name="description" content="不超过150个字符"/>
+<meta name="keywords" content=""/>
+<meta content="" name="author"/>
+<title></title>
+<link rel="stylesheet" href="./listAward.css">
+<!-- <script src="./axios.js"></script> -->
+<script src="./vue.js"></script>
+<script type="text/javascript">
+//引入该flexible.min.js
+!function(e,t){function n(){var n=l.getBoundingClientRect().width;t=t||540,n>t&&(n=t);var i=100*n/e;r.innerHTML="html{font-size:"+i+"px;}"}var i,d=document,o=window,l=d.documentElement,r=document.createElement("style");if(l.firstElementChild)l.firstElementChild.appendChild(r);else{var a=d.createElement("div");a.appendChild(r),d.write(a.innerHTML),a=null}n(),o.addEventListener("resize",function(){clearTimeout(i),i=setTimeout(n,300)},!1),o.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(i),i=setTimeout(n,300))},!1),"complete"===d.readyState?d.body.style.fontSize="16px":d.addEventListener("DOMContentLoaded",function(e){d.body.style.fontSize="16px"},!1)}(750,750);
+</script>
+</head>
+  <body>
+    <div id="app">
+        <div class="contenter">
+            <!-- 公共top -->
+            <div class="topArea">
+                <img class="jiao" src="./imgs/jiao.png" alt="">
+                <img class="textbg" src="./imgs/text.png" alt="">
+                <div class="backArea" @click="goPages(0)" v-if="language==0">返回</div>
+                <div class="backArea" @click="goPages(0)" v-if="language==1">return</div>
+                <div class="backArea" @click="goPages(0)" v-if="language==2">trở về</div>
+                <div class="timeInfo">
+                  {{timeInfo[language]}}
+                </div>
+                <div class="titleArea">
+                  <img class="cat" src="./imgs/cat.png" alt="">
+                  <img class="title" src="./imgs/title.png" alt="">
+                </div>
+            </div>
+            <!-- 公共top -->
+            <!-- 活动奖励 -->
+            <!-- <div class="acGiftArea" :class="'acGiftArea'+language">
+                <img class="gang" src="./imgs/gang.png" alt="">
+                <span class="span">{{priseText[language]}}</span>
+                <img class="gang" src="./imgs/gang.png" alt="">
+            </div> -->
+           <!-- 榜单 任务 奖励 -->
+           <div class="listAndGift" :class="'listAndGift'+language">
+              <span class="span1">{{listAward[language]}}</span>
+              <span class="span2" @click="goPages(1)">{{taskReward[language]}}</span>
+           </div>
+           <!-- swichBar -->
+            <div class="swichBarArea" :class="'swichBarArea'+language">
+                <span :class="initListNum==index?'acSpan span':'span'" v-for="(item,index) in swichBarText" :key="index" @click="swichList(index)">{{item[language]}}</span>
+            </div>
+            <!-- 女神榜 -->
+            <div class="totalPriseTitleArea" v-if="initListNum==0">
+                <div class="ling1"></div>
+                <div class="ling2"></div>
+                <span class="text">{{dayPriseTitleText[language]}}</span>
+                <div class="ling2"></div>
+                <div class="ling1"></div>
+            </div>
+            <div class="guaDayArea" v-if="initListNum==0">
+              {{guaText1[language]}}<br>{{guaText2[language]}}<br>{{guaText3[language]}}
+            </div>
+            <div class="totalPriseTitleArea totalPriseTitleArea2" v-if="initListNum==0">
+                <div class="ling1"></div>
+                <div class="ling2"></div>
+                <span class="text">{{totalPriseTitleText[language]}}</span>
+                <div class="ling2"></div>
+                <div class="ling1"></div>
+            </div>
+            <div class="godBoxArea" v-if="initListNum==0">
+                <div class="godTitle">
+                    <span :class="'span'+index" v-for="(item,index) in godTitleData[language]" :key="index">{{item}}</span>
+                </div>
+                <div :class="'goodPer'+index" class="godPer" v-for="(item,index) in godData" :key="index">
+                    <span class="span1">{{item[0]}}</span>
+                    <div class="div1">
+                        <div class="div11"><img class="img" :src="item[1]" alt=""> x1 <span class="span2">{{item[2]}}</span></div>
+                        <div><span class="span3">{{item[3][language]}}</span></div>
+                        <div><span class="span3">{{item[4]}}</span></div>
+                    </div>
+                </div>
+            </div>
+            <!-- 守护榜 -->
+            
+            <div class="totalPriseTitleArea" v-if="initListNum==1">
+                <div class="ling1"></div>
+                <div class="ling2"></div>
+                <span class="text">{{totalPriseTitleText[language]}}</span>
+                <div class="ling2"></div>
+                <div class="ling1"></div>
+            </div>
+            <div class="guaBoxArea " v-if="initListNum==1">
+                <div class="godTitle">
+                    <span :class="'span'+index" v-for="(item,index) in guaTitleData[language]" :key="index">{{item}}</span>
+                </div>
+                <div :class="'goodPer'+index" class="godPer" v-for="(item,index) in guaData" :key="index">
+                    <span class="span1">{{item[0]}}</span>
+                    <div class="div1">
+                        <div class="div11"><img class="img" :src="item[1]" alt=""> x1 <span class="span2">{{item[2][language]}}</span></div>
+                        <div><span class="span3">{{item[3][language]}}</span></div>
+                        <div><span class="span3">{{item[4]}}</span></div>
+                    </div>
+                </div>
+            </div>
+            <!-- 家族榜 -->
+            <div class="totalPriseTitleArea" v-if="initListNum==2">
+                <div class="ling1"></div>
+                <div class="ling2"></div>
+                <span class="text">{{totalPriseTitleText[language]}}</span>
+                <div class="ling2"></div>
+                <div class="ling1"></div>
+            </div>
+            <div class="famBoxArea" v-if="initListNum==2">
+                <div class="godTitle">
+                    <span v-for="(item,index) in famTitleData[language]" :key="index">{{item}}</span>
+                </div>
+                <div class="godPer" v-for="(item,index) in famData" :key="index">
+                    <span class="span1">{{item[0]}}</span>
+                    <span class="span4">{{item[1]}}</span>
+                </div>
+            </div>
+            <!-- 活动奖励发送时间 -->
+            <p class="acTipTextArea">{{acTipText[language]}}</p>
+            
+
+        </div>
+    </div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script type="text/javascript">
+    new Vue({
+        el:'#app',
+        data(){
+          return{
+            language:2,//0中   1英  2越南
+            backText:['返回','return','trở về'],
+            timeInfo:['活动时间: 20201224 00:00-20210101 23:59','Activity time: 20201224 00:00-20210101 23:59','Thời gian hoạt động: 20201224 00:00-20210101 23:59'],
+            // userBoxTitle:['活动规则','Activity Rules','quy tắc hoạt động'],
+            priseText:['活动奖励','Activity Award','Giải thưởng hoạt động'],
+            listAward:['榜单和奖励','Rankings and rewards','Xếp hạng và phần thưởng'],
+            taskReward:['任务奖励','mission rewards','phần thưởng nhiệm vụ'],
+            swichBarText:[['女神榜','Goddess list','Danh sách nữ thần'],
+                          ['守护榜','Guardian','Người giám hộ'],
+                          ['家族榜','Family List','Danh sách gia đình']],
+            initListNum:0,//默认榜单 0女神榜  1守护 2家族
+            totalPriseTitleText:['总榜奖励','Overall ranking reward','Phần thưởng xếp hạng chung'],
+            dayPriseTitleText:['日榜奖励','Daily rewards','Phần thưởng hàng ngày'],
+            acTipText:['活动奖励发送时间为活动结束后7天','Event rewards will be sent 7 days after the event ends','Phần thưởng sự kiện sẽ được gửi sau 7 ngày kể từ khi sự kiện kết thúc'],
+            // 女神榜
+            godTitleData:[['排名','奖励'],['Rank','reward'],['Cấp','phần thưởng']],
+            godData:[['1','./imgs/total1.png','Honda Winner X',['璀璨女神(60天)','Dazzling goddess(60 days)','Nữ thần rực rỡ(60 ngày)'],'1000000 Coins'],
+                     ['2','./imgs/total2.png','Honda Blade 110',['璀璨女神(30天)','Dazzling goddess(30 days)','Nữ thần rực rỡ(30 ngày)'],'500000 Coins'],
+                     ['3','./imgs/total3.png','iwatch 6(GPS)',['璀璨女神(20天)','Dazzling goddess(20 days)','Nữ thần rực rỡ(20 ngày)'],'300000 Coins'],
+                     ['4','./imgs/total4.png','air pods pro',['璀璨女神(10天)','Dazzling goddess(10 days)','Nữ thần rực rỡ(10 ngày)'],'200000 Coins'],
+                     ['5','./imgs/total5.png','air pods 2',['璀璨女神(5天)','Dazzling goddess(5 days)','Nữ thần rực rỡ(5 ngày)'],'100000 Coins']],
+            // 守护榜
+            guaText1:['日榜第一的主播当日底薪增加100%','The first idol on the daily chart increases the basic salary of the day by 100%','Idol đầu tiên trên biểu đồ hàng ngày tăng 100% mức lương cơ bản trong ngày'],
+            guaText2:['日榜第二的主播当日底薪增加50%','The second idol on the daily list increases the basic salary of the day by 50%','Idol thứ hai trong danh sách hàng ngày tăng 50% mức lương cơ bản trong ngày'],
+            guaText3:['日榜第三的主播当日底薪增加25%','The third idol on the daily list increases the basic salary of the day by 25%','Idol thứ ba trong danh sách hàng ngày tăng 25% mức lương cơ bản trong ngày'],
+            guaTitleData:[['排名','奖励'],['Rank','reward'],['Cấp','phần thưởng']],
+            guaData:[['1','./imgs/zong1.png',['至尊皇冠(30天)','Supreme Crown(30days)','Vương miện tối cao(30 ngày)'],['最强守护(60天)','Strongest guard(60 days)','Người giám hộ mạnh nhất(60 ngày)'],'1000000 Coins'],
+                     ['2','./imgs/zong2.png',['王者皇冠(30天)','King’s Crown(30days)','Vương miện vua(30 ngày)'],['最强守护(30天)','Strongest guard(30 days)','Người giám hộ mạnh nhất(30 ngày)'],'500000 Coins'],
+                     ['3','./imgs/zong3.png',['钻石皇冠(30天)','Diamond Crown(30days)','Vương miện kim cương(30 ngày)'],['最强守护(20天)','Strongest guard(20 days)','Người giám hộ mạnh nhất(20 ngày)'],'300000 Coins'],
+                     ['4','./imgs/zong4.png',['超级皇冠(30天)','Super Crown(30days)','Vương miện siêu cấp(30 ngày)'],['最强守护(10天)','Strongest guard(10 days)','Người giám hộ mạnh nhất(10 ngày)'],'200000 Coins'],
+                     ['5','./imgs/zong5.png',['粉色皇冠(30天)','Pink Crown(30days)','Vương miện hồng(30 ngày)'],['最强守护(5天)','Strongest guard(5 days)','Người giám hộ mạnh nhất(5 ngày)'],'100000 Coins']],
+            // 家族榜
+            famTitleData:[['排名','奖励'],['Rank','reward'],['Cấp','phần thưởng']],
+            famData:[['1','$100',],
+                     ['2','1,000,000 Coins'],
+                     ['3','500,000 Coins']],
+            bi:['币','','']
+
+
+
+
+
+
+
+
+
+
+
+           
+
+
+
+
+
+
+            
+            
+            
+            
+          
+            
+          }   
+        },
+        created() {
+          this.getInitLunguage()
+
+        },
+        computed:{
+        },
+        methods:{
+          goPages:function(id){//0 返回 1 任务奖励
+            if(id==0){
+              window.location.href ="./godList.html?token="+this.GetQueryString('token'); rel="external nofollow";
+              // window.history.go(-1)
+            }else if(id==1){
+               window.location.href ="./godTurntable.html?token="+this.GetQueryString('token'); rel="external nofollow";
+            }
+            
+          },
+          getInitLunguage:function(){
+            var lang = navigator.language||navigator.userLanguage;//常规浏览器语言和IE浏览器
+            lang = lang.substr(0, 2);//截取lang前2位字符
+            console.log(lang)
+            if(lang == 'zh'){
+              this.language=0;
+            }else if(lang == 'en'){
+              this.language=1;
+            }else if(lang == 'vi'){
+              this.language=2;
+            }else{
+              this.language=0;
+            }
+          },
+          swichList:function(id){//切换榜单
+
+              this.initListNum=id;
+
+          },
+          //获取 ranktype useridx 的公共函数
+          GetQueryString:function(name) { //name为要获得的参数名字
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)")
+            var r = window.location.search.substr(1).match(reg)
+            if(r != null) return decodeURI(r[2])
+            return null;
+          },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // goRulesPages:function(){
+
+            // },
+            getScrollMsg:function(){
+                var that = this;
+                window.onscroll = function(){  // 由于需要使用 onPageScroll 无法使用 scroll-view 所以使用onscroll来判断页面是否滚动到底部
+                    //变量scrollTop是滚动条滚动时，距离顶部的距离
+                    var scrollTop = document.documentElement.scrollTop;
+                    //变量windowHeight是可视区的高度
+                    var windowHeight = document.documentElement.clientHeight;
+                    //变量scrollHeight是滚动条的总高度
+                    var scrollHeight = document.documentElement.scrollHeight;
+                            console.log(scrollTop)
+                            console.log(windowHeight)
+                            console.log(scrollHeight)
+                          //滚动条到底部的条件
+                    if(scrollTop+windowHeight==scrollHeight){
+                      //写后台加载数据的函数
+                      console.log("距顶部"+scrollTop+"可视区高度"+windowHeight+"滚动条总高度"+scrollHeight);
+                      console.log('滚动到底')
+                      that.listData.push({name:'小野444猫',num:123,url:'./img/bg10.png'},)
+
+                    }   
+                }
+            },
+          getUrlData:function(){
+            console.log(this.GetQueryString('ranktype'));
+            console.log(this.GetQueryString('useridx'));
+            // console.log(this.data.data)
+          },
+          getMessage:function(){
+            console.log(this.data)
+            var that =this;
+            axios.post('/Rank/totalRankData', {
+              ranktype: that.ranktype,
+              timetype: that.timetype,
+              useridx: that.useridx,
+              page: 1,
+            })
+            .then(function (response) {
+              that.infoData=response.data.data.rankList;
+              //此处浅拷贝  下方改变原始数据变化
+              var arr=response.data.data.rankList;
+              arr.forEach(function(item,index,arr1){
+                if(item.sumprice>=10000){
+                  arr[index].sumprice=Math.floor(arr[index].sumprice/10000*100)/100+"万"
+                }else{
+
+                }
+              })  
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+          },
+          goList:function(e){
+            if(e.currentTarget.id==0){//1 日榜，2 周榜，3 月榜，4 总榜
+              this.timetype=2;
+              this.getMessage()
+            }else if(e.currentTarget.id==1){
+              this.timetype=3;
+              this.getMessage()
+            }else if(e.currentTarget.id==2){
+              this.timetype=4;
+              this.getMessage()
+            }
+            this.listState=e.currentTarget.id;
+          },
+          add:function(){
+            axios.get('http://192.168.84.170:5000/LinkService/Auto/MixVerifyCode')
+            .then(function (response) {
+              console.log(response);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+
+          },//---------------
+          systemall:function(){
+            var ios = 'ios';
+            var android = 'android';
+            var pc = 'pc';
+            var u = navigator.userAgent, app = navigator.appVersion;
+            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+            var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            if (isAndroid) {
+               //这个是安卓操作系统
+               console.log('这个是安卓操作系统')
+               return android;
+            }
+            if (isIOS) {
+            　　//这个是ios操作系统
+              console.log('这个是ios操作系统')
+              return ios;
+            }
+            if (isIOS==false&&isAndroid==false) {
+            　　//这个是pc操作系统
+              console.log('这个是pc操作系统')
+              return pc;
+            }
+          }	
+        },
+        beforeMount(){
+        },
+        mounted(){
+        },
+       
+    })
+  </script>
+</html>

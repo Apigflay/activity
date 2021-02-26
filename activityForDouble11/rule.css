@@ -1,0 +1,52 @@
+*{padding:0;margin:0}
+body,html,#app{width: 100%;height: 100%;background: #090806;}
+.contenter{
+    /*background: #090806;*/
+    /*padding-bottom: 0.28rem;*/
+    background-image: url(./img/bg.png);
+    background-size: 7.5rem 100%;
+    background-position: center top;
+    background-repeat: no-repeat;
+    padding-top: 1.27rem;
+    padding-bottom: 0.5rem;
+}
+.backArea{
+    width: 2.07rem;
+    height: 0.77rem;
+    background-image: url(./img/acPrise1.png);
+    background-size: 2.07rem 0.77rem;
+    background-position: center right;
+    background-repeat: no-repeat;
+    margin-bottom: 4rem;
+    line-height: 0.77rem;
+    text-align: center;
+    font-size: 0.32rem;
+    font-family: PingFang SC;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+
+/*rule*/
+.ruleBox{
+    width: 6rem;
+    background: #FFF9DC;
+    border-radius: 0.2rem;
+    padding:0.6rem 0.4rem 0.7rem 0.4rem;
+    margin:auto;
+    font-size: 0.28rem;
+    font-family: PingFang SC;
+    font-weight: 400;
+    color: #FFCE0F;
+    line-height: 0.5rem;
+}
+.ruleBox .title{ 
+    font-size: 0.48rem;
+    font-family: Helvetica;
+    font-weight: bold;
+    color: #FDAD34; 
+    text-align: center;
+    height: 0.48rem;
+    line-height: 0.48rem;
+    margin-bottom: 0.52rem;
+}

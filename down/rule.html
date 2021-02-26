@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<meta name="description" content="不超过150个字符"/>
+<meta name="keywords" content=""/>
+<meta content="" name="author"/>
+<title></title>
+<link rel="stylesheet" href="./rule.css">
+<!-- <script src="./axios.js"></script> -->
+<script src="./vue.js"></script>
+<!-- 引入样式 -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
+<!-- 引入组件库 // that.$message(response.data.msg); -->
+<!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
+<!-- 引入样式文件 -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.10/lib/index.css"> -->
+<!-- 引入 Vue 和 Vant 的 JS 文件 -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6/dist/vue.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/vant@2.10/lib/vant.min.js"></script> -->
+
+<script type="text/javascript">
+//引入该flexible.min.js
+!function(e,t){function n(){var n=l.getBoundingClientRect().width;t=t||540,n>t&&(n=t);var i=100*n/e;r.innerHTML="html{font-size:"+i+"px;}"}var i,d=document,o=window,l=d.documentElement,r=document.createElement("style");if(l.firstElementChild)l.firstElementChild.appendChild(r);else{var a=d.createElement("div");a.appendChild(r),d.write(a.innerHTML),a=null}n(),o.addEventListener("resize",function(){clearTimeout(i),i=setTimeout(n,300)},!1),o.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(i),i=setTimeout(n,300))},!1),"complete"===d.readyState?d.body.style.fontSize="16px":d.addEventListener("DOMContentLoaded",function(e){d.body.style.fontSize="16px"},!1)}(750,1200);
+</script>
+</head>
+  <body>
+    <div id="app">
+        <div class="contenter">
+             <div class="top"></div>
+             <div class="backAera">
+                <img @click="goBack" class="backBtn" src="./img/back.png" alt="">
+             </div>
+             <div class="title">{{text1[language]}}</div>
+             <div class="rule">
+                {{text2[language]}}
+             </div>
+             <div class="info">{{text3[language]}}</div>
+             <div>
+                <img class="img1" src="./img/img1.png" alt="">
+             </div>
+             <div class="info1">{{text4[language]}}</div>
+             <div>
+                <img class="img2" src="./img/img2.png" alt="">
+             </div>
+             <div class="rule5">
+                {{text5[language]}}
+             </div>
+             <div class="info2">{{text6[language]}}</div>
+             <div>
+                <img class="img3" src="./img/img3.png" alt="">
+             </div>
+        </div>
+    </div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script type="text/javascript">
+    new Vue({
+        el:'#app',
+        data(){
+          return{
+            language:0,//0中   1英   2越
+            text1:['规则','rules','Quy tắc'],
+            text2:['称号:  称号是由活动中去获得, 由平台下发, 称号佩戴, 后会有头像效果、直播列表特殊标识.展示在以下位置。','Title: The title is obtained during the event, issued by the platform, the title is worn, and there will be an avatar effect and a special logo in the live broadcast list. It is displayed in the following location.','Danh hiệu: Danh hiệu có được trong sự kiện do nền tảng cấp, danh hiệu được mặc, sẽ có hiệu ứng avatar và logo đặc biệt trong danh sách phát trực tiếp. Nó được hiển thị ở vị trí sau.'],
+            text3:['资料卡片','Data card','Thẻ dữ liệu'],
+            text4:['房间列表','Room list','Danh sách phòng'],
+            text5:['勋章:  勋章是完成特定任务点亮获得, 勋章佩戴后的个人资料, 资料卡片显示, 公聊弹幕上。展示在以下位置','Medal: Medal is obtained by lighting up after completing a specific task, the personal data after the medal is worn, the data card is displayed, and it is on the public chat barrage. Shown in the following locations','Huy chương: Huy chương nhận được bằng cách thắp sáng sau khi hoàn thành một nhiệm vụ cụ thể, dữ liệu cá nhân sau khi huy chương được đeo, thẻ dữ liệu được hiển thị và nó ở trên thanh trò chuyện công khai. Được hiển thị ở các vị trí sau'],
+            text6:['房间列表','Room list','Danh sách phòng'],
+  
+          }   
+        },
+        created() {
+          this.getInitLunguage()
+
+        },
+        computed:{
+        },
+        methods:{
+          getInitLunguage:function(){
+              var lang = navigator.language||navigator.userLanguage;//常规浏览器语言和IE浏览器
+              lang = lang.substr(0, 2);//截取lang前2位字符
+              console.log(lang)
+              if(lang == 'zh'){
+                this.language=0;
+              }else if(lang == 'en'){
+                this.language=1;
+              }else if(lang == 'vi'){
+                this.language=2;
+              }else{
+                this.language=0;
+              }
+            },
+            productType:function(){
+              var ios = 'ios';
+              var android = 'android';
+              var u = navigator.userAgent, app = navigator.appVersion;
+              var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+              var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+              if (isAndroid) {
+                 //这个是安卓操作系统
+                 return 1;
+              }
+              if (isIOS) {
+              　　//这个是ios操作系统
+                return 0;
+              }
+            },
+            goBack:function(){
+              if(this.productType()==0){
+               //ios
+               console.log('ios')
+              }else if(this.productType()==1){
+               // android
+               console.log('android')
+              }   
+            },
+
+
+
+
+
+           
+            //获取 token ranktype 等公共函数
+            GetQueryString:function(name) { //name为要获得的参数名字 
+              var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)")
+              var r = window.location.search.substr(1).match(reg)
+              if(r != null) return decodeURI(r[2])
+              return null;
+              // if(r != null){
+              //     this.language=decodeURI(r[2])
+              // }else{
+              //     this.language=0;
+              // }
+            },
+            
+            
+            goPages:function(id){
+              console.log(id)
+              if(id==1){//奖励
+                window.location.href ="./down.html"; rel="external nofollow";
+              }else if(id==0){//规则
+                window.location.href ="./rule.html"; rel="external nofollow";
+              }
+            },
+            gooPersonalPage:function(idx){//0 i0s 1 android
+              // console.log(idx)
+              // console.log(this.productType())
+              if(this.productType()==0){
+                document.location = "miaobowpa:/ShowCard&useridx=" + idx + "&";
+              }else if(this.productType()==1){
+                window.location.href = "miaobowpa://ShowCard?useridx=" + idx;
+              }
+            },
+
+
+          
+        },
+        beforeMount(){
+        },
+        mounted(){
+        },
+       
+    })
+  </script>
+</html>

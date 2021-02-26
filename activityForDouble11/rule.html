@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<meta name="description" content="不超过150个字符"/>
+<meta name="keywords" content=""/>
+<meta content="" name="author"/>
+<title></title>
+<link rel="stylesheet" href="./rule.css">
+<!-- <script src="./axios.js"></script> -->
+<script src="./vue.js"></script>
+<script type="text/javascript">
+//引入该flexible.min.js
+!function(e,t){function n(){var n=l.getBoundingClientRect().width;t=t||540,n>t&&(n=t);var i=100*n/e;r.innerHTML="html{font-size:"+i+"px;}"}var i,d=document,o=window,l=d.documentElement,r=document.createElement("style");if(l.firstElementChild)l.firstElementChild.appendChild(r);else{var a=d.createElement("div");a.appendChild(r),d.write(a.innerHTML),a=null}n(),o.addEventListener("resize",function(){clearTimeout(i),i=setTimeout(n,300)},!1),o.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(i),i=setTimeout(n,300))},!1),"complete"===d.readyState?d.body.style.fontSize="16px":d.addEventListener("DOMContentLoaded",function(e){d.body.style.fontSize="16px"},!1)}(750,750);
+</script>
+</head>
+  <body>
+    <div id="app">
+        <div class="contenter">
+            <div class="backArea" @click="goPages" v-if="language==0">返回</div>
+            <div class="backArea" @click="goPages" v-if="language==1">return</div>
+            <div class="backArea" @click="goPages" v-if="language==2">trở về</div>
+
+            <div class="ruleBox" v-if="language==0">
+                <p class="title">活动规则</p>
+1.活动时间：11月11日00:00-11月14日23:59<br>
+2.活动根据主播和用户获得的人气值和守护值进行排名。<br>
+3.活动期间内主播收到喵宝宝会增加人气值，人气越高，活动结束奖励越丰富（每收到1个喵宝宝获得1点能量值）；用户给主播赠送喵宝宝用户会获得守护值，守护值越高奖励越丰富（每赠送一个喵宝宝用户获得1点守护值）<br>
+4.排行榜分为“人气榜“和”守护榜“，按照活动截止排行名次进行奖励发放。<br>
+5.注意：主播和主播之间互相送礼物不计入人气值和守护值统计<br>
+6.活动期间若发现有违规行为，活动主办方有权取消兑奖资格。<br>
+7.由于活动期间信息量过大，数据统计稍有延迟，请您耐心等待。<br>
+8.本活动最终解释权归本<br>
+            </div>
+            <div class="ruleBox" v-if="language==1">
+                <p class="title">Activity rule</p>
+1. Activity time: November 11th 00:00-November 14th 23:59<br>
+2. The activities are ranked according to the popularity value and guard value obtained by the idol and users.<br>
+3. During the event period, the idol will increase the popularity value when receiving baby cats. The higher the popularity, the richer the rewards will be at the end of the event (each baby cat will receive 1 point of energy); users who give the idol a gift of baby cats will get guard value , The higher the guardian value, the richer the rewards (each gifted baby cat will get 1 guardian value)<br>
+4. The ranking list is divided into "popularity list" and "guardian list", and rewards will be issued according to the rankings at the end of the event.<br>
+5. Note: presenting gifts between the idol and the idol will not be counted in the popularity value and guard value statistics<br>
+6. If any violations are found during the event, the event organizer reserves the right to cancel the award.<br>
+7. Due to the large amount of information during the event, data statistics are slightly delayed, please be patient.<br>
+8. The final interpretation right of this activity belongs to the original<br>
+            </div>
+            <div class="ruleBox" v-if="language==2">
+                <p class="title">Quy tắc sự kiện</p>
+1.Ngày diễn ra sự kiện :  11/11 00:00 - 14/11 23:59<br>
+2. Bảng xếp hạng của event được dựa trên độ hot và điểm bảo hộ mà Idol và người dùng đạt được .<br>
+3. Trong thời gian diễn ra sự kiện, Idol nhận được càng nhiều miu bảo bảo sẽ gia tăng độ hot , sau khi kết thúc sự kiện quà nhận được sẽ càng phong phú ( mỗi khi nhận được 1 miu bảo bảo sẽ được tăng lên 1 điểm năng lượng ) : người dùng tặng cho Idol miu bảo bảo người dùng sẽ đạt được điểm bảo hộ , điểm bảo hộ càng cao quà càng hấp dẫn ( mỗi lần tặng 1 miu bảo bảo sẽ nhận được 1 điểm bảo hộ ) .<br>
+4. Danh sách xếp hạng được chia thành "danh sách độ hot " và "danh sách điểm bảo hộ", và phần thưởng sẽ được phát theo thứ hạng khi kết thúc sự kiện.<br>
+5. Lưu ý: quà tặng từ Idol sang Idol sẽ không được tính thành điểm độ hot và điểm bảo hộ .<br>
+6. Nếu phát hiện bất kỳ vi phạm nào trong thời gian diễn ra sự kiện, đơn vị tổ chức sự kiện có quyền hủy bỏ tư cách tham gia . <br>
+7. Do lượng thông tin lớn trong sự kiện nên việc thống kê dữ liệu hơi chậm trễ, mong các bạn kiên nhẫn chờ đợi .<br>
+8. Quyền giải thích cuối cùng của sự kiện này thuộc về ban tổ chức <br>
+            </div>
+
+           
+
+        </div>
+    </div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script type="text/javascript">
+    new Vue({
+        el:'#app',
+        data(){
+          return{
+            language:0,//0中   1英  2越南
+            luckTitleText:['Lucky Star','Lucky Star','Lucky Star'],//tip title
+            timeInfo:['活动时间: 2020.10.24-2020.10.30','Activity time: 2020.10.24-2020.10.30','Thời gian diễn ra event: 2020.10.24-2020.10.30'],
+            backText:['返回','return','trở về'],
+            userBoxTitle:['活动规则','Activity Rules','Luật event'],
+          
+            
+          }   
+        },
+        created() {
+          this.getInitLunguage()
+
+        },
+        computed:{
+        },
+        methods:{
+          goPages:function(){
+            // window.location.href ="./anchorList.html"; rel="external nofollow";
+            window.history.go(-1)
+          },
+          getInitLunguage:function(){
+              var lang = navigator.language||navigator.userLanguage;//常规浏览器语言和IE浏览器
+              lang = lang.substr(0, 2);//截取lang前2位字符
+              console.log(lang)
+              if(lang == 'zh'){
+                this.language=0;
+              }else if(lang == 'en'){
+                this.language=1;
+              }else if(lang == 'vi'){
+                this.language=2;
+              }else{
+                this.language=0;
+              }
+            },
+            swichList:function(index){
+                // console.log(index)
+                this.listStatus = index;
+                if(index==0){
+                    this.listData=[];
+                }else{
+                    this.listData=this.listData1;
+                }
+            },
+            // goRulesPages:function(){
+
+            // },
+            getScrollMsg:function(){
+                var that = this;
+                window.onscroll = function(){  // 由于需要使用 onPageScroll 无法使用 scroll-view 所以使用onscroll来判断页面是否滚动到底部
+                    //变量scrollTop是滚动条滚动时，距离顶部的距离
+                    var scrollTop = document.documentElement.scrollTop;
+                    //变量windowHeight是可视区的高度
+                    var windowHeight = document.documentElement.clientHeight;
+                    //变量scrollHeight是滚动条的总高度
+                    var scrollHeight = document.documentElement.scrollHeight;
+                            console.log(scrollTop)
+                            console.log(windowHeight)
+                            console.log(scrollHeight)
+                          //滚动条到底部的条件
+                    if(scrollTop+windowHeight==scrollHeight){
+                      //写后台加载数据的函数
+                      console.log("距顶部"+scrollTop+"可视区高度"+windowHeight+"滚动条总高度"+scrollHeight);
+                      console.log('滚动到底')
+                      that.listData.push({name:'小野444猫',num:123,url:'./img/bg10.png'},)
+
+                    }   
+                }
+            },
+          //获取 ranktype useridx 的公共函数
+          GetQueryString:function(name) { //name为要获得的参数名字
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)")
+            var r = window.location.search.substr(1).match(reg)
+            if(r != null) return decodeURI(r[2])
+            return null;
+          },
+          getUrlData:function(){
+            console.log(this.GetQueryString('ranktype'));
+            console.log(this.GetQueryString('useridx'));
+            // console.log(this.data.data)
+          },
+          getMessage:function(){
+            console.log(this.data)
+            var that =this;
+            axios.post('/Rank/totalRankData', {
+              ranktype: that.ranktype,
+              timetype: that.timetype,
+              useridx: that.useridx,
+              page: 1,
+            })
+            .then(function (response) {
+              that.infoData=response.data.data.rankList;
+              //此处浅拷贝  下方改变原始数据变化
+              var arr=response.data.data.rankList;
+              arr.forEach(function(item,index,arr1){
+                if(item.sumprice>=10000){
+                  arr[index].sumprice=Math.floor(arr[index].sumprice/10000*100)/100+"万"
+                }else{
+
+                }
+              })  
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+          },
+          goList:function(e){
+            if(e.currentTarget.id==0){//1 日榜，2 周榜，3 月榜，4 总榜
+              this.timetype=2;
+              this.getMessage()
+            }else if(e.currentTarget.id==1){
+              this.timetype=3;
+              this.getMessage()
+            }else if(e.currentTarget.id==2){
+              this.timetype=4;
+              this.getMessage()
+            }
+            this.listState=e.currentTarget.id;
+          },
+          add:function(){
+            axios.get('http://192.168.84.170:5000/LinkService/Auto/MixVerifyCode')
+            .then(function (response) {
+              console.log(response);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+
+          },//---------------
+          systemall:function(){
+            var ios = 'ios';
+            var android = 'android';
+            var pc = 'pc';
+            var u = navigator.userAgent, app = navigator.appVersion;
+            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+            var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            if (isAndroid) {
+               //这个是安卓操作系统
+               console.log('这个是安卓操作系统')
+               return android;
+            }
+            if (isIOS) {
+            　　//这个是ios操作系统
+              console.log('这个是ios操作系统')
+              return ios;
+            }
+            if (isIOS==false&&isAndroid==false) {
+            　　//这个是pc操作系统
+              console.log('这个是pc操作系统')
+              return pc;
+            }
+          }	
+        },
+        beforeMount(){
+        },
+        mounted(){
+        },
+       
+    })
+  </script>
+</html>

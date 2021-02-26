@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<meta name="description" content="不超过150个字符"/>
+<meta name="keywords" content=""/>
+<meta content="" name="author"/>
+<title></title>
+<link rel="stylesheet" href="./rule.css">
+<!-- <script src="./axios.js"></script> -->
+<script src="./vue.js"></script>
+<script type="text/javascript">
+//引入该flexible.min.js
+!function(e,t){function n(){var n=l.getBoundingClientRect().width;t=t||540,n>t&&(n=t);var i=100*n/e;r.innerHTML="html{font-size:"+i+"px;}"}var i,d=document,o=window,l=d.documentElement,r=document.createElement("style");if(l.firstElementChild)l.firstElementChild.appendChild(r);else{var a=d.createElement("div");a.appendChild(r),d.write(a.innerHTML),a=null}n(),o.addEventListener("resize",function(){clearTimeout(i),i=setTimeout(n,300)},!1),o.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(i),i=setTimeout(n,300))},!1),"complete"===d.readyState?d.body.style.fontSize="16px":d.addEventListener("DOMContentLoaded",function(e){d.body.style.fontSize="16px"},!1)}(750,750);
+</script>
+</head>
+  <body>
+    <div id="app">
+        <div class="contenter">
+            <div class="topArea">
+                <div class="titleText">{{luckTitleText[language]}}</div>
+                <div class="acTime">{{timeInfo[language]}}</div>
+                <div class="backBtn" @click="goPages">{{backText[language]}}</div>
+            </div>
+            <div class="userBoxTitle">
+                <div class="userUtitle">{{userBoxTitle[language]}}</div>
+            </div>
+            <div class="ruleBox" v-if="language==0">
+1.幸运礼物中奖率大幅提高，快来体验赠送幸运礼物的魅力吧<br>
+2.活动期间用户赠送礼物会给自己和主播增加幸运能量，幸运能量越高，活动结束奖励越丰富（用户的幸运能量=送出礼物的金币数/10+中奖金额的/10）（主播的幸运能量=收到礼物金币总额/10+爆奖金币总额/10）<br>
+3.排行榜分为幸运主播榜和幸运用户榜，按照活动截止排行名次进行奖励发放。<br>
+4.能量值达到一定等级会获得固定奖励，能量值排名前10名的主播可以获得称号奖励和基础奖励，排名越靠前奖励倍率越高<br>
+基础奖励金额：100万越南盾<br>
+5.活动礼物：幸运铃铛、炸了、666、桃花朵朵开、喜欢你、幸运大蕉、幸运棒棒糖、幸运棒棒糖、幸运双人床<br>
+6.自刷礼物计入能量统计中，且用户只能以一种身份参与活动！<br>
+7.根据主播能量值进行奖励发放：<br>
+>5,000,000能量值,获得基础排名奖励<br>
+>10,000,000能量值，2倍排名奖励<br>
+>20,000,000能量值，4倍排名奖励<br>
+8.用户排名奖励领取条件：<br>
+能量值>1,000,000<br>
+9.活动期间若发现有违规行为，活动主办方有权取消兑奖资格。<br>
+10.由于活动期间信息量过大，数据统计稍有延迟，请您耐心等待。<br>
+            </div>
+            <div class="ruleBox" v-if="language==1">
+1. The winning rate of lucky gifts has been greatly increased. Come and experience the charm of giving lucky gifts<br>
+2. Gifts given by users during the event will increase the lucky energy for themselves and the idol. The higher the lucky energy, the richer the rewards at the end of the event (the user's lucky energy = the number of gold coins given to the gift/10 + the winning amount/10) (the idol's lucky Energy = total amount of gift coins received/10 + total amount of explosive bonus coins/10)<br>
+3. The ranking list is divided into lucky anchor list and lucky user list, and rewards will be distributed according to the rankings at the end of the event.<br>
+4. When the energy value reaches a certain level, a fixed reward will be given. The top 10 Idol in energy value can get title rewards and basic rewards. The higher the ranking, the higher the reward multiplier.<br>
+Basic award amount: 1 million VND<br>
+5. Event gifts: lucky bell, Blasted,Fa-fa-fabulous!!!, Blooming peach bloss, like you, Lucky banana, lucky lollipop, lucky lollipop, lucky double bed<br>
+6. Self-swiping gifts are included in the energy statistics, and users can only participate in activities with one identity!<br>
+7. Reward distribution according to the Idol energy value:<br>
+>5,000,000 energy value, Get basic ranking rewards<br>
+>10,000,000 energy value, 2 times the ranking reward<br>
+>20,000,000 energy value, 4 times ranking reward<br>
+8.Conditions for receiving user ranking rewards:<br>
+Energy value>1,000,000<br>
+9. If any violations are found during the event, the event organizer reserves the right to cancel the award.<br>
+10. Due to the large amount of information during the event, data statistics are slightly delayed, please be patient.<br>
+            </div>
+            <div class="ruleBox" v-if="language==2">
+1 Tỷ lệ may mắn trúng được phần quà ngày càng cao hơn , nhanh chân đến trải nghiệm sự mê hoặc của việc tặng quà may mắn <br>
+2 Trong lúc diễn ra sự kiện , quà User tặng cho Idol sẽ giúp gia tăng thêm sự may mắn cho đôi bên , năng lượng may mắn cực kỳ cao , sự kiện kết thúc sẽ nhận được phần quà cực kì hấp dẫn (năng lượng may mắn của người dùng = ( năng lượng may mắn của user = tổng số xu trong quà tặng ra /10+ tỷ lệ trúng thưởng/10)  ( năng lượng may mắn của idol = nhận được tổng số xu của quà tặng /10+ tổng số tiền thưởng nổ / 10） <br>
+3 Danh sách xếp hạng được chia thành danh sách idol may mắn và danh sách user may mắn, và phần thưởng sẽ được chia theo thứ hạng khi kết thúc sự kiện <br>
+4-Điểm năng lượng đạt đuọc 1 cấp độ nhất định sẽ nhận được phần quà nhất định , top 10 idol sẽ nhận được phần quà danh diệu và phần quà cơ bản , tỷ lệ phần thưởng cơ bản : 1 triệu đồng <br>
+5 Phần quà sự kiện : chú hề may mắn , chuông may mắn , Bí đỏ may mắn , Pháo may mắn , Socola nồng nàn , Hộp hoa hồng trái tim , Heo đất may mắn， Giường đôi hạnh phúc<br>
+6 Qùa tự tặng được tính vào trong bảng thống kê điểm năng lượng và user chỉ được tham gia hoạt động với duy nhất 1 danh tính <br>
+7 Dựa trên điểm năng lượng của idol để thống kê :<br>
+> 5.000.000 điểm năng lượng sẽ được xếp hạng gấp 1 <br>
+> 10.000.000 điểm năng lượng , xếp hạng gấp hai <br>
+>20.000.000 điểm năng lượng , xếp hạng gấp 4 <br>
+8.Điều kiện để user nhận được giải thưởng <br>
+Điểm năng lượng > 1.000.000<br>
+9. Nếu phát hiện bất kỳ vi phạm nào trong thời gian diễn ra sự kiện, đơn vị tổ chức sự kiện có quyền hủy bỏ giải thưởng.<br>
+10. Do lượng thông tin lớn trong sự kiện nên việc thống kê dữ liệu hơi chậm trễ, mong các bạn kiên nhẫn.<br>
+            </div>
+
+           
+
+        </div>
+    </div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script type="text/javascript">
+    new Vue({
+        el:'#app',
+        data(){
+          return{
+            language:0,//0中   1英  2太 
+            luckTitleText:['Lucky Star','Lucky Star','Lucky Star'],//tip title
+            timeInfo:['2021.01.29 00:00-2021.02.02 23:59','2021.01.29 00:00-2021.02.02 23:59','2021.01.29 00:00-2021.02.02 23:59'], 
+            backText:['返回','return','trở về'],
+            userBoxTitle:['活动规则','Activity Rules','Luật event'],
+          
+            
+          }   
+        },
+        created() {
+          this.getInitLunguage()
+
+        },
+        computed:{
+        },
+        methods:{
+          goPages:function(){
+            // window.location.href ="./anchorList.html"; rel="external nofollow";
+            window.history.go(-1)
+          },
+          getInitLunguage:function(){
+              var lang = navigator.language||navigator.userLanguage;//常规浏览器语言和IE浏览器
+              lang = lang.substr(0, 2);//截取lang前2位字符
+              console.log(lang)
+              if(lang == 'zh'){
+                this.language=0;
+              }else if(lang == 'en'){
+                this.language=1;
+              }else if(lang == 'vi'){
+                this.language=2;
+              }else{
+                this.language=0;
+              }
+            },
+            swichList:function(index){
+                // console.log(index)
+                this.listStatus = index;
+                if(index==0){
+                    this.listData=[];
+                }else{
+                    this.listData=this.listData1;
+                }
+            },
+            // goRulesPages:function(){
+
+            // },
+            getScrollMsg:function(){
+                var that = this;
+                window.onscroll = function(){  // 由于需要使用 onPageScroll 无法使用 scroll-view 所以使用onscroll来判断页面是否滚动到底部
+                    //变量scrollTop是滚动条滚动时，距离顶部的距离
+                    var scrollTop = document.documentElement.scrollTop;
+                    //变量windowHeight是可视区的高度
+                    var windowHeight = document.documentElement.clientHeight;
+                    //变量scrollHeight是滚动条的总高度
+                    var scrollHeight = document.documentElement.scrollHeight;
+                            console.log(scrollTop)
+                            console.log(windowHeight)
+                            console.log(scrollHeight)
+                          //滚动条到底部的条件
+                    if(scrollTop+windowHeight==scrollHeight){
+                      //写后台加载数据的函数
+                      console.log("距顶部"+scrollTop+"可视区高度"+windowHeight+"滚动条总高度"+scrollHeight);
+                      console.log('滚动到底')
+                      that.listData.push({name:'小野444猫',num:123,url:'./img/bg10.png'},)
+
+                    }   
+                }
+            },
+          //获取 ranktype useridx 的公共函数
+          GetQueryString:function(name) { //name为要获得的参数名字
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)")
+            var r = window.location.search.substr(1).match(reg)
+            if(r != null) return decodeURI(r[2])
+            return null;
+          },
+          getUrlData:function(){
+            console.log(this.GetQueryString('ranktype'));
+            console.log(this.GetQueryString('useridx'));
+            // console.log(this.data.data)
+          },
+          getMessage:function(){
+            console.log(this.data)
+            var that =this;
+            axios.post('/Rank/totalRankData', {
+              ranktype: that.ranktype,
+              timetype: that.timetype,
+              useridx: that.useridx,
+              page: 1,
+            })
+            .then(function (response) {
+              that.infoData=response.data.data.rankList;
+              //此处浅拷贝  下方改变原始数据变化
+              var arr=response.data.data.rankList;
+              arr.forEach(function(item,index,arr1){
+                if(item.sumprice>=10000){
+                  arr[index].sumprice=Math.floor(arr[index].sumprice/10000*100)/100+"万"
+                }else{
+
+                }
+              })  
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+          },
+          goList:function(e){
+            if(e.currentTarget.id==0){//1 日榜，2 周榜，3 月榜，4 总榜
+              this.timetype=2;
+              this.getMessage()
+            }else if(e.currentTarget.id==1){
+              this.timetype=3;
+              this.getMessage()
+            }else if(e.currentTarget.id==2){
+              this.timetype=4;
+              this.getMessage()
+            }
+            this.listState=e.currentTarget.id;
+          },
+          add:function(){
+            axios.get('http://192.168.84.170:5000/LinkService/Auto/MixVerifyCode')
+            .then(function (response) {
+              console.log(response);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+
+          },//---------------
+          systemall:function(){
+            var ios = 'ios';
+            var android = 'android';
+            var pc = 'pc';
+            var u = navigator.userAgent, app = navigator.appVersion;
+            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+            var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            if (isAndroid) {
+               //这个是安卓操作系统
+               console.log('这个是安卓操作系统')
+               return android;
+            }
+            if (isIOS) {
+            　　//这个是ios操作系统
+              console.log('这个是ios操作系统')
+              return ios;
+            }
+            if (isIOS==false&&isAndroid==false) {
+            　　//这个是pc操作系统
+              console.log('这个是pc操作系统')
+              return pc;
+            }
+          }	
+        },
+        beforeMount(){
+        },
+        mounted(){
+        },
+       
+    })
+  </script>
+</html>

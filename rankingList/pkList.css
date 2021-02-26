@@ -1,0 +1,524 @@
+*{padding:0;margin:0}
+body,html,#app,.contenter{width: 100%;height: 100%;}
+#app{
+/*    background: url('./img/hong.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;*/
+}
+.contenter{
+    width: 7.5rem;
+    height: 7.3rem;
+    background: rgba(0,0,0,1);
+    opacity: 0.85;
+    position: absolute;
+    bottom: 0;
+    border-radius:0.2rem 0.2rem 0rem 0rem;
+    overflow-y: scroll;
+}
+.h6title{
+    font-size: 0.3rem;
+    font-weight:bold;
+    color:rgba(255,255,255,1);
+    line-height:0.3rem;
+    padding:0.29rem 0.33rem;
+    text-align: center;
+}
+.titleArea{
+    height: 0.26rem;
+    padding-bottom: 0.06rem;
+    display: flex;
+    align-items: center;
+}
+.titleArea .titlePer{
+    width: 3.75rem;
+    line-height: 0.26rem;
+    text-align: center;
+    color: #fff;
+}
+.listArea{
+    display: flex;
+}
+.listArea .myAchor{
+    min-height: 6rem;
+    width:3.74rem;
+}
+.listArea .myAchor .achorList .photo{
+    margin-top: 0.17rem;
+    width:1.4rem;
+    height: 1.4rem;
+    border: 4px solid #FFFFFF;
+    border-radius: 50%;
+    margin-left:1.13rem;
+}
+.listArea .myAchor .achorList .btn{
+    width:1rem;
+    height: 0.4rem;
+    border-radius: 0.2rem;
+    background: #FF4C66;
+    font-size:0.24rem;
+    line-height: 0.4rem;
+    text-align: center;
+    position: relative;
+    top: -0.27rem;
+    left:1.45rem;
+}
+.listArea .myAchor .achorList .nameArea{
+    width: 100%;
+    height: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.16rem;
+}
+.listArea .myAchor .achorList .nameArea .name{
+    font-size:0.24rem;
+    color:rgba(255,255,255,1);
+    line-height: 0.32rem;
+    margin-right: 0.46rem; 
+    max-width: 1.68rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.listArea .myAchor .achorList .nameArea .num{
+    width:0.56rem;
+    height:0.24rem;
+    background: #00CC95;
+    position: relative;
+    left: -0.19rem;
+    
+
+}
+.listArea .myAchor .achorList .nameArea .num .lv{
+    width:0.4rem;
+    height:0.32rem;
+    position: absolute;
+    left: -0.19rem;
+    top: -0.04rem;
+}
+.listArea .myAchor .achorList .nameArea .num .nu{
+    width:0.56rem;
+    height:0.24rem;
+    position: absolute;
+    font-size: 0.22rem;
+    line-height: 0.24rem;
+    text-align: center;
+    text-indent: 0.1rem;
+}
+.listArea .myAchor .achorList .isFdollowMy{
+    width:1rem;
+    height: 0.4rem;
+    border-radius: 0.2rem;
+    background: #FF4C66;
+    font-size:0.24rem;
+    line-height: 0.4rem;
+    text-align: center;
+    position: relative;
+    top: -0.27rem;
+    left:1.45rem;
+}
+.listArea .myAchor .achorList .listArea{
+    width:3.74rem;
+    display: flex;
+    flex-direction: column;
+}
+.listArea .myAchor .achorList .listArea .listPer{
+    width:3.74rem;
+    height: 0.66rem;
+    margin: 0.08rem 0 0.1rem 0;
+    display: flex;
+}
+.listArea .myAchor .achorList .listArea .listPer .perPhoto{
+    width: 0.66rem;
+    height: 0.66rem;
+    border-radius: 50%;
+    margin-left: 0.3rem;
+    margin-right: 0.12rem;
+}
+.listArea .myAchor .achorList .listArea .listPer .perInfo{
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+.listArea .myAchor .achorList .listArea .listPer .perInfo .text{
+   font-size: 0.2rem;
+   line-height: 0.22rem;
+   height: 0.22rem;
+   overflow: hidden;
+   text-overflow:ellipsis;
+   white-space: nowrap;
+   color: #A9A9A9;
+   max-width:2.5rem;
+}
+.listArea .myAchor .achorList .listArea .listPer .perInfo .perNameBox{
+   height: 0.26rem;
+    display: flex;
+    align-items: center;
+}
+.listArea .myAchor .achorList .listArea .listPer .perInfo .perNameBox .perLvImg{
+   height: 0.26rem;
+   width: 0.33rem;
+}
+.listArea .myAchor .achorList .listArea .listPer .perInfo .perNameBox .perLv{
+    width: 0.46rem;
+    height: 0.19rem;
+    background: #00CC95;
+    font-size: 0.14rem;
+    line-height: 0.19rem;
+}
+.listArea .myAchor .achorList .listArea .listPer .perInfo .perNameBox .perNa{
+   height: 0.26rem;
+    display: flex;
+    align-items: center;
+    color:#fff;
+    max-width: 1.36rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    margin-left: 0.1rem;
+}
+
+
+.listArea .line{
+    flex: 1;
+    background:rgba(99,99,99,1);
+    border-radius:20px 20px 0px 0px;
+}
+.listArea .otherAchor{
+    min-height: 6rem;
+    width:3.74rem;
+
+}
+
+
+
+
+
+
+/*---------*/
+/*.timeArea{
+   height: 1rem;
+   padding-top: 0.33rem;
+   width: 100%; 
+}
+.timeArea .dayArea{
+    height: 0.3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+.timeArea .dayArea .spanDay0,.spanDay3{
+    font-size: 0.24rem;
+}
+.timeArea .dayArea .spanDay1{
+        padding-left: 0.1rem;
+}
+.timeArea .dayArea .spanDay2{
+        padding-right: 0.1rem;
+}
+.timeArea .dayArea .spanDay1,.spanDay2{
+    font-size: 0.3rem;
+    font-weight: 600;
+
+}
+.timeArea .dayArea .spanDay0{
+    margin-left:0.25rem;
+}
+.timeArea .dayArea .spanDay3{
+    margin-right:0.25rem;
+}
+.timeArea .dayArea .isAC{
+    color: #FF5C68;
+}
+
+.timeArea .hourArea{
+    height: 0.24rem;
+    font-size: 0.24rem;
+    width: 5.5rem;
+    padding: 0 1rem;
+    margin-top: 0.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+.timeArea .hourArea .isAC{
+    color: #FF5C68;
+}
+.islive{
+
+}
+.islive .goodArea{
+    height: 4.6rem;
+    width: 100%;
+    background-image: url('./img/bgt.png');
+    background-size: 5.14rem 3.77rem;
+    background-repeat: no-repeat;
+    background-position:  center 2.06rem;
+    position: relative;
+}
+.islive .goodArea .goodPer{
+    height: 1.42rem;
+    width: 1.42rem;
+    border-radius: 50%;
+    position: relative;
+}
+.islive .goodArea .goodPer0{
+    border:0.06rem solid #C3D2DD;
+    position: absolute;
+    top: 0.72rem;
+    left: 0.82rem;
+}
+.islive .goodArea .goodPer1{
+    border:0.06rem solid #FFBF10;
+    position: absolute;
+    top: 0.18rem;
+    left: 3rem;
+}
+.islive .goodArea .goodPer2{
+    border:0.06rem solid #DF9C81;
+    position: absolute;
+    top: 1.25rem;
+    left: 5.17rem;
+}
+.islive .goodArea .goodPer .bg1{
+    position: absolute;
+    width: 0.62rem;
+    height: 0.48rem;
+    top: -0.24rem;
+    left: -0.04rem;
+}
+.islive .goodArea .goodPer .bg2{
+    position: absolute;
+    width: 1.94rem;
+    height: 0.46rem;
+    left: -0.21rem;
+    bottom: -0.2rem;
+}
+.islive .goodArea .goodPer .bg3{
+    width: 1.42rem;
+    height: 1.42rem;
+    border-radius: 50%;
+}
+.islive .goodArea .goodPer .bg4{
+    position: absolute;
+    width: 1.42rem;
+    height: 0.24rem;
+    font-size: 0.24rem;
+    line-height: 0.24rem;
+    left: 0.06rem;
+    bottom: -0.07rem;
+    text-align: center;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.islive .goodArea .goodPer .bg40{
+    color:#5D6972;
+}
+.islive .goodArea .goodPer .bg41{
+    color:#925B0E;
+}
+.islive .goodArea .goodPer .bg42{
+    color:#842C0B;
+}
+.islive .goodArea .goodPer .bg5{
+    position: absolute;
+    width: 1.42rem;
+    height: 0.18rem;
+    font-size: 0.18rem;
+    line-height: 0.18rem;
+    left: 0.06rem;
+    bottom: -0.39rem;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+
+
+.islive .lastArea{
+    width: 100%;
+}
+.islive .lastArea .listPer{
+    height: 1rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color:#fff;
+    font-size: 0.30rem;
+    font-weight: 600;
+}
+.islive .lastArea .listPer .perleft{
+    height: 1rem;
+    display: flex;
+    align-items: center;
+    margin-left: 0.35rem;
+}
+.islive .lastArea .listPer .perleft .index{
+    width: 0.5rem;
+
+    text-align: center;
+    font-size: 0.36rem;
+}
+.islive .lastArea .listPer .perleft .photo{
+    width: 0.74rem;
+    height: 0.74rem;
+    border-radius: 50%;
+    margin:0 0.27rem 0 0.27rem;
+}
+.islive .lastArea .listPer .perleft .name{
+    max-width: 3rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.islive .lastArea .listPer .perright{
+    margin-right: 0.35rem;
+}
+.listnoData{
+    height: 5rem;
+    width: 100%;
+}
+.listnoData .noData{
+    color: #fff;
+    text-align: center;
+    line-height: 3rem;
+}
+.nolive{
+    height: 5rem;
+    width: 100%;
+}
+.nolive .noP{
+    padding-top: 2.3rem;
+    width: 100%;
+    line-height: 0.41rem;
+    font-size: 0.36rem;
+    color: #fff;
+    text-align: center;
+}
+.nolive .noBtn{
+    height: 0.74rem;
+    width: 5.18rem;
+    background-image: url('./img/btn.png');
+    background-size: 5.18rem 0.74rem;
+    margin-left: 1.16rem;
+    text-align: center;
+    line-height: 0.74rem;
+    font-size: 0.3rem;
+    color: #fff;
+    margin-top: 1rem;
+}
+.timeSArea{
+    height: 0.58rem;
+    line-height: 0.58rem;
+    font-size:0.24rem;
+    font-weight:500;
+    color:rgba(255,92,104,1);
+    text-align: center;
+}
+.myArea{
+    width: 100%;
+}
+.myArea .listPer{
+    height: 1rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color:#fff;
+    font-size: 0.30rem;
+    font-weight: 600;
+}
+.myArea .listPer .perleft{
+    height: 1rem;
+    display: flex;
+    align-items: center;
+    margin-left: 0.35rem;
+}
+.myArea .listPer .perleft .index{
+    width: 0.5rem;
+    text-align: center;
+    font-size: 0.36rem;
+}
+.myArea .listPer .perleft .photo{
+    width: 0.74rem;
+    height: 0.74rem;
+    border-radius: 50%;
+    margin:0 0.27rem 0 0.27rem;
+}
+.myArea .listPer .perleft .name{
+    max-width: 3rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.myArea .listPer .perright{
+    margin-right: 0.35rem;
+}
+.paiArea{
+    width: 100%;
+}
+.paiArea .listPer{
+    height: 1rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color:#fff;
+    font-size: 0.30rem;
+    font-weight: 600;
+}
+.paiArea .listPer .perleft{
+    height: 1rem;
+    display: flex;
+    align-items: center;
+    margin-left: 0.35rem;
+}
+.paiArea .listPer .perleft .index{
+    width: 0.5rem;
+    text-align: center;
+    font-size: 0.36rem;
+}
+.paiArea .listPer .perleft .photo{
+    width: 0.74rem;
+    height: 0.74rem;
+    border-radius: 50%;
+    margin:0 0.27rem 0 0.27rem;
+}
+.paiArea .listPer .perleft .name{
+    max-width: 1.5rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+
+.paiArea .listPer .perright{
+    display: flex;
+    align-items: center;
+    margin-right: 0.35rem;
+}
+.paiArea .listPer .perright .fen{
+    width:1.7rem;
+    font-size:0.24rem;
+    font-weight:500;
+    color:rgba(255,92,104,1);
+}
+
+.paiArea .listPer .perright .btn{
+    width:1.2rem;
+    height:0.6rem;
+    background:#FF4C67;
+    border-radius: 0.3rem;
+    font-size:0.3rem;
+    line-height: 0.6rem;
+    text-align: center;
+    margin-left: 0.4rem;
+}*/
+
+
+

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<meta name="description" content="不超过150个字符"/>
+<meta name="keywords" content=""/>
+<meta content="" name="author"/>
+<title></title>
+<link rel="stylesheet" href="./rule.css">
+<script src="./axios.js"></script>
+<script src="./vue.js"></script>
+<!-- 引入样式 -->
+<!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
+<!-- 引入组件库 // that.$message(response.data.msg); -->
+<!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
+<!-- 引入样式文件 -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.10/lib/index.css"> -->
+<!-- <link rel="stylesheet" href="./vant.js"> -->
+<!-- 引入 Vue 和 Vant 的 JS 文件 -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6/dist/vue.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/vant@2.10/lib/vant.min.js"></script> -->
+<!-- <script src="./vant.js"></script> -->
+
+<script type="text/javascript">
+//引入该flexible.min.js
+!function(e,t){function n(){var n=l.getBoundingClientRect().width;t=t||540,n>t&&(n=t);var i=100*n/e;r.innerHTML="html{font-size:"+i+"px;}"}var i,d=document,o=window,l=d.documentElement,r=document.createElement("style");if(l.firstElementChild)l.firstElementChild.appendChild(r);else{var a=d.createElement("div");a.appendChild(r),d.write(a.innerHTML),a=null}n(),o.addEventListener("resize",function(){clearTimeout(i),i=setTimeout(n,300)},!1),o.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(i),i=setTimeout(n,300))},!1),"complete"===d.readyState?d.body.style.fontSize="16px":d.addEventListener("DOMContentLoaded",function(e){d.body.style.fontSize="16px"},!1)}(750,1200);
+</script>
+</head>
+  <body>
+    <div id="app">
+        <div class="contenter">
+            <div class="topArea">
+                <img class="newYear" src="./img/newYear.png" alt="">
+                <img class="timeInfo" src="./img/timeBg.png" alt="">
+                <div class="backBtn" :class="'backBtn'+language" @click="goPages">
+                  {{backText[language]}}
+                </div>
+                <div class="priseBtn" :class="'priseBtn'+language">
+                  {{acRuleText[language]}}
+                </div>
+            </div>
+            <!-- ruleArea -->
+            <div class="ruleArea">
+              <div class="rule rule0" v-if="language==0">
+1.活动时间：02月11日00:00-02月14日23:59<br>
+2.活动指定礼物鞭炮，赠送/收到一个鞭炮增加1点福气值，中奖额外增加福气数值，10倍增加10点，50倍增加50点，500倍增加500点<br>
+<div class="bianArea">
+  <div class="bian">
+    <img class="pao" src="./img/pao.png" alt="">
+  </div>
+  <div class="text">
+      <p>幸运鞭炮</p>
+      <p class="p2">100 coins</p>
+      <p>1 福气值</p>
+  </div>
+</div>
+3.活动期间内主播收到鞭炮可以获得福气值，根据福气值进行排名。用户/主播完成指定任务可以开启固定红包获得大奖，红包内容有现金和金币奖励<br>
+4.排行榜根据用户身份分为“新年榜“和”快乐榜“，按照活动截止排行名次进行奖励发放。<br>
+新年榜排名获取条件福气值>1,600,000<br>
+快乐榜排名获取条件福气值>500,000<br>
+ 
+5.主播只能靠收礼物获得福气值，用户只能靠送礼物获得福气数值，用户自刷不增加福气值，主播自刷增加福气值<br>
+6.注意：主播和主播之间互相送礼物不计入福气值统计<br>
+7.活动期间若发现有违规行为，活动主办方有权取消兑奖资格。<br>
+8.由于活动期间信息量过大，数据统计稍有延迟，请您耐心等待。<br>
+9.本活动最终解释权归本<br>
+              </div>
+              <div class="rule rule1" v-if="language==1">
+1. Event time: 00:00 on February 11th to 23:59 on February 14th<br>
+2. The event designated firecrackers, gift/receive a firecracker to increase 1 point of blessing value, winning the prize will increase the value of blessing, 10 times increase 10 points, 50 times increase 50 points, 500 times increase 500 points<br>
+<div class="bianArea">
+  <div class="bian">
+    <img class="pao" src="./img/pao.png" alt="">
+  </div>
+  <div class="text">
+      <p>Lucky firecrackers</p>
+      <p class="p2">100 coins</p>
+      <p>1 Blessing value</p>
+  </div>
+</div>
+3. During the event, the anchor can get blessing value when receiving firecrackers, and rank according to blessing value. Users/hosts can open fixed red envelopes to win prizes after completing designated tasks. The red envelopes contain cash and gold coin rewards<br>
+4. The leaderboard is divided into "New Year List" and "Happy List" according to the user's identity, and rewards are issued according to the end of the activity ranking.<br>
+New Year's rankings get conditional blessing value> 1,600,000<br>
+Happiness list ranking obtains conditional blessing value> 500,000<br>
+ 
+5. The Idol can only obtain the blessing value by receiving gifts, and the user can only obtain the blessing value by giving gifts. The user brushing does not increase the blessing value, and the anchor brushing increases the blessing value.<br>
+6. Note: Presenting gifts to each other between the host and the host will not be counted in the blessing value statistics<br>
+7. If any violations are found during the event, the event organizer reserves the right to cancel the award.<br>
+8. Due to the large amount of information during the event, data statistics are slightly delayed, please be patient.<br>
+9. The final interpretation right of this event belongs to the original<br>
+              </div>
+              <div class="rule rule2" v-if="language==2">
+1-Thời gian diễn ra hoạt động : 11/2 vào lúc 00:00 đến ngày 14/2 23:59<br>
+2- Quà tặng được chỉ định là Pháo may mắn , tặng pháo gia tăng 1 điểm chúc phúc trên bảng xếp hạng ,giành được phần thưởng riêng sẽ được gia tăng thêm điểm chúc phúc , gấp 10 lần tăng 10 điểm , 50 lần tăng 50 điểm , 500 lần tăng 500 điểm<br> 
+<div class="bianArea">
+  <div class="bian">
+    <img class="pao" src="./img/pao.png" alt="">
+  </div>
+  <div class="text">
+      <p>Pháo may mắn</p>
+      <p class="p2">100 coins</p>
+      <p>1 Điểm chúc phúc</p>
+  </div>
+</div>
+3-trong thời gian diễn ra hoạt dộng nếu idol nhận được Pháo May Mắn sẽ được cộng điểm chúc phúc ,thứ hạng sẽ được tính dựa theo điểm chúc phúc trên bảng xếp hạng .Idol và user hoàn thành nhiệm vụ sẽ được mở lì xì cố định để nhận thưởng lớn , phần quà bên trong lì xì sẽ là tiền mặt và tiền xu <br>
+4-Bảng xếp hạng được chia thành "Danh sách năm mới" và "Danh sách hạnh phúc" theo danh tính của người dùng và phần thưởng sẽ được phát theo cuối bảng xếp hạng hoạt động.<br>
+Bảng xếp hạng năm mới phải có điểm chúc phúc đạt được điều kiện> 1.600.000<br>
+Xếp hạng danh sách hạnh phúc phải nhận được điểm chúc phúc có điều kiện> 500.000<br>
+5. Idol chỉ có thể nhận được điểm chúc phúc khi nhận quà và người dùng chỉ có thể nhận được điểm chúc phúc bằng cách tặng quà. Người dùng tự tặng quà không làm tăng điểm chúc phúc và tặng quà cho idol để tăng điểm chúc phúc.<br>
+6. Lưu ý: Việc tặng quà cho nhau giữa tộc trưởng và tộc trưởng sẽ không được tính vào bảng thống kê điểm chúc phúc<br>
+7. Nếu phát hiện bất kỳ vi phạm nào trong thời gian diễn ra sự kiện, đơn vị tổ chức sự kiện có quyền hủy bỏ giải thưởng.<br>
+8. Do lượng thông tin lớn trong sự kiện nên việc thống kê dữ liệu hơi chậm trễ, mong các bạn kiên nhẫn.<br>
+9. Quyền giải thích cuối cùng của sự kiện này thuộc về công ty <br>
+              </div>
+            </div>
+
+
+ 
+
+
+        </div>
+    </div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script type="text/javascript">
+    new Vue({
+        el:'#app',
+        data(){
+          return{
+            webUrl:'https://api.bunnylive.me/',//web before https://api.bunnylive.me/  test  http://173.248.234.130:2027/
+            language:0,//0中   1英   2太
+            backText:['返回','return','trở về'],
+            acRuleText:['活动规则','Activity Rules','quy tắc hoạt động'],
+          }   
+        },
+        created() {
+          this.getInitLunguage()
+
+
+        },
+        computed:{
+        },
+        methods:{
+            //获取 token ranktype 等公共函数
+            GetQueryString:function(name) { //name为要获得的参数名字 
+              var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)")
+              var r = window.location.search.substr(1).match(reg)
+              if(r != null) return decodeURI(r[2])
+              return null;
+              // if(r != null){
+              //     this.language=decodeURI(r[2])
+              // }else{
+              //     this.language=0;
+              // }
+            },
+            getInitLunguage:function(){
+              var lang = navigator.language||navigator.userLanguage;//常规浏览器语言和IE浏览器
+              lang = lang.substr(0, 2);//截取lang前2位字符
+              console.log(lang)
+              if(lang == 'zh'){
+                this.language=0;
+              }else if(lang == 'en'){
+                this.language=1;
+              }else if(lang == 'vi'){
+                this.language=2;
+              }else{
+                this.language=0;
+              }
+            },
+            goPages:function(){
+              window.location.href ="./anchorList.html?token="+this.GetQueryString('token'); rel="external nofollow";
+              
+            },
+
+
+
+            swichRankList:function(id){//切换榜单
+              console.log(id)
+              this.swichBarStatus=id;
+            },
+            getInitGiftMsg:function(){
+              var token = this.GetQueryString('token')
+              // console.log(token)
+              var url = this.webUrl+'H5/Active/LuckyStarBoxStatus';
+              var that =this;
+              axios.post(url, {
+                token:token
+              })
+              .then(function (response) {
+                console.log(response.data)
+                var initData=that.giftStatus;
+                var newData=response.data.data;
+
+                initData.forEach(function(item,index){
+                  newData.forEach(function(item1,index1){
+                    if(item1.BoxType==item.id){
+                      that.giftStatus[index].status=1;
+                      that.giftStatus[index].coin=item1.Coin;
+                    }
+                  })
+                })
+                
+               
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+            },
+            openBox:function(typeId){
+              var token = this.GetQueryString('token')
+              var url = this.webUrl+'H5/Active/LuckyStarOpenPrize';
+              var that = this;
+              axios.post(url, {
+                token:token,
+                Type:typeId
+              })
+              .then(function (response) {
+                // console.log(response.data)
+                  if(response.data.code==100){
+                    that.giftStatus[typeId-1].coin=response.data.data;
+                    that.giftStatus[typeId-1].status=1;
+                  
+                  }
+                  vant.Toast(response.data.msg);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+            },
+            getRankList:function(rankId){
+              // console.log(rankId)
+              // console.log(this.acRankStatus)
+
+              var token = this.GetQueryString('token')
+              // console.log(token)
+              var url = this.webUrl+'H5/Active/LuckyStarRank';
+              var that =this;
+              axios.post(url, {
+                token:token
+              })
+              .then(function (response) {
+                // console.log(response.data.data)
+                that.totalInitData=response.data.data;
+                that.achorRankData=response.data.data.idollist;//主播榜
+                that.achorMydata=response.data.data.myidolrank;//主播  我的
+                that.userRankData=response.data.data.userlist;//用户榜
+                that.userMyData=response.data.data.myuserrank;//用户  我的
+                that.achorLevalNum=response.data.data.myidolrank.giftnum;//主播
+                that.userLevalNum=response.data.data.myuserrank.giftnum;//用户
+
+
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+            },
+            productType:function(){
+              var ios = 'ios';
+              var android = 'android';
+              var u = navigator.userAgent, app = navigator.appVersion;
+              var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+              var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+              if (isAndroid) {
+                 //这个是安卓操作系统
+                 return 1;
+              }
+              if (isIOS) {
+              　　//这个是ios操作系统
+                return 0;
+              }
+            },
+            gooPersonalPage:function(idx){//0 i0s 1 android
+              // console.log(idx)
+              // console.log(this.productType())
+              if(this.productType()==0){
+                document.location = "miaobowpa:/ShowCard&useridx=" + idx + "&";
+              }else if(this.productType()==1){
+                window.location.href = "miaobowpa://ShowCard?useridx=" + idx;
+              }
+            },
+
+
+            getScrollMsg:function(){
+                var that = this;
+                window.onscroll = function(){  // 由于需要使用 onPageScroll 无法使用 scroll-view 所以使用onscroll来判断页面是否滚动到底部
+                    //变量scrollTop是滚动条滚动时，距离顶部的距离
+                    var scrollTop = document.documentElement.scrollTop;
+                    //变量windowHeight是可视区的高度
+                    var windowHeight = document.documentElement.clientHeight;
+                    //变量scrollHeight是滚动条的总高度
+                    var scrollHeight = document.documentElement.scrollHeight;
+                            console.log(scrollTop)
+                            console.log(windowHeight)
+                            console.log(scrollHeight)
+                          //滚动条到底部的条件
+                    if(scrollTop+windowHeight==scrollHeight){
+                      //写后台加载数据的函数
+                      console.log("距顶部"+scrollTop+"可视区高度"+windowHeight+"滚动条总高度"+scrollHeight);
+                      console.log('滚动到底')
+                      that.listData.push({name:'小野444猫',num:123,url:'./img/bg10.png'},)
+
+                    }   
+                }
+            },
+          
+        },
+        beforeMount(){
+        },
+        mounted(){
+        },
+       
+    })
+  </script>
+</html>

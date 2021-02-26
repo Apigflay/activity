@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<meta name="description" content="不超过150个字符"/>
+<meta name="keywords" content=""/>
+<meta content="" name="author"/>
+<title></title>
+<link rel="stylesheet" href="./anchorList.css">
+<script src="./axios.js"></script>
+<script src="./vue.js"></script>
+<script type="text/javascript">
+//引入该flexible.min.js
+!function(e,t){function n(){var n=l.getBoundingClientRect().width;t=t||540,n>t&&(n=t);var i=100*n/e;r.innerHTML="html{font-size:"+i+"px;}"}var i,d=document,o=window,l=d.documentElement,r=document.createElement("style");if(l.firstElementChild)l.firstElementChild.appendChild(r);else{var a=d.createElement("div");a.appendChild(r),d.write(a.innerHTML),a=null}n(),o.addEventListener("resize",function(){clearTimeout(i),i=setTimeout(n,300)},!1),o.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(i),i=setTimeout(n,300))},!1),"complete"===d.readyState?d.body.style.fontSize="16px":d.addEventListener("DOMContentLoaded",function(e){d.body.style.fontSize="16px"},!1)}(750,750);
+</script>
+</head>
+  <body>
+    <div id="app">
+        <div class="contenter">
+            <img class="timeIntro" src="./img/bg3.png" alt="">
+            <div class="timeArea">
+            10，000，000USD<br>
+            20,000,000coins
+            </div>
+            <div class="aG">
+                Tăng thêm<br>2000coins
+            </div>
+            <div class="aM">
+                Xu thưởng nạp tiền siêu giá trị
+            </div>
+            <div class="per">
+              <span class="span1">Nạp tích lũy：75USD</span>
+              <span class="span2">Tặng quà 5%</span>
+            </div>
+            <div class="per">
+              <span class="span1">Nạp tích lũy：200USD</span>
+              <span class="span2">Tặng quà 7%</span>
+            </div>
+            <div class="per">
+              <span class="span1">Nạp tích lũy：400USD</span>
+              <span class="span2">Tặng quà 8%</span>
+            </div>
+            <div class="per">
+              <span class="span1">Nạp tích lũy：800USD</span>
+              <span class="span2">Tặng quà 10%</span>
+            </div>
+            <div class="per">
+              <span class="span1">Nạp tích lũy：2000USD</span>
+              <span class="span2">Tặng quà 15%</span>
+            </div>
+            <div class="per">
+              <span class="span1">Nạp tích lũy：4000USD</span>
+              <span class="span2">Tặng quà 20%</span>
+            </div>
+            <div class="aR">
+                Quy luật event
+            </div>
+            <div class="rule">
+                Người dùng nạp tiền trong thời gian diễn ra sự kiện (chỉ nạp tiền, thành viên đã mua sẽ không được tính là nạp tiền
+Thống kê), tính tổng số tiền người dùng nạp và tổng số tiền vàng, cho đến khi kết thúc hoạt động<br>
+Đếm tổng số tiền người dùng nạp cho đến ngày và phần thưởng sẽ dựa trên tổng số tiền nạp<br>
+ Hãy kiên nhẫn chờ đợi một chút chậm trễ.<br>
+
+Trong khoảng thời gian này<br>
+Tặng 5% cho các lần nạp trên 75 USD<br>
+Tặng  7% cho các lần nạp trên 200 USD<br>
+Tặng  8% cho các lần nạp trên 400 USD<br>
+Tặng  10% cho các lần nạp trên 800 USD<br>
+Tặng  15% cho các lần nạp trên 2000 USD<br>
+Tặng  20%  cho các lần nạp trên 4000 USD
+
+            </div>
+        </div>
+    </div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script type="text/javascript">
+    new Vue({
+        el:'#app',
+        data(){
+          return{
+             
+          }   
+        },
+        created() {
+          // this.getMessage()
+        },
+        computed:{
+        },
+        methods:{
+            getInitLunguage:function(){
+              var lang = navigator.language||navigator.userLanguage;//常规浏览器语言和IE浏览器
+              lang = lang.substr(0, 2);//截取lang前2位字符
+              console.log(lang)
+              if(lang == 'zh'){
+                this.language=0;
+              }else if(lang == 'en'){
+                this.language=1;
+              }else if(lang == 'vi'){
+                this.language=2;
+              }else{
+                this.language=0;
+              }
+            },
+          //获取 ranktype useridx 的公共函数
+          GetQueryString:function(name) { //name为要获得的参数名字
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)")
+            var r = window.location.search.substr(1).match(reg)
+            if(r != null) return decodeURI(r[2])
+            return null;
+          },
+          getMessage:function(){//接口
+            var token = this.GetQueryString('token')
+            var url = this.webUrl+'H5/Active/GoldenAnchroRank';
+            var that =this;
+            axios.post(url, {
+              token:token
+            })
+            .then(function (response) {
+              console.log(response)
+              that.initData=response.data.data;
+              that.listData=that.initData.idolrank;
+              that.myFixedData=response.data.data.myidolrank;
+              // console.log(that.myFixedData)
+              console.log(that.initData)
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+          },
+          
+        },
+        beforeMount(){
+        },
+        mounted(){
+        },
+       
+    })
+  </script>
+</html>

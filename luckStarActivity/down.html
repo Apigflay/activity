@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<meta name="description" content="不超过150个字符"/>
+<meta name="keywords" content=""/>
+<meta content="" name="author"/>
+<title></title>
+<link rel="stylesheet" href="./down.css">
+<!-- <script src="./axios.js"></script> -->
+<script src="./vue.js"></script>
+<script type="text/javascript">
+//引入该flexible.min.js
+!function(e,t){function n(){var n=l.getBoundingClientRect().width;t=t||540,n>t&&(n=t);var i=100*n/e;r.innerHTML="html{font-size:"+i+"px;}"}var i,d=document,o=window,l=d.documentElement,r=document.createElement("style");if(l.firstElementChild)l.firstElementChild.appendChild(r);else{var a=d.createElement("div");a.appendChild(r),d.write(a.innerHTML),a=null}n(),o.addEventListener("resize",function(){clearTimeout(i),i=setTimeout(n,300)},!1),o.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(i),i=setTimeout(n,300))},!1),"complete"===d.readyState?d.body.style.fontSize="16px":d.addEventListener("DOMContentLoaded",function(e){d.body.style.fontSize="16px"},!1)}(750,750);
+</script>
+</head>
+  <body>
+    <div id="app">
+        <div class="contenter">
+            <div class="topArea">
+                <div class="titleText">{{luckTitleText[language]}}</div>
+                <div class="acTime">{{timeInfo[language]}}</div>
+                <div class="backBtn" @click="goPages">{{backText[language]}}</div>
+            </div>
+            <div class="userBoxTitle">
+                <div class="userUtitle">{{userBoxTitle[language]}}</div>
+            </div>
+            <div class="perBox">
+                <img class="icon" src="./img/img11.png" alt="">
+                <div class="intro">
+                    <img class="icon" src="./img/coin.png" alt="">100-20000 Coins
+                </div>
+            </div>
+            <div class="perBox">
+                <img class="icon" src="./img/img22.png" alt="">
+                <div class="intro">
+                    <img class="icon" src="./img/coin.png" alt="">200-50000 Coins
+                </div>
+            </div>
+            <div class="perBox">
+                <img class="icon" src="./img/img33.png" alt="">
+                <div class="intro">
+                    <img class="icon" src="./img/coin.png" alt="">1000-100000 Coins
+                </div>
+            </div>
+            <div class="userBoxTitle">
+                <div class="userUtitle">{{acGiftText[language]}}</div>
+            </div>
+            <!-- 中 -->
+            <div class="acGiftBox" v-if="language==0">
+                <div class="perAc">
+                    <span class="index">第1名</span>
+                    <div class="day"><img src="./img/chi.png" alt=""><span>幸运主播(30天)</span></div>
+                    <div class="num"><span>3倍基础奖励</span></div>
+                </div>
+                <div class="perAc">
+                    <span class="index">第2名</span>
+                    <div class="day"><img src="./img/chi.png" alt=""> <span>幸运主播(30天)</span></div>
+                    <div class="num"><span>2倍基础奖励</span></div>
+                </div>
+                <div class="perAc">
+                    <span class="index">第3名</span>
+                    <div class="day"><img src="./img/chi.png" alt=""> <span>幸运主播(30天)</span></div>
+                    <div class="num"><span>1.5倍基础奖励</span></div>
+                </div>
+                <div class="perAc">
+                    <span class="index">第4-10名</span>
+                    <div class="day"><img src="./img/chi.png" alt=""> <span>幸运主播(30天)</span></div>
+                    <div class="num"><span>1倍基础奖励</span></div>
+                </div>
+            </div>
+            <!-- en -->
+            <div class="acGiftBox acGiftBox1" v-if="language==1">
+                <div class="perAc">
+                    <span class="index">No.1</span>
+                    <div class="day"><img src="./img/chi.png" alt=""><span>Lucky idol(30days)</span></div>
+                    <div class="num"><span>3 times the basic reward</span></div>
+                </div>
+                <div class="perAc">
+                    <span class="index">No.2</span>
+                    <div class="day"><img src="./img/chi.png" alt=""> <span>Lucky idol(30days)</span></div>
+                    <div class="num"><span>2 times the basic reward</span></div>
+                </div>
+                <div class="perAc">
+                    <span class="index">No.3</span>
+                    <div class="day"><img src="./img/chi.png" alt=""> <span>Lucky idol(30days)</span></div>
+                    <div class="num"><span>1.5 times the basic reward</span></div>
+                </div>
+                <div class="perAc">
+                    <span class="index">4th-10th</span>
+                    <div class="day"><img src="./img/chi.png" alt=""> <span>Lucky idol(30days)</span></div>
+                    <div class="num"><span>1 times the basic reward</span></div>
+                </div>
+            </div>
+            <!-- vi -->
+            <div class="acGiftBox acGiftBox2" v-if="language==2">
+                <div class="perAc">
+                    <span class="index">No.1</span>
+                    <div class="day"><img src="./img/chi.png" alt=""><span>Idol may mắn 30ngày</span></div>
+                    <div class="num"><span>3 lần phần thưởng cơ bản</span></div>
+                </div>
+                <div class="perAc">
+                    <span class="index">No.2</span>
+                    <div class="day"><img src="./img/chi.png" alt=""> <span>Idol may mắn 30ngày</span></div>
+                    <div class="num"><span>2 lần phần thưởng cơ bản</span></div>
+                </div>
+                <div class="perAc">
+                    <span class="index">No.3</span>
+                    <div class="day"><img src="./img/chi.png" alt=""> <span>Idol may mắn 30ngày</span></div>
+                    <div class="num"><span>1.5 lần phần thưởng cơ bản</span></div>
+                </div>
+                <div class="perAc">
+                    <span class="index">4th-10th</span>
+                    <div class="day"><img src="./img/chi.png" alt=""> <span>Idol may mắn 30ngày</span></div>
+                    <div class="num"><span>1 lần phần thưởng cơ bản</span></div>
+                </div>
+            </div>
+            <div class="userBoxTitle">
+                <div class="userUtitle">{{luGiftText[language]}}</div>
+            </div>
+            <div class="luGiftBox" v-if="language==0">
+                <div class="perAc">
+                    <span class="index">第1名</span>
+                    <div class="day"><img src="./img/car.png" alt=""><span>超级跑车(30天)</span></div>
+                    <div class="num"><img src="./img/coin.png" alt=""><span>1000000</span></div>
+                </div>
+                <div class="perAc">
+                    <span class="index">第2名</span>
+                    <div class="day"><img src="./img/car.png" alt=""> <span>超级跑车(15天)</span></div>
+                    <div class="num"><img src="./img/coin.png" alt=""><span>500000</span></div>
+                </div>
+                <div class="perAc">
+                    <span class="index">第3名</span>
+                    <div class="day"><img src="./img/car.png" alt=""> <span>超级跑车(7天)</span></div>
+                    <div class="num"><img src="./img/coin.png" alt=""><span>300000</span></div>
+                </div>
+                <div class="perAc">
+                    <span class="index">第4-10名</span>
+                    <div class="day"><img src="./img/motuo.png" alt=""> <span>重机车(7天)</span></div>
+                    <div class="num"><img src="./img/coin.png" alt=""><span>100000</span></div>
+                </div>
+            </div>
+            <div class="luGiftBox" v-if="language==1">
+                <div class="perAc">
+                    <span class="index">No.1</span>
+                    <div class="day"><img src="./img/car.png" alt=""><span>Supercar(30days)</span></div>
+                    <div class="num"><img src="./img/coin.png" alt=""><span>1000000</span></div>
+                </div>
+                <div class="perAc">
+                    <span class="index">No.2</span>
+                    <div class="day"><img src="./img/car.png" alt=""> <span>Supercar(15days)</span></div>
+                    <div class="num"><img src="./img/coin.png" alt=""><span>500000</span></div>
+                </div>
+                <div class="perAc">
+                    <span class="index">No.3</span>
+                    <div class="day"><img src="./img/car.png" alt=""> <span>Supercar(7days)</span></div>
+                    <div class="num"><img src="./img/coin.png" alt=""><span>300000</span></div>
+                </div>
+                <div class="perAc">
+                    <span class="index">4th-10th</span>
+                    <div class="day"><img src="./img/motuo.png" alt=""> <span>Heavy locomotive(7days)</span></div>
+                    <div class="num"><img src="./img/coin.png" alt=""><span>100000</span></div>
+                </div>
+            </div>
+            <div class="luGiftBox" v-if="language==2">
+                <div class="perAc">
+                    <span class="index">No.1</span>
+                    <div class="day"><img src="./img/car.png" alt=""><span>Siêu chạy(30ngày)</span></div>
+                    <div class="num"><img src="./img/coin.png" alt=""><span>1000000</span></div>
+                </div>
+                <div class="perAc">
+                    <span class="index">No.2</span>
+                    <div class="day"><img src="./img/car.png" alt=""> <span>Siêu chạy(15ngày)</span></div>
+                    <div class="num"><img src="./img/coin.png" alt=""><span>500000</span></div>
+                </div>
+                <div class="perAc">
+                    <span class="index">No.3</span>
+                    <div class="day"><img src="./img/car.png" alt=""> <span>Siêu chạy(7ngày)</span></div>
+                    <div class="num"><img src="./img/coin.png" alt=""><span>300000</span></div>
+                </div>
+                <div class="perAc">
+                    <span class="index">4th-10th</span>
+                    <div class="day"><img src="./img/motuo.png" alt=""> <span>Đầu máy nặng(7ngày)</span></div>
+                    <div class="num"><img src="./img/coin.png" alt=""><span>100000</span></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    new Vue({
+        el:'#app',
+        data(){
+          return{
+            language:0,//0中   1英  2太
+            luckTitleText:['Lucky Star','Lucky Star','Lucky Star'],//tip title
+            timeInfo:['2021.01.29 00:00-2021.02.02 23:59','2021.01.29 00:00-2021.02.02 23:59','2021.01.29 00:00-2021.02.02 23:59'], 
+            backText:['返回','return','trở về'],
+            userBoxTitle:['固定奖励','Fixed reward','Phần thưởng cố định'],
+            acGiftText:['幸运主播奖励','Lucky Idol reward','Phần thưởng idol may mắn'],
+            luGiftText:['幸运用户奖励','Lucky user reward','Phần thưởng người dùng may mắn'],
+          }   
+        },
+        created() {
+            this.getInitLunguage()
+        },
+        computed:{
+        },
+        methods:{
+            getInitLunguage:function(){
+              var lang = navigator.language||navigator.userLanguage;//常规浏览器语言和IE浏览器
+              lang = lang.substr(0, 2);//截取lang前2位字符
+              console.log(lang)
+              if(lang == 'zh'){
+                this.language=0;
+              }else if(lang == 'en'){
+                this.language=1;
+              }else if(lang == 'vi'){
+                this.language=2;
+              }else{
+                this.language=0;
+              }
+            },
+            goPages:function(){
+                // window.location.href ="./anchorList.html"; rel="external nofollow";
+                window.history.go(-1)
+            },
+            swichList:function(index){
+                console.log(index)
+                if(index==0){
+                    alert('敬请期待')
+                    // window.location.href =""; rel="external nofollow";
+                }else if(index==1){
+                    window.location.href ="https://play.google.com/store/apps/details?id=com.bunnyfishing.FishingMaster"; rel="external nofollow";
+                }
+            }
+        },
+        beforeMount(){
+        },
+        mounted(){
+        },
+       
+    })
+  </script>
+</html>
